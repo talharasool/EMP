@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PacesTableXIB" customModule="EconomicMovementPlanner" customModuleProvider="target">
+            <connections>
+                <outlet property="goOutletAction" destination="7tu-HF-kGY" id="gzP-Kt-f6g"/>
+                <outlet property="listTV" destination="PaV-Ac-6X5" id="tJx-3x-sFZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rs7-t8-Ads">
+                    <rect key="frame" x="0.0" y="44" width="414" height="70"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routes Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgM-1s-pa4">
+                            <rect key="frame" x="8" y="8" width="398" height="54"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="4e6-w3-kMo"/>
+                        <constraint firstItem="dgM-1s-pa4" firstAttribute="top" secondItem="rs7-t8-Ads" secondAttribute="top" constant="8" id="4j6-wk-59W"/>
+                        <constraint firstItem="dgM-1s-pa4" firstAttribute="leading" secondItem="rs7-t8-Ads" secondAttribute="leading" constant="8" id="A1W-s4-bQc"/>
+                        <constraint firstAttribute="bottom" secondItem="dgM-1s-pa4" secondAttribute="bottom" constant="8" id="mK0-si-Old"/>
+                        <constraint firstAttribute="trailing" secondItem="dgM-1s-pa4" secondAttribute="trailing" constant="8" id="uol-Be-iCD"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="u51-kt-0xE">
+                    <rect key="frame" x="63" y="812" width="288" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tu-HF-kGY">
+                            <rect key="frame" x="0.0" y="0.0" width="140" height="50"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="GO">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTi-6W-7TG">
+                            <rect key="frame" x="148" y="0.0" width="140" height="50"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Cancel Rides">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelRideAction:" destination="-1" eventType="touchUpInside" id="SzB-NE-fdi"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="u51-kt-0xE" secondAttribute="height" multiplier="144:25" id="201-JP-TIR"/>
+                        <constraint firstAttribute="height" constant="50" id="bYa-8u-JiJ"/>
+                    </constraints>
+                </stackView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PaV-Ac-6X5">
+                    <rect key="frame" x="0.0" y="114" width="414" height="698"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rs7-t8-Ads" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7te-hK-mEq"/>
+                <constraint firstItem="rs7-t8-Ads" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BCq-cI-yhZ"/>
+                <constraint firstItem="PaV-Ac-6X5" firstAttribute="top" secondItem="rs7-t8-Ads" secondAttribute="bottom" id="BHV-GA-6o7"/>
+                <constraint firstItem="u51-kt-0xE" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="PEB-nw-cZZ"/>
+                <constraint firstItem="PaV-Ac-6X5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Y5H-RP-e3i"/>
+                <constraint firstItem="u51-kt-0xE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Z3u-i5-ZbV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PaV-Ac-6X5" secondAttribute="trailing" id="f4a-Gg-xUf"/>
+                <constraint firstItem="rs7-t8-Ads" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="jDa-qD-aei"/>
+                <constraint firstItem="u51-kt-0xE" firstAttribute="top" secondItem="PaV-Ac-6X5" secondAttribute="bottom" id="sYZ-hm-rZl"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="82.366071428571431"/>
+        </view>
+    </objects>
+</document>

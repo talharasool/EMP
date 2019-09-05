@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>959222362346-at144ki3rvehtac6s9bs5r6locjmit1o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.959222362346-at144ki3rvehtac6s9bs5r6locjmit1o</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>959222362346-nmlqvcpqg29r44into0cdv0d1rehdj9s.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCPn7GECBGzIAWTYPKiyxbpHFqQZ5-QN5E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>959222362346</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.EconomicMovementPlanner.EconomicMovementPlanner</string>
+	<key>PROJECT_ID</key>
+	<string>tactile-timer-238411</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tactile-timer-238411.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:959222362346:ios:e2fbfb877c449f51</string>
+	<key>DATABASE_URL</key>
+	<string>https://tactile-timer-238411.firebaseio.com</string>
+</dict>
+</plist>

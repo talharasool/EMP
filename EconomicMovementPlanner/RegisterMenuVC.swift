@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import KYDrawerController
+import Firebase
+import FirebaseCore
+import FirebaseDatabase
 
 
 class RegisterMenuVC: UIViewController {
@@ -14,6 +18,10 @@ class RegisterMenuVC: UIViewController {
     @IBOutlet weak var facebookBtnOutlet: UIButton!
     @IBOutlet weak var googleBtnOutlet: UIButton!
     @IBOutlet weak var mobileBtnOutlet: UIButton!
+    
+    let activity = UIActivityIndicatorView()
+    var usersArray : [User] = []
+     
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +40,6 @@ class RegisterMenuVC: UIViewController {
     }
     
 }
-
 
 extension RegisterMenuVC{
     

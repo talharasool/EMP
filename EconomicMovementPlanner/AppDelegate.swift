@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import UserNotifications
 import GoogleMaps
 import GooglePlaces
 import Firebase
@@ -17,10 +18,14 @@ import UserNotifications
 import FirebaseDatabase
 import KYDrawerController
 
-
+import Firebase
+import FirebaseMessaging
+import UserNotifications
+import FirebaseInstanceID
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -30,16 +35,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable =  true
         
-           FirebaseApp.configure()
+          // FirebaseApp.configure()
         
-        if AuthServices.shared.loginVal{
         
-            let MainSb = KYDrawerController.instantiateViewController()
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window!.rootViewController = MainSb
+        if let login = AuthServices.shared.loginVal{
             
+            if login{
+            
+                let MainSb = KYDrawerController.instantiateViewController()
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window!.rootViewController = MainSb
+                
+            }else{
+                print("\n\n Not login in app delegate \n\n")
+            }
+        }else{
+             print("\n\n Login is nil in app delegate \n\n")
         }
+        
+        
+        
+//        if #available(iOS 10.0, *) {
+//            // For iOS 10 display notification (sent via APNS)
+//            UNUserNotificationCenter.current().delegate = self
+//
+//            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//            UNUserNotificationCenter.current().requestAuthorization(
+//                options: authOptions,
+//                completionHandler: {_, _ in })
+//        } else {
+//            let settings: UIUserNotificationSettings =
+//                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//
+//
+//            application.registerUserNotificationSettings(settings)
+//        }
+//
+//        application.registerForRemoteNotifications()
+        
+        configureFirebase(application: application)
+        let isRegisteredForRemoteNotifications = UIApplication.shared.isRegisteredForRemoteNotifications
+        if isRegisteredForRemoteNotifications {
+            print("refi")
+            // User is registered for notification
+        } else {
+            print("not")
+            // Show alert user is not registered for notification
+        }
+       
+        
+        Messaging.messaging().delegate = self
+        
 
+//        InstanceID.instanceID().instanceID { (result, error) in
+//            if let error = error {
+//                print("Error fetching remote instance ID: \(error)")
+//            } else if let result = result {
+//                print("Remote instance ID token: \(result.token)")
+//                
+//                //self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+//            }
+//        }
+        
+          Messaging.messaging().shouldEstablishDirectChannel = true
         // Override point for customization after application launch.
         
         
@@ -57,6 +115,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -128,3 +188,112 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+
+extension AppDelegate  : MessagingDelegate {
+    
+    
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//       print("Register eroor",error)
+//    }
+//
+//
+//
+//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+//
+//        print("calling")
+//    }
+//
+//
+//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+//        print("Firebase registration token: \(fcmToken)")
+//
+//        let dataDict:[String: String] = ["token": fcmToken]
+//
+//        InstanceID.instanceID().instanceID { (result, error) in
+//            if let error = error {
+//                print("Error fetching remote instance ID: \(error)")
+//            } else if let result = result {
+//                print("Remote instance ID token: \(result.token)")
+//              //  self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+//            }
+//        }
+//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+//        // TODO: If necessary send token to application server.
+//        // Note: This callback is fired at each app startup and whenever a new token is generated.
+//    }
+//
+//    func application(application: UIApplication,
+//                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+//        print(deviceToken)
+//        Messaging.messaging().apnsToken = deviceToken as Data
+//    }
+    
+}
+
+
+extension AppDelegate {
+    // Registering for Firebase notifications
+    func configureFirebase(application: UIApplication) {
+        
+        FirebaseApp.configure()
+        
+        Messaging.messaging().delegate = self
+    
+        // Register for remote notifications. This shows a permission dialog on first run, to
+        // show the dialog at a more appropriate time move this registration accordingly.
+        // [START register_for_notifications]
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        
+        print("-----firebase token: \(String(describing: Messaging.messaging().fcmToken)) ----")
+        
+        
+    }
+    
+    
+    //MARK: FCM Token Refreshed
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        // FCM token updated, update it on Backend Server
+    }
+    
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("remoteMessage: \(remoteMessage)")
+    }
+    
+    //Called when a notification is delivered to a foreground app.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    //Called to let your app know which action was selected by the user for a given notification.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("User Info = \(response.notification.request.content.userInfo)")
+        
+        completionHandler()
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        
+        print(fcmToken)
+        print("DOne")
+    }
+    
+}

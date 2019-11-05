@@ -15,9 +15,27 @@ class FIRService{
     
     static var shared = FIRService()
     
-    func getDataFromDataBase(_ clusterName : String, completion:@escaping (Any)->()){
+    
+    func getDataFromDataBaseWithEventCurrentUser(_ clusterName : String, completion:@escaping (Any)->()){
         
-        let val =  Database.database().reference().child(clusterName).observe(DataEventType.value, with: { (snapshot) in
+        if let id  = AuthServices.shared.userValue{
+            
+            let val =  Database.database().reference().child(clusterName).child(id).observe(DataEventType.value, with: { (snapshot) in
+                print("The snapShots are here", snapshot)
+                completion(snapshot.value)
+                
+            }) { (error) in
+                print(error)
+                completion(error)
+            }
+        }
+        
+    }
+    
+    
+    func getDataFromDataBaseWithEvent(_ clusterName : String, completion:@escaping (Any)->()){
+        
+        let val =  Database.database().reference().child(clusterName).observe(DataEventType.childChanged, with: { (snapshot) in
             print("The snapShots are here", snapshot)
             completion(snapshot.value)
             
@@ -25,6 +43,26 @@ class FIRService{
             print(error)
             completion(error)
         }
+    }
+    
+    func getDataFromDataBase(_ clusterName : String, completion:@escaping (Any)->()){
+        
+        if let userID = AuthServices.shared.userValue{
+            print("The current user id is here",userID)
+            let val =  Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/").child(clusterName).child(userID).observe(DataEventType.value, with: { (snapshot) in
+                print("The snapShots are here", snapshot)
+                completion(snapshot.value)
+                
+            }) { (error) in
+                print(error)
+                completion(error)
+            }
+            
+            
+        }else{
+            print("\n\n UserID Is nil in service \n\n")
+        }
+        
     }
     
     

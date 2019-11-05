@@ -30,12 +30,9 @@ extension UIStoryboard {
         case HomeVC
         
         var filename : String {
-            
             print("{- - The Current file name - -}\(rawValue.capitalized)")
              return rawValue.capitalized
         }
-        
-
     }
     
     class func storyboard(storyboard: Storyboard, bundle: Bundle? = nil) -> UIStoryboard {
@@ -48,6 +45,7 @@ extension UIStoryboard {
 extension StoryboardInitializable where Self:UIViewController {
 
     static var storyboardIdentifier: String {
+        print("The self is here ::", self)
         return String(describing: self)
     }
     

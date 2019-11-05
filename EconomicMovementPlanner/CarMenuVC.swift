@@ -36,9 +36,21 @@ class CarMenuVC: UIViewController {
         
         self.title = "Add Car"
         
+        
+        self.navigationController?.setUpBarColor()
+        self.navigationController?.setUpTitleColor()
+        
+        self.view.setBackground(imageName: "background")
         setUpImageViewTap()
         setUpMenuButton()
         
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        self.uploadImageBtnOutlet.layer.cornerRadius = 10
+        self.updateProfileAction.layer.cornerRadius = self.updateProfileAction.frame.height/2
     }
     
 }
@@ -95,7 +107,7 @@ extension CarMenuVC {
                 
             }else {
                      self.startAnimating()
-                let storageRef = Storage.storage().reference().child("myImage").child(AuthServices.shared.userValue).child("image.jpg")
+                let storageRef = Storage.storage().reference().child("myImage").child(AuthServices.shared.userValue!).child("image.jpg")
                 
                 if  let imageData  = selectedImage.jpegData(compressionQuality: 0.5){
                     print("Good walls")
@@ -119,27 +131,36 @@ extension CarMenuVC {
                             
                             let DBRef = Database.database().reference()
                             
-                          let newDB =   DBRef.child("Car Details").child(AuthServices.shared.userValue).childByAutoId()
-                            print("The db is \(newDB.key)")
-                            
-                           
-                            newDB.updateChildValues(["Child_Id" : newDB.key!, "Image_Link" : String(describing: url!),"Mileage" : self.passwordtext, "Model" :  self.phonetext , "Name" :    self.usernametext ], withCompletionBlock: { (error, dbre) in
+                            if let userId = AuthServices.shared.userValue{
                                 
-                                if err != nil{
+                                let newDB =   DBRef.child("Car Details").child(userId).childByAutoId()
+                                print("The db is \(newDB.key)")
+                                
+                                
+                                newDB.updateChildValues(["Car_Id" : newDB.key!, "Image_Link" : String(describing: url!),"Mileage" : self.passwordtext, "Model" :  self.phonetext , "Name" :    self.usernametext ], withCompletionBlock: { (error, dbre) in
+                                    
+                                    if err != nil{
+                                        self.stopAnimating()
+                                        Alert.showLoginAlert(Message: "", title: err as! String, window: self)
+                                        print("err",err)
+                                        return
+                                    }
+                                    
                                     self.stopAnimating()
-                                    Alert.showLoginAlert(Message: "", title: err as! String, window: self)
-                                    print("err",err)
-                                    return
-                                }
+                                    
+                                    Alert.showLoginAlert(Message: "", title: "Car Added", window: self)
+                                    
+                                    print(dbre.childByAutoId())
+                                })
                                 
-                                self.stopAnimating()
+                            }else{
                                 
-                                Alert.showLoginAlert(Message: "", title: "Car Added", window: self)
-                                
-                                print(dbre.childByAutoId())
-                            })
+                                print("\n\n Unable to get update profile \n")
+                            }
                             
-                           // newDB.updateChildValues(["Car_Id" : new])
+                            
+                            
+                            // newDB.updateChildValues(["Car_Id" : new])
                             
                         })
                     }

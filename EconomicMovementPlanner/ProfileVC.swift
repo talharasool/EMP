@@ -20,7 +20,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var userPssword: UITextField!
     @IBOutlet weak var userPhoneNumber: UITextField!
-    
+   
     var currentLoginUser : Profile!
     
      let activity = UIActivityIndicatorView()
@@ -80,10 +80,18 @@ class ProfileVC: UIViewController {
         self.username.text = AuthServices.shared.userObj
         self.userPssword.text = AuthServices.shared.userPassword
         
-        if let imageURL = URL(string: AuthServices.shared.userImage){
-            self.userImageView.sd_setImage(with: imageURL, completed: nil)
-        }
+        if let imageURL = AuthServices.shared.userImage{
+            
+            if let imageURL = URL(string: imageURL){
+                   self.userImageView.sd_setImage(with: imageURL, completed: nil)
+            }else{
+                print("\n\n\n Image url is nil \n\n")
+            }
 
+        }else{
+           print("\n\n\n Image string is nil \n\n")
+        }
+   
         
         
     
@@ -215,63 +223,76 @@ extension ProfileVC{
                 
             }else {
                 self.startAnimating()
-                let storageRef = Storage.storage().reference().child("myImage").child(AuthServices.shared.userValue).child("image.jpg")
                 
-                if  let imageData  = selectedImage.jpegData(compressionQuality: 0.5){
-                    print("Good walls")
-                    storageRef.putData(imageData, metadata: nil) { (metaData, err) in
-                        if err != nil{
-                            self.stopAnimating()
-                            Alert.showLoginAlert(Message: "", title: err as! String, window: self)
-                            print("error is here")
-                            return
-                        }
-                        
-                        
-                        print(metaData)
-                        
-                        
-                        guard let newImage = metaData else {return}
-                        
-                        storageRef.downloadURL(completion: { (url, err) in
-                            print(url)
-                            
-                            
-                            let DBRef = Database.database().reference()
-                            
-                            let newDB =   DBRef.child("User Details").child(AuthServices.shared.userValue)
-                            print("The db is \(newDB.key)")
-                            
-                            
-                            newDB.updateChildValues(["image_URl" : String(describing: url!),"password" : self.passwordtext, "phone" :  self.phonetext , "name" : self.usernametext ], withCompletionBlock: { (error, dbre) in
-                                
-                                if err != nil{
-                                    self.stopAnimating()
-                                    Alert.showLoginAlert(Message: "", title: err as! String, window: self)
-                                    print("err",err)
-                                    return
-                                }
-                                
-                                AuthServices.shared.userObj = self.username.text ?? ""
-                                AuthServices.shared.userPassword = self.userPssword.text ?? ""
-                                AuthServices.shared.userPhoneNumber = self.userPhoneNumber.text ?? ""
-                                AuthServices.shared.userImage = String(describing: url!)
-                                
-                                self.stopAnimating()
-                                
-                                Alert.showLoginAlert(Message: "", title: "User Updated Sucessfully", window: self)
-                                print(dbre.childByAutoId())
-                                
-                            })
-                            
-                            // newDB.updateChildValues(["Car_Id" : new])
-                            
-                        })
-                    }
+                
+                if let userID = AuthServices.shared.userValue{
+                    
+                    
+                    let storageRef = Storage.storage().reference().child("myImage").child(userID).child("image.jpg")
+                          
+                          if  let imageData  = selectedImage.jpegData(compressionQuality: 0.5){
+                              print("Good walls")
+                              storageRef.putData(imageData, metadata: nil) { (metaData, err) in
+                                  if err != nil{
+                                      self.stopAnimating()
+                                      Alert.showLoginAlert(Message: "", title: err as! String, window: self)
+                                      print("error is here")
+                                      return
+                                  }
+                                  
+                                  
+                                  print(metaData)
+                                  
+                                  
+                                  guard let newImage = metaData else {return}
+                                  
+                                  storageRef.downloadURL(completion: { (url, err) in
+                                      print(url)
+                                      
+                                      
+                                      let DBRef = Database.database().reference()
+                                      
+                                    let newDB =   DBRef.child("User Details").child(AuthServices.shared.userValue!)
+                                      print("The db is \(newDB.key)")
+                                      
+                                      
+                                      newDB.updateChildValues(["image_URl" : String(describing: url!),"password" : self.passwordtext, "phone" :  self.phonetext , "name" : self.usernametext ], withCompletionBlock: { (error, dbre) in
+                                          
+                                          if err != nil{
+                                              self.stopAnimating()
+                                              Alert.showLoginAlert(Message: "", title: err as! String, window: self)
+                                              print("err",err)
+                                              return
+                                          }
+                                          
+                                          AuthServices.shared.userObj = self.username.text ?? ""
+                                          AuthServices.shared.userPassword = self.userPssword.text ?? ""
+                                          AuthServices.shared.userPhoneNumber = self.userPhoneNumber.text ?? ""
+                                          AuthServices.shared.userImage = String(describing: url!)
+                                          
+                                          self.stopAnimating()
+                                          
+                                          Alert.showLoginAlert(Message: "", title: "User Updated Sucessfully", window: self)
+                                          print(dbre.childByAutoId())
+                                          
+                                      })
+                                      
+                                      // newDB.updateChildValues(["Car_Id" : new])
+                                      
+                                  })
+                              }
+                          }else{
+                              
+                              print("Storage")
+                          }
+                    
                 }else{
                     
-                    print("Storage")
+                    self.stopAnimating()
+                    
+                    print("\n\n User ID is herle ")
                 }
+      
                 
                 
                 
@@ -285,4 +306,14 @@ extension ProfileVC{
         
         
     }
+}
+
+
+
+struct PlaceData {
+    
+    var placeName : String?
+    var placeAddress : String?
+    var TimeFormat : String?
+    
 }

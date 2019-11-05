@@ -66,10 +66,11 @@ class ViewController: UIViewController {
     
     @IBAction func signInAction(_ sender: Any) {
         
-        
+        self.view.endEditing(true)
         if let phoneNumber  = phoneTextField.text?.replacingOccurrences(of: " ", with: ""),  let password = passTextField.text?.replacingOccurrences(of: " ", with: "") {
             
             var phone = "\(countryCodeField.text!)\(phoneNumber)"
+            print("The Phone Is ", phone)
             if (phone.isEmpty || password.isEmpty){
                 
                 let alert = UIAlertController(title: "Please fill all the fields", message: "", preferredStyle: .alert)
@@ -161,8 +162,21 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    @IBAction func googleActionBtn(_ sender: Any) {
+    
+    
+    @IBAction func forgotAction(_ sender: Any) {
+     
+        //let vc = ForgotViewController
         
+          self.view.endEditing(true)
+        let vc = ForgotViewController.instantiateViewController()
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    @IBAction func googleActionBtn(_ sender: Any) {
+          self.view.endEditing(true)
         let vc = SocialViewController.instantiateViewController()
         vc.myTitle = "Google Login"
         
@@ -175,13 +189,11 @@ class ViewController: UIViewController {
         countriesPikerView.showPhoneNumbers = true
         countriesPikerView.setCountry("PK")
         countriesPikerView.setCountryByName("Pakistan")
-        
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {}
 }
 
 extension ViewController :MRCountryPickerDelegate, UITextFieldDelegate {
@@ -257,3 +269,6 @@ extension ViewController {
         activity.stopAnimating()
     }
 }
+
+
+extension ViewController : StoryboardInitializable{}

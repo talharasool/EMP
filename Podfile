@@ -6,7 +6,11 @@ target 'EconomicMovementPlanner' do
   use_frameworks!
 
   # Pods for EconomicMovementPlanner
+pod 'Firebase/Analytics'
 
+# Add the pod for Firebase Cloud Messaging
+pod 'UICircularProgressRing'
+pod 'Firebase/Messaging'
 pod 'DropDown', '2.3.4'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'

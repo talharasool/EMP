@@ -31,10 +31,10 @@ class User   {
     }
 }
 
-class CarModel   {
+class CarModel  : Codable  {
     
     var Car_Id : String
-    var Image_Link : String
+    var Image_Link : String?
     var Mileag : String
     var Model : String
     var Name : String
@@ -44,7 +44,7 @@ class CarModel   {
         
         Car_Id =  data["Car_Id"] as? String ?? ""
         Image_Link =  data["Image_Link"] as? String ?? "No Image "
-        Mileag =  data["Mileag"] as? String ?? ""
+        Mileag =  data["Mileage"] as? String ?? ""
         Model =  data["Model"] as? String ?? "No model"
         Name =  data["Name"] as? String ?? "No name"
        
@@ -58,20 +58,27 @@ class  AuthServices {
     static  let shared = AuthServices()
     
     let def = UserDefaults.standard
-    var loginVal : Bool{
+    
+    var loginVal : Bool?{
         
         get{return def.value(forKey: AppIdentifiers.Defaults().login) as? Bool ?? false}
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().login)}
     }
     
     
-    var userValue : String {
+    var userValue : String?{
         get{return def.value(forKey: AppIdentifiers.Defaults().loginObject) as? String ?? "" }
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().loginObject)}
     }
     
     
-    var userObj : String {
+    var carId : String? {
+        get{return def.value(forKey: AppIdentifiers.Defaults().carIDKey) as? String ?? "" }
+        set{def.set(newValue, forKey: AppIdentifiers.Defaults().carIDKey)}
+    }
+    
+    
+    var userObj : String? {
         
         get{return def.value(forKey: AppIdentifiers.Defaults().userObj) as? String ?? ""  }
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().userObj)}
@@ -79,33 +86,45 @@ class  AuthServices {
     
     
     
-    var userPassword : String {
+    var userPassword : String? {
         
         get{return def.value(forKey: AppIdentifiers.Defaults().passKey) as? String ?? ""  }
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().passKey)}
     }
     
-    var userPhoneNumber : String{
+    var userPhoneNumber : String?{
         
         get{return def.value(forKey: AppIdentifiers.Defaults().phoneKey) as? String ?? ""  }
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().phoneKey)}
     }
     
     
-    var username : String {
+    var username : String? {
         get{return def.value(forKey: AppIdentifiers.Defaults().userName) as? String ?? "" }
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().userName)}
         
     }
     
-    var userImage : String {
+    var userImage : String? {
         get{return def.value(forKey: AppIdentifiers.Defaults().userImage) as? String ?? "" }
         set{def.set(newValue, forKey: AppIdentifiers.Defaults().userImage)}
         
     }
     
     init() {
-       
+        
+    }
+    
+    
+    static func resetDef(){
+        
+        AuthServices.shared.loginVal = nil
+        AuthServices.shared.userValue = nil
+        AuthServices.shared.userImage = nil
+        AuthServices.shared.userObj = nil
+        AuthServices.shared.userPassword = nil
+        AuthServices.shared.userPhoneNumber = nil
+        
     }
     
     
@@ -123,6 +142,7 @@ enum AppIdentifiers{
         let userObj = "userObj"
         let passKey = "passKey"
         let phoneKey = "phoneKey"
+        let carIDKey = "carIDKey"
     }
 }
 
@@ -157,3 +177,7 @@ class Profile : Codable   {
 //        phone = try container.decode(String.self, forKey: .phone)
 //    }
 }
+
+
+
+

@@ -14,6 +14,8 @@ import DropDown
 
 class DrawerVC: UIViewController {
     
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var carnameLbl: UILabel!
     typealias secondResponse = [String : [String : Any]]
     typealias firstResponse = [String : secondResponse]
     var carArray : [CarModel] = []
@@ -26,6 +28,7 @@ class DrawerVC: UIViewController {
     private let dropDown = DropDown()
     
     var userData : User?
+    
     @IBOutlet weak var optionTV: UITableView!{
         didSet{
             
@@ -35,8 +38,8 @@ class DrawerVC: UIViewController {
     }
     
     
-    var menuItems = [DrawerItems(name: "Home", image: nil),DrawerItems(name: "My Cars", image: nil),DrawerItems(name: "My Trips", image: nil),DrawerItems(name: "Add Cars", image: nil),DrawerItems(name: "Setting", image: nil),
-                     DrawerItems(name: "Logout", image: nil)]
+    var menuItems = [DrawerItems(name: "Home", image: #imageLiteral(resourceName: "home")),DrawerItems(name: "My Cars", image: #imageLiteral(resourceName: "basecar")),DrawerItems(name: "My Trips", image: #imageLiteral(resourceName: "trip")),DrawerItems(name: "Add Cars", image: #imageLiteral(resourceName: "ic_add")),DrawerItems(name: "Setting", image: #imageLiteral(resourceName: "settings-cog")),
+                     DrawerItems(name: "Logout", image: #imageLiteral(resourceName: "logout"))]
     
     
     override func viewDidLoad() {
@@ -44,18 +47,15 @@ class DrawerVC: UIViewController {
         
         print("View Did Load is calling from drawer vc")
        
+        self.backView.setBackground(imageName: "background")
         print(AppDelegate.allUser.name)
         self.navigationController?.isNavigationBarHidden = true
         let userVal = UserDefaults.standard.value(forKey: AppIdentifiers.Defaults().loginObject) as? User ?? User(data: [:])
         
-     
-       
         self.optionTV.tableFooterView = UIView(frame: .zero)
-        
+        self.getCarsFromServer()
         dropDown.anchorView = self.dropDownBtnOutlet
     
-        
-        
     }
     
     
@@ -65,14 +65,15 @@ class DrawerVC: UIViewController {
         print("View will appear is calling in drawer vc")
         
         
-        if (AuthServices.shared.loginVal){
+        
+        if (AuthServices.shared.loginVal ?? false){
             
-            self.getCarsFromServer()
+        
             print(AuthServices.shared.userObj)
             self.dropDownBtnOutlet.addTarget(self, action: #selector(showDropDown), for: .touchUpInside)
             
             self.usernameLabel.text = AuthServices.shared.userObj
-            if let imageURL = URL(string: AuthServices.shared.userImage){
+            if let imageURL = URL(string: AuthServices.shared.userImage ?? ""){
                 self.userImageView.sd_setImage(with: imageURL, completed: nil)
             }
             
@@ -80,8 +81,12 @@ class DrawerVC: UIViewController {
                 print("Selected item: \(item) at index: \(index)")
                 
                 
-                if let carImageURL = URL(string: self.carArray[index].Image_Link){
+                
+                if let carImageURL = URL(string: self.carArray[index].Image_Link!){
                     self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                    self.carnameLbl.text = self.carArray[index].Name
+                     AuthServices.shared.carId = self.carArray[index].Car_Id
+                     CarManger.shared.singleCarData = self.carArray[index]
                 }
                 self.dropDown.hide()
                 
@@ -90,14 +95,13 @@ class DrawerVC: UIViewController {
             
         }
         
-        
-        
     }
-    
-    
+        
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        self.carImageView.layer.borderColor = UIColor.white.cgColor
+        self.carImageView.layer.borderWidth = 0.8
         self.carImageView.layer.cornerRadius = self.carImageView.frame.width/2
     }
     
@@ -105,6 +109,18 @@ class DrawerVC: UIViewController {
         
     }
     
+    
+    fileprivate func dismissControllers(){
+        
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            let vc = ViewController.instantiateViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            AuthServices.resetDef()
+            delegate.window?.rootViewController = nav
+            delegate.window?.makeKeyAndVisible()
+        }
+    }
 }
 
 
@@ -123,6 +139,7 @@ extension DrawerVC : UITableViewDelegate, UITableViewDataSource{
         if let cell = tableView.dequeueReusableCell(withIdentifier: Keys.Xibs().MenuXib, for: indexPath) as? MenuCell{
             
             cell.menuLabel.text = menuItems[indexPath.row].name
+            cell.menuImage.image = menuItems[indexPath.row].image
             return cell
         }
         
@@ -144,13 +161,14 @@ extension DrawerVC : UITableViewDelegate, UITableViewDataSource{
         case 1:
             setDrawerController(controller: CarListVC.instantiateViewController())
         case 2:
-            setDrawerController(controller: CarListVC.instantiateViewController())
+            setDrawerController(controller: TripVC.instantiateViewController())
         case 3:
             setDrawerController(controller: CarMenuVC.instantiateViewController())
         case 4:
             setDrawerController(controller: ProfileVC.instantiateViewController())
         case 5:
             print("Logout Calling")
+            self.dismissControllers()
         //setDrawerController(controller: ProfileVC.instantiateViewController())
         default:
             break
@@ -197,11 +215,12 @@ extension DrawerVC{
     }
     
     func getCarsFromServer(){
-        
+        self.carArray.removeAll()
+        self.dropDown.dataSource = []
         FIRService.shared.getDataFromDataBase("Car Details") { (response) in
-           
+            print(AuthServices.shared.userValue)
             // print(response)
-            
+            self.carArray.removeAll()
             if let data  = response as? firstResponse{
                 print("Values are")
                 print(data.count)
@@ -212,21 +231,37 @@ extension DrawerVC{
                     print(AuthServices.shared.userValue)
                     if (newValues.key ==  AuthServices.shared.userValue){
                         
+                    
                         for new in newValues.value{
                             print("Actual value")
                             print(new.value)
                             let temp = CarModel(data: new.value)
                             print("tempobjdect", temp.Name)
                             
-                            let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
+                        //    let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
                             
-                            if filter.count > 0{
+                            
+                            if let carID = AuthServices.shared.carId{
+                                
+                                let filter = self.carArray.filter({$0.Car_Id == carID})
+                                if filter.count > 0{
+                                    print("Get car in filer")
+                                }else{
+                                    
+                                    if temp.Image_Link != nil{
+                                        self.carArray.append(temp)
+                                    }
+                                }
+                            }else{
+                                
+                                if temp.Image_Link != nil{
+                                    self.carArray.append(temp)
+                                }
                                 
                             }
-                            self.carArray.append(temp)
                             
-                          
                             
+        
                         }
                         
                     }
@@ -234,11 +269,24 @@ extension DrawerVC{
                 }
                 
                 DispatchQueue.main.async {
-                    
+                  
                     for data in self.carArray{
                         
                         self.dropDown.dataSource.append(data.Name)
+                        
                     }
+                    
+                    
+                    if let carImageURL = URL(string: self.carArray[0].Image_Link!){
+                        self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                        self.carnameLbl.text = self.carArray[0].Name
+                        AuthServices.shared.carId = self.carArray[0].Car_Id
+                        CarManger.shared.singleCarData = self.carArray[0]
+                    }
+                    
+                
+                    
+                   
                 }
             
             }
@@ -249,5 +297,15 @@ extension DrawerVC{
         }
         
     }
+    
+}
+
+
+class CarManger{
+    
+    static var shared = CarManger()
+    
+    var carData : [CarModel] = []
+    var singleCarData : CarModel!
     
 }

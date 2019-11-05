@@ -8,9 +8,12 @@
 
 import UIKit
 import KYDrawerController
+import Firebase
+import CodableFirebase
 
 class CarListVC: UIViewController {
     
+    @IBOutlet weak var addCarAction: UIButton!
     typealias secondResponse = [String : [String : Any]]
     typealias firstResponse = [String : secondResponse]
     
@@ -32,48 +35,76 @@ class CarListVC: UIViewController {
         carTV.register(nib, forCellReuseIdentifier: Keys.CellIds().carCell)
         carTV.tableFooterView = UIView(frame: .zero)
         
+        
+        self.addCarAction.addTarget(self, action: #selector(openCarAddVC(sender:)), for: .touchUpInside)
+        
+        self.navigationController?.setUpBarColor()
+       self.navigationController?.setUpTitleColor()
         setUpMenuButton()
         self.startAnimating()
         
+
         FIRService.shared.getDataFromDataBase("Car Details") { (response) in
             self.stopAnimating()
-          // print(response)
+           print(response)
             
+            
+            
+            do {
+                let model = try FirebaseDecoder().decode([CarModel].self, from: response)
+                
+                print(model)
+               
+                
+            } catch let error {
+                print(error)
+            }
+        
+            
+            
+            if let newData  = response  as? [[String : Any]]{
+                
+                print(newData.count)
+                
+                for val in newData{
+                    
+                    print(val)
+                }
+            }
             if let data  = response as? firstResponse{
                 print("Values are")
                 print(data.count)
-               
-                for newValues in data{
-                    print(newValues.key)
-                    
-                    print(AuthServices.shared.userValue)
-                    if (newValues.key ==  AuthServices.shared.userValue){
-                        
-                        for new in newValues.value{
-                            print("Actual value")
-                            print(new.value)
-                            let temp = CarModel(data: new.value)
-                            print("tempobjdect", temp.Name)
-                            
-                            let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
-                            
-                            if filter.count > 0{
-                                
-                            }
-                            self.carArray.append(temp)
-                            
-                        }
-                        
-                    }
-                  
-                }
                 
-//                if let newData  =  data as? secondResponse{
-//                    for values in newData{
-//                        print("The values are car ", values.value)
-//                        let temp = CarModel(data: values.value)
-//                        print("tempobjdect", temp.Name)
-//                        self.carArray.append(temp)
+                print(data)
+                
+               
+               
+//                for newValues in data{
+//                    print(newValues.key)
+//
+//                    print(AuthServices.shared.userValue)
+//                    if (newValues.key ==  AuthServices.shared.userValue){
+//
+//                        print("\n\n\n")
+//                        print("The Current Array Vals are here", newValues.key,AuthServices.shared.userValue)
+//                        print(newValues.key)
+//                        print(newValues.value)
+//                        print("\n\n\n")
+//                        for new in newValues.value{
+//
+//                            print("Actual value")
+//                            print(new.value)
+//                            let temp = CarModel(data: new.value)
+//                            print("tempobjdect", temp.Name)
+//
+////                            let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
+////
+////                            if filter.count > 0{
+////
+////                            }
+//                            self.carArray.append(temp)
+//
+//                        }
 //                    }
 //                }
             }
@@ -88,7 +119,18 @@ class CarListVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        self.addCarAction.layer.cornerRadius = self.addCarAction.frame.width/2
+    }
 
+    @objc func openCarAddVC(sender : UIButton){
+        
+        let vc = CarMenuVC.instantiateViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     /*
     // MARK: - Navigation
 

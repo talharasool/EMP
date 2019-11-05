@@ -10,10 +10,15 @@
 		2F80BF77F989BE4A450F4ADD /* Pods_EconomicMovementPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D08290117A663B52D161D2A /* Pods_EconomicMovementPlannerTests.framework */; };
 		64732F11C6337D927DBEC602 /* Pods_EconomicMovementPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B919C831A2FE693313705A5B /* Pods_EconomicMovementPlannerUITests.framework */; };
 		A17CDB7D349549C0A05AC877 /* Pods_EconomicMovementPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2B3981945C79A53CC1036 /* Pods_EconomicMovementPlanner.framework */; };
-		BC02945122F6F3AB0039A4FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC02945022F6F3AB0039A4FD /* GoogleService-Info.plist */; };
 		BC02945322F6F6830039A4FD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC02945222F6F6830039A4FD /* Models.swift */; };
 		BC02945522F70DBE0039A4FD /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC02945422F70DBE0039A4FD /* ImageExt.swift */; };
 		BC02945722F73B5E0039A4FD /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC02945622F73B5E0039A4FD /* DatabaseService.swift */; };
+		BC18D51A2335E958003B243A /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D5182335E958003B243A /* RoutesViewController.swift */; };
+		BC18D51B2335E958003B243A /* RoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC18D5192335E958003B243A /* RoutesViewController.xib */; };
+		BC18D5202335EF3B003B243A /* RoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */; };
+		BC18D5212335EF3B003B243A /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */; };
+		BC18D5232335F5EC003B243A /* viewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D5222335F5EC003B243A /* viewExt.swift */; };
+		BC36963523376F4A0021C8C2 /* HomeVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36963423376F4A0021C8C2 /* HomeVCExt.swift */; };
 		BC41D5C32291507C008564BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5C22291507C008564BF /* AppDelegate.swift */; };
 		BC41D5C52291507C008564BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5C42291507C008564BF /* ViewController.swift */; };
 		BC41D5C82291507C008564BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC41D5C62291507C008564BF /* Main.storyboard */; };
@@ -30,6 +35,11 @@
 		BC66596722A1A715007EFD40 /* CarsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66596522A1A715007EFD40 /* CarsTVCell.swift */; };
 		BC66596822A1A715007EFD40 /* CarsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC66596622A1A715007EFD40 /* CarsTVCell.xib */; };
 		BC66596A22A1AB14007EFD40 /* CarListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66596922A1AB14007EFD40 /* CarListVC.swift */; };
+		BC86998E2371526E00626A2E /* ForgotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86998C2371526E00626A2E /* ForgotVC.swift */; };
+		BC86998F2371526E00626A2E /* ForgotVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC86998D2371526E00626A2E /* ForgotVC.xib */; };
+		BC86999123715C2A00626A2E /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC86999023715C2A00626A2E /* ForgotViewController.swift */; };
+		BC8699932371637300626A2E /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8699922371637300626A2E /* ChangePasswordVC.swift */; };
+		BC9124F0232D0BAF006DB4BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC9124EF232D0BAF006DB4BD /* GoogleService-Info.plist */; };
 		BC960B3A22B29E98002896AD /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC960B3922B29E98002896AD /* FirebaseAuth.swift */; };
 		BC9C28A9230E6BFF009177AC /* PacesTableXIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C28A7230E6BFF009177AC /* PacesTableXIB.swift */; };
 		BC9C28AA230E6BFF009177AC /* PacesTableXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9C28A8230E6BFF009177AC /* PacesTableXIB.xib */; };
@@ -43,6 +53,10 @@
 		BCEDCAB5229808E50011380D /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEDCAB4229808E50011380D /* GeoLocation.swift */; };
 		BCF09A8E22B4CAA60058378D /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF09A8D22B4CAA60058378D /* SocialViewController.swift */; };
 		BCF09A9022B4D65F0058378D /* PickerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF09A8F22B4D65F0058378D /* PickerUtils.swift */; };
+		BCF8532E232E0E9600FC3135 /* TripsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF8532C232E0E9600FC3135 /* TripsTableViewCell.swift */; };
+		BCF8532F232E0E9600FC3135 /* TripsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF8532D232E0E9600FC3135 /* TripsTableViewCell.xib */; };
+		BCF85331232E148600FC3135 /* TripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF85330232E148600FC3135 /* TripVC.swift */; };
+		BCF85333232E1A3300FC3135 /* TripDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF85332232E1A3300FC3135 /* TripDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,10 +85,15 @@
 		A5FD8BFD2EEB46A6A2FB756F /* Pods-EconomicMovementPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlannerTests.release.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlannerTests/Pods-EconomicMovementPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		B2B2B3981945C79A53CC1036 /* Pods_EconomicMovementPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EconomicMovementPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B919C831A2FE693313705A5B /* Pods_EconomicMovementPlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EconomicMovementPlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC02945022F6F3AB0039A4FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC02945222F6F6830039A4FD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		BC02945422F70DBE0039A4FD /* ImageExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExt.swift; sourceTree = "<group>"; };
 		BC02945622F73B5E0039A4FD /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		BC18D5182335E958003B243A /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
+		BC18D5192335E958003B243A /* RoutesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesViewController.xib; sourceTree = "<group>"; };
+		BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewCell.swift; sourceTree = "<group>"; };
+		BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
+		BC18D5222335F5EC003B243A /* viewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewExt.swift; sourceTree = "<group>"; };
+		BC36963423376F4A0021C8C2 /* HomeVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCExt.swift; sourceTree = "<group>"; };
 		BC41D5BF2291507C008564BF /* EconomicMovementPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EconomicMovementPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC41D5C22291507C008564BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC41D5C42291507C008564BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +116,12 @@
 		BC66596522A1A715007EFD40 /* CarsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsTVCell.swift; sourceTree = "<group>"; };
 		BC66596622A1A715007EFD40 /* CarsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarsTVCell.xib; sourceTree = "<group>"; };
 		BC66596922A1AB14007EFD40 /* CarListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListVC.swift; sourceTree = "<group>"; };
+		BC86998C2371526E00626A2E /* ForgotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotVC.swift; sourceTree = "<group>"; };
+		BC86998D2371526E00626A2E /* ForgotVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotVC.xib; sourceTree = "<group>"; };
+		BC86999023715C2A00626A2E /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		BC8699922371637300626A2E /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		BC9124E8232CFBB9006DB4BD /* EconomicMovementPlanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EconomicMovementPlanner.entitlements; sourceTree = "<group>"; };
+		BC9124EF232D0BAF006DB4BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC960B3922B29E98002896AD /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
 		BC9C28A7230E6BFF009177AC /* PacesTableXIB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacesTableXIB.swift; sourceTree = "<group>"; };
 		BC9C28A8230E6BFF009177AC /* PacesTableXIB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PacesTableXIB.xib; sourceTree = "<group>"; };
@@ -110,6 +135,10 @@
 		BCEDCAB4229808E50011380D /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		BCF09A8D22B4CAA60058378D /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		BCF09A8F22B4D65F0058378D /* PickerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUtils.swift; sourceTree = "<group>"; };
+		BCF8532C232E0E9600FC3135 /* TripsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableViewCell.swift; sourceTree = "<group>"; };
+		BCF8532D232E0E9600FC3135 /* TripsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripsTableViewCell.xib; sourceTree = "<group>"; };
+		BCF85330232E148600FC3135 /* TripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripVC.swift; sourceTree = "<group>"; };
+		BCF85332232E1A3300FC3135 /* TripDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDataSource.swift; sourceTree = "<group>"; };
 		C3399ADAE4E47AD1267457AA /* Pods-EconomicMovementPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlanner.release.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlanner/Pods-EconomicMovementPlanner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +170,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC36963B2337A12A0021C8C2 /* TripData */ = {
+			isa = PBXGroup;
+			children = (
+				BCF8532C232E0E9600FC3135 /* TripsTableViewCell.swift */,
+				BCF8532D232E0E9600FC3135 /* TripsTableViewCell.xib */,
+				BCF85330232E148600FC3135 /* TripVC.swift */,
+				BCF85332232E1A3300FC3135 /* TripDataSource.swift */,
+			);
+			path = TripData;
+			sourceTree = "<group>";
+		};
 		BC41D5B62291507C008564BF = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +206,7 @@
 		BC41D5C12291507C008564BF /* EconomicMovementPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				BC9124E8232CFBB9006DB4BD /* EconomicMovementPlanner.entitlements */,
 				BC41D5C22291507C008564BF /* AppDelegate.swift */,
 				BC02945222F6F6830039A4FD /* Models.swift */,
 				BC02945422F70DBE0039A4FD /* ImageExt.swift */,
@@ -174,8 +215,18 @@
 				BCB9F016229E8CF70027269A /* RegisterVC.swift */,
 				BCF09A8D22B4CAA60058378D /* SocialViewController.swift */,
 				BCF09A8F22B4D65F0058378D /* PickerUtils.swift */,
+				BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */,
+				BC18D5182335E958003B243A /* RoutesViewController.swift */,
+				BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */,
 				BCEDCAAE229563650011380D /* RegisterMenuVC.swift */,
+				BC86998C2371526E00626A2E /* ForgotVC.swift */,
+				BC86998D2371526E00626A2E /* ForgotVC.xib */,
+				BC86999023715C2A00626A2E /* ForgotViewController.swift */,
+				BC8699922371637300626A2E /* ChangePasswordVC.swift */,
 				BCEDCAB22297F8610011380D /* HomeVC.swift */,
+				BC36963423376F4A0021C8C2 /* HomeVCExt.swift */,
+				BC18D5222335F5EC003B243A /* viewExt.swift */,
+				BC18D5192335E958003B243A /* RoutesViewController.xib */,
 				BCEDCAB4229808E50011380D /* GeoLocation.swift */,
 				BC665959229EB9AC007EFD40 /* DrawerVC.swift */,
 				BC66595F229EBB23007EFD40 /* MenuCell.swift */,
@@ -188,15 +239,17 @@
 				BC9C28AC230E7125009177AC /* NewListTVCell.xib */,
 				BC41D5C62291507C008564BF /* Main.storyboard */,
 				BC66596122A13E1D007EFD40 /* ProfileVC.swift */,
+				BC36963B2337A12A0021C8C2 /* TripData */,
 				BC66596922A1AB14007EFD40 /* CarListVC.swift */,
 				BC66596522A1A715007EFD40 /* CarsTVCell.swift */,
 				BC66596622A1A715007EFD40 /* CarsTVCell.xib */,
 				BC66596322A14189007EFD40 /* CarMenuVC.swift */,
 				BC960B3922B29E98002896AD /* FirebaseAuth.swift */,
-				BC02945022F6F3AB0039A4FD /* GoogleService-Info.plist */,
+				BC9124EF232D0BAF006DB4BD /* GoogleService-Info.plist */,
 				BC41D5CC2291507F008564BF /* Assets.xcassets */,
 				BC41D5CE2291507F008564BF /* LaunchScreen.storyboard */,
 				BC41D5D12291507F008564BF /* Info.plist */,
+				BC619FBE23463A9600AFD751 /* New Group */,
 				BC41D5C92291507C008564BF /* EconomicMovementPlanner.xcdatamodeld */,
 			);
 			path = EconomicMovementPlanner;
@@ -218,6 +271,13 @@
 				BC41D5E72291507F008564BF /* Info.plist */,
 			);
 			path = EconomicMovementPlannerUITests;
+			sourceTree = "<group>";
+		};
+		BC619FBE23463A9600AFD751 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		E3794D05F6F40031CB1D0D7A /* Pods */ = {
@@ -320,6 +380,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					BC41D5D52291507F008564BF = {
@@ -359,11 +422,15 @@
 			files = (
 				BC41D5D02291507F008564BF /* LaunchScreen.storyboard in Resources */,
 				BC41D5CD2291507F008564BF /* Assets.xcassets in Resources */,
-				BC02945122F6F3AB0039A4FD /* GoogleService-Info.plist in Resources */,
+				BC86998F2371526E00626A2E /* ForgotVC.xib in Resources */,
 				BC9C28AA230E6BFF009177AC /* PacesTableXIB.xib in Resources */,
 				BC66596822A1A715007EFD40 /* CarsTVCell.xib in Resources */,
+				BCF8532F232E0E9600FC3135 /* TripsTableViewCell.xib in Resources */,
+				BC18D51B2335E958003B243A /* RoutesViewController.xib in Resources */,
 				BC9C28AE230E7125009177AC /* NewListTVCell.xib in Resources */,
 				BC41D5C82291507C008564BF /* Main.storyboard in Resources */,
+				BC9124F0232D0BAF006DB4BD /* GoogleService-Info.plist in Resources */,
+				BC18D5212335EF3B003B243A /* RoutesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,13 +559,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC02945522F70DBE0039A4FD /* ImageExt.swift in Sources */,
+				BC36963523376F4A0021C8C2 /* HomeVCExt.swift in Sources */,
 				BC41D5CB2291507C008564BF /* EconomicMovementPlanner.xcdatamodeld in Sources */,
+				BCF85333232E1A3300FC3135 /* TripDataSource.swift in Sources */,
 				BCEDCAB32297F8610011380D /* HomeVC.swift in Sources */,
 				BC665960229EBB23007EFD40 /* MenuCell.swift in Sources */,
 				BC41D5C52291507C008564BF /* ViewController.swift in Sources */,
+				BC18D51A2335E958003B243A /* RoutesViewController.swift in Sources */,
 				BCEDCAAF229563650011380D /* RegisterMenuVC.swift in Sources */,
 				BC9C28A9230E6BFF009177AC /* PacesTableXIB.swift in Sources */,
 				BC66596A22A1AB14007EFD40 /* CarListVC.swift in Sources */,
+				BC18D5202335EF3B003B243A /* RoutesTableViewCell.swift in Sources */,
 				BC41D5C32291507C008564BF /* AppDelegate.swift in Sources */,
 				BCEDCAB12297F3410011380D /* storyboardHelper.swift in Sources */,
 				BC960B3A22B29E98002896AD /* FirebaseAuth.swift in Sources */,
@@ -506,15 +577,21 @@
 				BCEDCAB5229808E50011380D /* GeoLocation.swift in Sources */,
 				BC66596422A14189007EFD40 /* CarMenuVC.swift in Sources */,
 				BC66596222A13E1D007EFD40 /* ProfileVC.swift in Sources */,
+				BC86998E2371526E00626A2E /* ForgotVC.swift in Sources */,
+				BC86999123715C2A00626A2E /* ForgotViewController.swift in Sources */,
+				BC8699932371637300626A2E /* ChangePasswordVC.swift in Sources */,
 				BC41D5F422915AA5008564BF /* Helper.swift in Sources */,
 				BC66595A229EB9AC007EFD40 /* DrawerVC.swift in Sources */,
 				BC66596722A1A715007EFD40 /* CarsTVCell.swift in Sources */,
 				BCF09A8E22B4CAA60058378D /* SocialViewController.swift in Sources */,
+				BCF8532E232E0E9600FC3135 /* TripsTableViewCell.swift in Sources */,
 				BCEDCAAD22955F520011380D /* MenuVC.swift in Sources */,
+				BC18D5232335F5EC003B243A /* viewExt.swift in Sources */,
 				BCF09A9022B4D65F0058378D /* PickerUtils.swift in Sources */,
 				BCB9F017229E8CF70027269A /* RegisterVC.swift in Sources */,
 				BC9C28AD230E7125009177AC /* NewListTVCell.swift in Sources */,
 				BC02945322F6F6830039A4FD /* Models.swift in Sources */,
+				BCF85331232E148600FC3135 /* TripVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,15 +767,16 @@
 			baseConfigurationReference = 84820E2EE97DD6B0F5F3E827 /* Pods-EconomicMovementPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EconomicMovementPlanner/EconomicMovementPlanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 47485B6L5P;
+				DEVELOPMENT_TEAM = YDT5Y93WUX;
 				INFOPLIST_FILE = EconomicMovementPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dummy.boxeiy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.EconomicMovementPlanner.EconomicMovementPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -710,15 +788,16 @@
 			baseConfigurationReference = C3399ADAE4E47AD1267457AA /* Pods-EconomicMovementPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EconomicMovementPlanner/EconomicMovementPlanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 47485B6L5P;
+				DEVELOPMENT_TEAM = YDT5Y93WUX;
 				INFOPLIST_FILE = EconomicMovementPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dummy.boxeiy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.EconomicMovementPlanner.EconomicMovementPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

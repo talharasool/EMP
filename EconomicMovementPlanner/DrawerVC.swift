@@ -63,12 +63,11 @@ class DrawerVC: UIViewController {
         super.viewWillAppear(animated)
         
         print("View will appear is calling in drawer vc")
-        
-        
+    
         
         if (AuthServices.shared.loginVal ?? false){
             
-        
+            
             print(AuthServices.shared.userObj)
             self.dropDownBtnOutlet.addTarget(self, action: #selector(showDropDown), for: .touchUpInside)
             
@@ -221,6 +220,67 @@ extension DrawerVC{
             print(AuthServices.shared.userValue)
             // print(response)
             self.carArray.removeAll()
+            
+            
+            if let data =  response as? [CarModel]{
+                
+                self.carArray = data
+                
+                DispatchQueue.main.async {
+                    
+                    for data in self.carArray{
+                        
+                        self.dropDown.dataSource.append(data.Name)
+                        
+                    }
+                    
+                    
+                    
+                    if let carID = AuthServices.shared.carId{
+                        
+                          let filter = self.carArray.filter({$0.Car_Id == carID})
+                        
+                        
+                        if filter.count > 0{
+                            
+                            if let carImageURL = URL(string: filter[0].Image_Link!){
+                                self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                                self.carnameLbl.text = filter[0].Name
+                                AuthServices.shared.carId = filter[0].Car_Id
+                                CarManger.shared.singleCarData = filter[0]
+                            }
+                        }else{
+
+                            if let carImageURL = URL(string: self.carArray[0].Image_Link!){
+                                self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                                self.carnameLbl.text = self.carArray[0].Name
+                                AuthServices.shared.carId = self.carArray[0].Car_Id
+                                CarManger.shared.singleCarData = self.carArray[0]
+                            }
+                        }
+                        
+                    }else{
+                        
+                        
+                        
+                        if let carImageURL = URL(string: self.carArray[0].Image_Link!){
+                            self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                            self.carnameLbl.text = self.carArray[0].Name
+                            AuthServices.shared.carId = self.carArray[0].Car_Id
+                            CarManger.shared.singleCarData = self.carArray[0]
+                        }
+                        
+                        
+                    }
+                
+                }
+            }else{
+                
+                
+            }
+            
+            
+            
             if let data  = response as? firstResponse{
                 print("Values are")
                 print(data.count)

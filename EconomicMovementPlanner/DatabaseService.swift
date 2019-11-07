@@ -49,9 +49,60 @@ class FIRService{
         
         if let userID = AuthServices.shared.userValue{
             print("The current user id is here",userID)
+            let val =  Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/").child(clusterName).child(userID).queryOrderedByKey().observe(DataEventType.value, with: { (snapshot) in
+                print("The snapShots are here", snapshot.value,snapshot.childrenCount)
+                
+                var carArray : [CarModel] = []
+                print(snapshot.children.allObjects)
+                if let snap = snapshot.children.allObjects as? [DataSnapshot]{
+                    
+                    print(snap)
+                    
+                    for (index,val) in snap.enumerated(){
+                        print("values")
+                        print(val)
+                        print(val.value)
+                        
+                        do {
+                            let model = try FirebaseDecoder().decode(CarModel.self, from: val.value)
+                            carArray.append(model)
+                            
+                            
+                        } catch let error {
+                            print(error)
+                            completion(error)
+                        }
+                        
+                        
+                    }
+                    
+                    completion(carArray)
+                }else{
+                    completion("Unable to fetch data")
+                }
+                
+                
+                
+            }) { (error) in
+                print(error)
+                completion(error)
+            }
+            
+            
+        }else{
+            print("\n\n UserID Is nil in service \n\n")
+        }
+        
+    }
+    
+    
+    func getCarDetailsDataFromDataBase(_ clusterName : String, completion:@escaping (Any)->()){
+        
+        if let userID = AuthServices.shared.userValue{
+            print("The current user id is here",userID)
             let val =  Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/").child(clusterName).child(userID).observe(DataEventType.value, with: { (snapshot) in
                 print("The snapShots are here", snapshot)
-                completion(snapshot.value)
+                //    completion(snapshot.chi)
                 
             }) { (error) in
                 print(error)

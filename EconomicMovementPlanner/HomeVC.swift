@@ -23,7 +23,6 @@ typealias valCompletion = (Bool)->()
 
 class HomeVC: UIViewController  {
     
-    
     //Buttons
     @IBOutlet weak var okBtnOutlet: UIButton!
     @IBOutlet weak var cancelBtnOutlet: UIButton!
@@ -126,7 +125,6 @@ class HomeVC: UIViewController  {
                }
     
     func setUpLocationManager(){
-        
         locationManger = CLLocationManager()
         locationManger.delegate = self
         locationManger.desiredAccuracy = kCLLocationAccuracyBest
@@ -135,11 +133,9 @@ class HomeVC: UIViewController  {
     
     
     func addCustomLocationAction(){
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(actionOnAdd))
         self.addLocationView.isUserInteractionEnabled = true
         self.addLocationView.addGestureRecognizer(tap)
-       
     }
     
     @objc func actionOnAdd(){
@@ -169,8 +165,6 @@ class HomeVC: UIViewController  {
         }else{
              manageLoctingView()
         }
-       
-        
     }
     
     func manageLoctingView(){
@@ -186,7 +180,6 @@ class HomeVC: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Delegates And Action
         googleMapView.delegate = self
         self.setUpLocationManager()
@@ -195,7 +188,6 @@ class HomeVC: UIViewController  {
         setUpAlpha(alpha: 0)
         hideViewsOnMainView()
       
-        
         //Setup Navigation bar
         self.setUpNavigationBar()
         
@@ -204,7 +196,6 @@ class HomeVC: UIViewController  {
         makingRoutesView.isUserInteractionEnabled = true
         openGoogleSearchController.isUserInteractionEnabled  =  true
         self.endRouteBtnOutlet.bringSubviewToFront(self.googleMapView)
-        
         
     }
     
@@ -300,6 +291,8 @@ class HomeVC: UIViewController  {
 
 extension HomeVC{
         
+    
+
         func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
             
             switch status {
@@ -571,8 +564,8 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                 self.isHiddenCancelBtn(val: true)
                 self.setCancelBtn(isSet: false)
                 
-                let milage = Double(CarManger.shared.singleCarData.Mileag)
-                self.fuel = distanceValue/milage!
+                let milage = Double(CarManger.shared.singleCarData.Mileag ?? 0)
+                self.fuel = distanceValue/milage
                 
                 let temp = tripServerData(date_record: currdate, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: fuel) ?? "", startpoint: self.startLocation, time: formattedString)
                 
@@ -613,8 +606,8 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                 self.isHiddenCancelBtn(val: true)
                 self.setCancelBtn(isSet: false)
                 
-                let milage = Double(CarManger.shared.singleCarData.Mileag)
-                let myFuel = distanceValue/milage!
+                let milage = Double(CarManger.shared.singleCarData.Mileag ?? 0)
+                let myFuel = distanceValue/milage
                 
                 let temp = tripServerData(date_record: currdate, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: myFuel) ?? "", startpoint: self.startLocation, time: formattedString)
                 
@@ -856,7 +849,6 @@ extension HomeVC : StoryboardInitializable{
             self.cancelBtnOutlet.setTitle(titleCanel, for: .normal)
             self.cancelBtnOutlet.titleLabel?.font  = UIFont.systemFont(ofSize: 10)
           
-            
         }else{
             self.cancelBtnOutlet.setTitleColor(UIColor.white, for: .normal)
             self.cancelBtnOutlet.backgroundColor  = UIColor.init(netHex: 0x6F7179)
@@ -1047,8 +1039,8 @@ extension HomeVC{
             let newID = DBRef.child("Routes").child(userID).child(carID).childByAutoId()
             
             print("The New Id Is here :: \(newID)")
-            let milage = Double(CarManger.shared.singleCarData.Mileag)
-            let fuel = self.distanceValue/milage!
+            let milage = Double(CarManger.shared.singleCarData.Mileag ?? 0)
+            let fuel = self.distanceValue/milage
             
             let values  = ["trip_date:" : Date().timeIntervalSinceNow,"trip_endpoint:":self.destinatioName,"trip_startpoint:":compareArr.first!.lineString!,"trip_totaldistance":"0","trip_totalfuel" : "0","trip_totlatime":"9"] as [String : Any]
             print(values)

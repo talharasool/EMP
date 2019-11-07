@@ -35,6 +35,27 @@ class CarModel  : Codable  {
     
     var Car_Id : String
     var Image_Link : String?
+    var Mileag : Double?
+    var Model : String
+    var Name : String
+    
+    
+    init(data : [String : Any]) {
+        
+        Car_Id =  data["Car_Id"] as? String ?? ""
+        Image_Link =  data["Image_Link"] as? String ?? "No Image "
+      //  Mileag =  data["Mileage"] as? String ?? ""
+        Model =  data["Model"] as? String ?? "No model"
+        Name =  data["Name"] as? String ?? "No name"
+       
+    }
+}
+
+
+class CarDataModel  : Codable  {
+    
+    var Car_Id : String
+    var Image_Link : String?
     var Mileag : String
     var Model : String
     var Name : String
@@ -117,7 +138,8 @@ class  AuthServices {
     
     
     static func resetDef(){
-        
+      
+        AuthServices.shared.carId = nil
         AuthServices.shared.loginVal = nil
         AuthServices.shared.userValue = nil
         AuthServices.shared.userImage = nil

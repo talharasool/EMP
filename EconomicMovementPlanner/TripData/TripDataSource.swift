@@ -117,10 +117,16 @@ extension TripDataSource{
         if let cell = tableView.dequeueReusableCell(withIdentifier: TripsTableViewCell.reuseIdentifier, for: indexPath) as? TripsTableViewCell{
             cell.car = self.curretCar
             cell.model = self.listData[indexPath.row]
+            
+            cell.getRoundedcorner(cornerRadius: 10)
             return cell
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
     }
 }
 

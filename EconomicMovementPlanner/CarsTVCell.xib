@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carCell" rowHeight="146" id="KGk-i7-Jjw" customClass="CarsTVCell" customModule="EconomicMovementPlanner" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="carCell" rowHeight="146" id="KGk-i7-Jjw" customClass="CarsTVCell" customModule="EconomicMovementPlanner" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="140.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Sj-VC-tiF">
-                        <rect key="frame" x="16" y="0.0" width="19" height="140.5"/>
+                        <rect key="frame" x="16" y="0.0" width="19" height="141"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPV-ji-zjs">
                                 <rect key="frame" x="9" y="0.0" width="1" height="15"/>
@@ -48,7 +46,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEj-7Q-QXZ">
-                                <rect key="frame" x="9" y="34" width="1" height="106.5"/>
+                                <rect key="frame" x="9" y="34" width="1" height="107"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="6te-0u-igO"/>
@@ -70,7 +68,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hs6-sQ-R0U">
-                        <rect key="frame" x="35" y="114.5" width="285" height="21"/>
+                        <rect key="frame" x="35" y="115" width="285" height="21"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="zA8-kg-h4W">
                                 <rect key="frame" x="0.0" y="0.0" width="285" height="21"/>
@@ -96,14 +94,14 @@
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cars" translatesAutoresizingMaskIntoConstraints="NO" id="L75-25-MoX">
-                        <rect key="frame" x="35" y="30.5" width="84" height="84"/>
+                        <rect key="frame" x="35" y="31" width="84" height="84"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="84" id="HKs-jq-kWK"/>
                             <constraint firstAttribute="width" constant="84" id="ZMB-uJ-dty"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mercedes benz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaa-m6-EAH">
-                        <rect key="frame" x="51" y="10.5" width="269" height="20"/>
+                        <rect key="frame" x="51" y="11" width="269" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="X1p-Hv-sSd"/>
                         </constraints>
@@ -111,13 +109,45 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbW-EL-eQU">
+                        <rect key="frame" x="156" y="48.5" width="148" height="44"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="LX8-fa-7ZB">
+                                <rect key="frame" x="0.0" y="0.0" width="148" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6e7-NY-XF3">
+                                        <rect key="frame" x="0.0" y="0.0" width="44.5" height="44"/>
+                                        <state key="normal" image="rubbish-bin-delete-button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdA-DR-Ejy">
+                                        <rect key="frame" x="51.5" y="0.0" width="45" height="44"/>
+                                        <state key="normal" image="pencil-edit-button (1)"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KI-5l-l7e">
+                                        <rect key="frame" x="103.5" y="0.0" width="44.5" height="44"/>
+                                        <state key="normal" image="delete (2)"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="LX8-fa-7ZB" firstAttribute="top" secondItem="XbW-EL-eQU" secondAttribute="top" id="FwU-W0-uZl"/>
+                            <constraint firstAttribute="bottom" secondItem="LX8-fa-7ZB" secondAttribute="bottom" id="HtW-5B-7tV"/>
+                            <constraint firstItem="LX8-fa-7ZB" firstAttribute="leading" secondItem="XbW-EL-eQU" secondAttribute="leading" id="bGI-4L-fYN"/>
+                            <constraint firstAttribute="height" constant="44" id="d10-XM-MKT"/>
+                            <constraint firstAttribute="trailing" secondItem="LX8-fa-7ZB" secondAttribute="trailing" id="iLj-Kn-fxj"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="9Sj-VC-tiF" secondAttribute="bottom" id="72Q-mP-oIo"/>
+                    <constraint firstItem="XbW-EL-eQU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AOy-mW-Kfr"/>
                     <constraint firstItem="oaa-m6-EAH" firstAttribute="leading" secondItem="9Sj-VC-tiF" secondAttribute="trailing" constant="16" id="CZT-g4-Fnp"/>
                     <constraint firstItem="9Sj-VC-tiF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DTv-HM-krK"/>
                     <constraint firstAttribute="trailing" secondItem="Hs6-sQ-R0U" secondAttribute="trailing" id="IfL-Ar-iza"/>
                     <constraint firstItem="Hs6-sQ-R0U" firstAttribute="leading" secondItem="9Sj-VC-tiF" secondAttribute="trailing" id="JOz-oL-qxe"/>
+                    <constraint firstAttribute="trailing" secondItem="XbW-EL-eQU" secondAttribute="trailing" constant="16" id="JtP-kM-r0b"/>
+                    <constraint firstItem="XbW-EL-eQU" firstAttribute="leading" secondItem="L75-25-MoX" secondAttribute="trailing" constant="37" id="ajU-L5-Y1u"/>
                     <constraint firstItem="L75-25-MoX" firstAttribute="top" secondItem="oaa-m6-EAH" secondAttribute="bottom" id="dgB-QJ-Imu"/>
                     <constraint firstAttribute="trailing" secondItem="oaa-m6-EAH" secondAttribute="trailing" id="f0c-Ci-xGt"/>
                     <constraint firstItem="Hs6-sQ-R0U" firstAttribute="top" secondItem="L75-25-MoX" secondAttribute="bottom" id="l9A-Wl-m3h"/>
@@ -129,8 +159,13 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="averageLabel" destination="d3P-Hu-ZN3" id="hFI-e8-LBH"/>
+                <outlet property="cancelBtnOutlet" destination="6KI-5l-l7e" id="fOd-oz-AX3"/>
                 <outlet property="carImageView" destination="L75-25-MoX" id="7m1-Ft-hSZ"/>
                 <outlet property="carNameLabel" destination="oaa-m6-EAH" id="AHB-Ee-lLe"/>
+                <outlet property="deleteBtnOutlet" destination="6e7-NY-XF3" id="Dz9-ub-Ffe"/>
+                <outlet property="editActionView" destination="XbW-EL-eQU" id="dJs-DR-zO6"/>
+                <outlet property="editBtnOutlet" destination="VdA-DR-Ejy" id="caN-3G-1DF"/>
+                <outlet property="starImageView" destination="1DZ-oM-o36" id="7EF-Qh-stG"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="115.51339285714285"/>
         </tableViewCell>
@@ -138,6 +173,9 @@
     <resources>
         <image name="background" width="604" height="1095"/>
         <image name="cars" width="5472" height="3648"/>
+        <image name="delete (2)" width="24" height="24"/>
         <image name="group" width="40" height="40"/>
+        <image name="pencil-edit-button (1)" width="24" height="24"/>
+        <image name="rubbish-bin-delete-button" width="24" height="24"/>
     </resources>
 </document>

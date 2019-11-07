@@ -30,7 +30,7 @@ class TripsTableViewCell: UITableViewCell {
             
         print(self.car?.Image_Link)
         self.nameLbl.text = self.car?.Name ?? ""
-        self.avgLbl.text = self.car?.Mileag ?? ""
+        self.avgLbl.text = String(describing:  self.car?.Mileag )
         self.carImgView.getImageFromUrl(imageURL: self.car?.Image_Link ?? "", placeHolder: UIImage())
             
         }

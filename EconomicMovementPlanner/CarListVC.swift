@@ -49,66 +49,14 @@ class CarListVC: UIViewController {
            print(response)
             
             
-            
-            do {
-                let model = try FirebaseDecoder().decode([CarModel].self, from: response)
+            if let data =  response as? [CarModel]{
                 
-                print(model)
-               
+                self.carArray = data
+            }else{
                 
-            } catch let error {
-                print(error)
+                
             }
-        
-            
-            
-            if let newData  = response  as? [[String : Any]]{
-                
-                print(newData.count)
-                
-                for val in newData{
-                    
-                    print(val)
-                }
-            }
-            if let data  = response as? firstResponse{
-                print("Values are")
-                print(data.count)
-                
-                print(data)
-                
-               
-               
-//                for newValues in data{
-//                    print(newValues.key)
-//
-//                    print(AuthServices.shared.userValue)
-//                    if (newValues.key ==  AuthServices.shared.userValue){
-//
-//                        print("\n\n\n")
-//                        print("The Current Array Vals are here", newValues.key,AuthServices.shared.userValue)
-//                        print(newValues.key)
-//                        print(newValues.value)
-//                        print("\n\n\n")
-//                        for new in newValues.value{
-//
-//                            print("Actual value")
-//                            print(new.value)
-//                            let temp = CarModel(data: new.value)
-//                            print("tempobjdect", temp.Name)
-//
-////                            let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
-////
-////                            if filter.count > 0{
-////
-////                            }
-//                            self.carArray.append(temp)
-//
-//                        }
-//                    }
-//                }
-            }
-            
+
             
             
             DispatchQueue.main.async {
@@ -177,6 +125,60 @@ extension CarListVC : UITableViewDelegate, UITableViewDataSource{
             print(carArray[indexPath.item].Mileag)
               print(carArray[indexPath.item].Image_Link)
             cell.carObject = carArray[indexPath.item]
+            
+            if let carId =  AuthServices.shared.carId{
+                
+                if carId == carArray[indexPath.item].Car_Id{
+                    cell.starImageView.image = #imageLiteral(resourceName: "groupColor")
+                    
+                }else{
+                      cell.starImageView.image = #imageLiteral(resourceName: "group")
+                }
+            }
+            
+            
+            cell.deleteCompletion = { [weak self] in
+                
+                let alert = UIAlertController(title: "Are you sure you want to delete car", message: "", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (alert) in
+                    
+                    if let id  = AuthServices.shared.userValue{
+                        
+                        if let carID = self?.carArray[indexPath.row].Car_Id{
+                               let val =  Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/").child("Car Details").child(id).child(carID)
+                            
+                            val.removeValue { (err, ref) in
+                                
+                                if err !=  nil{
+                                    return
+                                }
+                                
+                               // self?.carArray.remove(at: indexPath.row)
+                                
+                                self?.carTV.reloadData()
+                                
+                                cell.hideView(0)
+                            }
+                        }
+                     
+                        
+                    }
+                   
+                    
+                    
+                    
+                }))
+                
+                alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (alert) in
+                    
+                }))
+                
+                self!.present(alert,animated: true,completion: nil)
+                
+            }
+            
+        
             return cell
         }
         return UITableViewCell()

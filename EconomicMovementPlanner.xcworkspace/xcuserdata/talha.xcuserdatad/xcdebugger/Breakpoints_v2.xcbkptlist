@@ -109,57 +109,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "12B6E850-F86A-4637-9EDF-596A03AE0D03"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
-            timestampString = "590242072.448808"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4C416750-9E49-4AC7-8E39-823F99E2F156"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
-            timestampString = "590242072.448998"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E70C1ED7-44F7-4F5C-A18F-D1138956B33C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
-            timestampString = "590242072.449077"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6EE0FA5E-8671-4D03-9D7A-38ADA39C4D08"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -321,8 +270,8 @@
             timestampString = "590698580.290168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "879"
-            endingLineNumber = "879"
+            startingLineNumber = "878"
+            endingLineNumber = "878"
             landmarkName = "viewController(_:didAutocompleteWith:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -357,7 +306,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "478"
             endingLineNumber = "478"
-            landmarkName = "mapView(_:didTapAt:)"
+            landmarkName = "placeMarkerOnMapOnButtonTap(coordinate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -423,8 +372,8 @@
             timestampString = "590698580.29646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "965"
-            endingLineNumber = "965"
+            startingLineNumber = "964"
+            endingLineNumber = "964"
             landmarkName = "HomeVC"
             landmarkType = "21">
          </BreakpointContent>
@@ -612,7 +561,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "698"
             endingLineNumber = "698"
-            landmarkName = "openLocationList()"
+            landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -629,7 +578,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "474"
             endingLineNumber = "474"
-            landmarkName = "didTapMyLocationButton(for:)"
+            landmarkName = "mapView(_:didTapAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -663,8 +612,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "208"
             endingLineNumber = "208"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "DrawerVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -833,7 +782,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "468"
             endingLineNumber = "468"
-            landmarkName = "mapView(mapView:didChangeCameraPosition:)"
+            landmarkName = "didTapMyLocationButton(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -942,38 +891,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8F1A8700-0DCD-47EF-B394-691D0BABF405"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "648E2F6B-A665-4429-AAEF-FCFC9407B72B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2F51D246-C5EE-4097-A293-FB4CA12086D9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -990,15 +907,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "268855DC-B321-43B9-8685-CF3C59D9FDDB"
+            uuid = "9BD50F47-E33C-4C71-8BEC-3805D94712AC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EconomicMovementPlanner/CarListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1006,94 +923,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "23FD4C41-614A-4F78-9A9F-FAFED1CE2B8F"
+            uuid = "20F52060-0B67-42B8-A236-4F3764F3939B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
+            filePath = "EconomicMovementPlanner/DatabaseService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getDataFromDataBase(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C82BA504-456B-4D4A-89B0-0CB37433C6AD"
+            uuid = "513D63D4-FEA9-4D8E-A37E-412C1CDF6876"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
+            filePath = "EconomicMovementPlanner/DatabaseService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6855C53A-D613-471B-AA0D-E80E9034FAA8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "getDataFromDataBase(_:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6855C53A-D613-471B-AA0D-E80E9034FAA8 - bf178039d4177272"
+                  uuid = "513D63D4-FEA9-4D8E-A37E-412C1CDF6876 - 81324efc680004a0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Any) -&gt; () in EconomicMovementPlanner.CarListVC.viewDidLoad() -&gt; ()"
+                  symbolName = "EconomicMovementPlanner.FIRService.getDataFromDataBase(_: Swift.String, completion: (Any) -&gt; ()) -&gt; ()"
                   moduleName = "EconomicMovementPlanner"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/talha/Desktop/EconomicMovementPlanner/EconomicMovementPlanner/CarListVC.swift"
+                  urlString = "file:///Users/talha/Desktop/EconomicMovementPlanner/EconomicMovementPlanner/DatabaseService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "492">
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "1380">
                </Location>
                <Location
-                  uuid = "6855C53A-D613-471B-AA0D-E80E9034FAA8 - bf178039d4177272"
+                  uuid = "513D63D4-FEA9-4D8E-A37E-412C1CDF6876 - 2665a45fcdf479ac"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Any) -&gt; () in EconomicMovementPlanner.CarListVC.viewDidLoad() -&gt; ()"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in EconomicMovementPlanner.FIRService.getDataFromDataBase(_: Swift.String, completion: (Any) -&gt; ()) -&gt; ()"
                   moduleName = "EconomicMovementPlanner"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/talha/Desktop/EconomicMovementPlanner/EconomicMovementPlanner/CarListVC.swift"
+                  urlString = "file:///Users/talha/Desktop/EconomicMovementPlanner/EconomicMovementPlanner/DatabaseService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "660">
-               </Location>
-               <Location
-                  uuid = "6855C53A-D613-471B-AA0D-E80E9034FAA8 - bf178039d4177272"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Any) -&gt; () in EconomicMovementPlanner.CarListVC.viewDidLoad() -&gt; ()"
-                  moduleName = "EconomicMovementPlanner"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/talha/Desktop/EconomicMovementPlanner/EconomicMovementPlanner/CarListVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "2924">
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "3825">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1101,16 +987,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "938CFC77-FADF-41AA-9314-40DEF1F98EC6"
+            uuid = "69807CBE-C7F8-43C3-8200-5C0B87185EF6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/CarListVC.swift"
+            filePath = "EconomicMovementPlanner/DatabaseService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getDataFromDataBase(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86C87AB9-A27E-4460-BFEC-59BBA6F0F151"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/DatabaseService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "getDataFromDataBase(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B08565B4-38F6-4BE9-A5C1-3FE336737C74"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/DrawerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "getCarsFromServer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -97,7 +97,10 @@ class TripDataSource:  NSObject, UITableViewDataSource, UITableViewDelegate {
         let nib = UINib(nibName: "TripsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: TripsTableViewCell.reuseIdentifier)
         
-        self.getDataFromFirebase(tableView: tableView)
+        if let carID = AuthServices.shared.carId{
+              self.getDataFromFirebase(tableView: tableView)
+        }
+      
         
     }
     

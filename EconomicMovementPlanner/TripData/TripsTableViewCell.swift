@@ -30,7 +30,7 @@ class TripsTableViewCell: UITableViewCell {
             
         print(self.car?.Image_Link)
         self.nameLbl.text = self.car?.Name ?? ""
-        self.avgLbl.text = String(describing:  self.car?.Mileag )
+        self.avgLbl.text = String(describing:  self.car?.Mileage )
         self.carImgView.getImageFromUrl(imageURL: self.car?.Image_Link ?? "", placeHolder: UIImage())
             
         }
@@ -49,8 +49,12 @@ class TripsTableViewCell: UITableViewCell {
             let time = self.model?.trip_totlatime?.floatValue
             self.timeView.value = CGFloat(time!)
             
-            let fuel = self.model?.trip_totalfuel?.floatValue
-            self.distanceView.value = CGFloat(fuel!)
+            if let fuel = self.model?.trip_totalfuel?.floatValue{
+                self.distanceView.value = CGFloat(fuel)
+            }
+            
+            
+           
             
             print(self.distanceView.value)
             

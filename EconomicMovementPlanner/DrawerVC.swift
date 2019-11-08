@@ -12,6 +12,10 @@ import FirebaseAuth
 import FirebaseDatabase
 import DropDown
 
+
+let car_Notify_Key = Notification.Name("CarUpdateKey")
+
+
 class DrawerVC: UIViewController {
     
     @IBOutlet weak var backView: UIView!
@@ -38,6 +42,11 @@ class DrawerVC: UIViewController {
     }
     
     
+    func createObserver(){
+        print("Observer is Listing")
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getCarsFromServer), name: car_Notify_Key, object: nil)
+    }
+    
     var menuItems = [DrawerItems(name: "Home", image: #imageLiteral(resourceName: "home")),DrawerItems(name: "My Cars", image: #imageLiteral(resourceName: "basecar")),DrawerItems(name: "My Trips", image: #imageLiteral(resourceName: "trip")),DrawerItems(name: "Add Cars", image: #imageLiteral(resourceName: "ic_add")),DrawerItems(name: "Setting", image: #imageLiteral(resourceName: "settings-cog")),
                      DrawerItems(name: "Logout", image: #imageLiteral(resourceName: "logout"))]
     
@@ -46,7 +55,7 @@ class DrawerVC: UIViewController {
         super.viewDidLoad()
         
         print("View Did Load is calling from drawer vc")
-       
+        self.createObserver()
         self.backView.setBackground(imageName: "background")
         print(AppDelegate.allUser.name)
         self.navigationController?.isNavigationBarHidden = true
@@ -55,6 +64,23 @@ class DrawerVC: UIViewController {
         self.optionTV.tableFooterView = UIView(frame: .zero)
         self.getCarsFromServer()
         dropDown.anchorView = self.dropDownBtnOutlet
+        
+        self.dropDownBtnOutlet.addTarget(self, action: #selector(showDropDown), for: .touchUpInside)
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            
+            
+            
+            if let carImageURL = URL(string: self.carArray[index].Image_Link!){
+                self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                self.carnameLbl.text = self.carArray[index].Name
+                 AuthServices.shared.carId = self.carArray[index].Car_Id
+              //   CarManger.shared.singleCarData = self.carArray[index]
+            }
+            self.dropDown.hide()
+            
+        }
     
     }
     
@@ -69,30 +95,26 @@ class DrawerVC: UIViewController {
             
             
             print(AuthServices.shared.userObj)
-            self.dropDownBtnOutlet.addTarget(self, action: #selector(showDropDown), for: .touchUpInside)
+          
             
             self.usernameLabel.text = AuthServices.shared.userObj
             if let imageURL = URL(string: AuthServices.shared.userImage ?? ""){
                 self.userImageView.sd_setImage(with: imageURL, completed: nil)
             }
             
-            dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-                print("Selected item: \(item) at index: \(index)")
-                
-                
-                
-                if let carImageURL = URL(string: self.carArray[index].Image_Link!){
-                    self.carImageView.sd_setImage(with: carImageURL, completed: nil)
-                    self.carnameLbl.text = self.carArray[index].Name
-                     AuthServices.shared.carId = self.carArray[index].Car_Id
-                     CarManger.shared.singleCarData = self.carArray[index]
-                }
-                self.dropDown.hide()
-                
-            }
+
             
             
         }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+        print("Deinit is calling")
+        NotificationCenter.default.removeObserver(self)
         
     }
         
@@ -213,29 +235,30 @@ extension DrawerVC{
         dropDown.show()
     }
     
-    func getCarsFromServer(){
+    @objc func getCarsFromServer(){
         self.carArray.removeAll()
-        self.dropDown.dataSource = []
+        self.dropDown.dataSource.removeAll()
         FIRService.shared.getDataFromDataBase("Car Details") { (response) in
             print(AuthServices.shared.userValue)
             // print(response)
             self.carArray.removeAll()
-            
-            
+             self.dropDown.dataSource.removeAll()
+            self.carnameLbl.text = ""
+            self.carImageView.image = nil
             if let data =  response as? [CarModel]{
                 
                 self.carArray = data
                 
+                for arr in self.carArray{
+                    
+                    self.dropDown.dataSource.append(arr.Name)
+                    
+                }
+          
+                
                 DispatchQueue.main.async {
                     
-                    for data in self.carArray{
-                        
-                        self.dropDown.dataSource.append(data.Name)
-                        
-                    }
-                    
-                    
-                    
+               
                     if let carID = AuthServices.shared.carId{
                         
                           let filter = self.carArray.filter({$0.Car_Id == carID})
@@ -251,12 +274,25 @@ extension DrawerVC{
                             }
                         }else{
 
-                            if let carImageURL = URL(string: self.carArray[0].Image_Link!){
-                                self.carImageView.sd_setImage(with: carImageURL, completed: nil)
-                                self.carnameLbl.text = self.carArray[0].Name
-                                AuthServices.shared.carId = self.carArray[0].Car_Id
-                                CarManger.shared.singleCarData = self.carArray[0]
+                            if self.carArray.count == 0{
+                                
+                                AuthServices.shared.carId = nil
+                                
+                            }else{
+                                
+                                if let imageString = self.carArray[0].Image_Link {
+                                    
+                                    if let carImageURL = URL(string: imageString){
+                                        self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+                                        self.carnameLbl.text = self.carArray[0].Name
+                                        AuthServices.shared.carId = self.carArray[0].Car_Id
+                                        CarManger.shared.singleCarData = self.carArray[0]
+                                    }
+                                    
+                                }
                             }
+                            
+                            
                         }
                         
                     }else{
@@ -276,81 +312,82 @@ extension DrawerVC{
                 }
             }else{
                 
+                Alert.showLoginAlert(Message: "Unable to fetch data", title: "", window: self)
                 
             }
             
             
             
-            if let data  = response as? firstResponse{
-                print("Values are")
-                print(data.count)
-                
-                for newValues in data{
-                    print(newValues.key)
-                    
-                    print(AuthServices.shared.userValue)
-                    if (newValues.key ==  AuthServices.shared.userValue){
-                        
-                    
-                        for new in newValues.value{
-                            print("Actual value")
-                            print(new.value)
-                            let temp = CarModel(data: new.value)
-                            print("tempobjdect", temp.Name)
-                            
-                        //    let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
-                            
-                            
-                            if let carID = AuthServices.shared.carId{
-                                
-                                let filter = self.carArray.filter({$0.Car_Id == carID})
-                                if filter.count > 0{
-                                    print("Get car in filer")
-                                }else{
-                                    
-                                    if temp.Image_Link != nil{
-                                        self.carArray.append(temp)
-                                    }
-                                }
-                            }else{
-                                
-                                if temp.Image_Link != nil{
-                                    self.carArray.append(temp)
-                                }
-                                
-                            }
-                            
-                            
-        
-                        }
-                        
-                    }
-                    
-                }
-                
-                DispatchQueue.main.async {
-                  
-                    for data in self.carArray{
-                        
-                        self.dropDown.dataSource.append(data.Name)
-                        
-                    }
-                    
-                    
-                    if let carImageURL = URL(string: self.carArray[0].Image_Link!){
-                        self.carImageView.sd_setImage(with: carImageURL, completed: nil)
-                        self.carnameLbl.text = self.carArray[0].Name
-                        AuthServices.shared.carId = self.carArray[0].Car_Id
-                        CarManger.shared.singleCarData = self.carArray[0]
-                    }
-                    
-                
-                    
-                   
-                }
-            
-            }
-            
+//            if let data  = response as? firstResponse{
+//                print("Values are")
+//                print(data.count)
+//
+//                for newValues in data{
+//                    print(newValues.key)
+//
+//                    print(AuthServices.shared.userValue)
+//                    if (newValues.key ==  AuthServices.shared.userValue){
+//
+//
+//                        for new in newValues.value{
+//                            print("Actual value")
+//                            print(new.value)
+//                            let temp = CarModel(data: new.value)
+//                            print("tempobjdect", temp.Name)
+//
+//                        //    let filter = self.carArray.filter({$0.Car_Id == temp.Car_Id})
+//
+//
+//                            if let carID = AuthServices.shared.carId{
+//
+//                                let filter = self.carArray.filter({$0.Car_Id == carID})
+//                                if filter.count > 0{
+//                                    print("Get car in filer")
+//                                }else{
+//
+//                                    if temp.Image_Link != nil{
+//                                        self.carArray.append(temp)
+//                                    }
+//                                }
+//                            }else{
+//
+//                                if temp.Image_Link != nil{
+//                                    self.carArray.append(temp)
+//                                }
+//
+//                            }
+//
+//
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//                DispatchQueue.main.async {
+//
+//                    for data in self.carArray{
+//
+//                        self.dropDown.dataSource.append(data.Name)
+//
+//                    }
+//
+//
+//                    if let carImageURL = URL(string: self.carArray[0].Image_Link!){
+//                        self.carImageView.sd_setImage(with: carImageURL, completed: nil)
+//                        self.carnameLbl.text = self.carArray[0].Name
+//                        AuthServices.shared.carId = self.carArray[0].Car_Id
+//                      //  CarManger.shared.singleCarData = self.carArray[0]
+//                    }
+//
+//
+//
+//
+//                }
+//
+//            }
+//
             
     
             print("The count of cars are \(self.carArray.count)")

@@ -122,7 +122,7 @@ extension CarListVC : UITableViewDelegate, UITableViewDataSource{
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: Keys.CellIds().carCell, for: indexPath) as? CarsTVCell{
             
-            print(carArray[indexPath.item].Mileag)
+            print(carArray[indexPath.item].Mileage)
               print(carArray[indexPath.item].Image_Link)
             cell.carObject = carArray[indexPath.item]
             
@@ -134,6 +134,15 @@ extension CarListVC : UITableViewDelegate, UITableViewDataSource{
                 }else{
                       cell.starImageView.image = #imageLiteral(resourceName: "group")
                 }
+            }
+            
+            
+            cell.editCompletion = { [weak self]  in
+                
+                let vc = CarUpdateViewController.instantiateViewController()
+                vc.currentCar = self?.carArray[indexPath.row]
+                vc.modalPresentationStyle = .overFullScreen
+                self!.present(vc,animated: true)
             }
             
             
@@ -153,6 +162,8 @@ extension CarListVC : UITableViewDelegate, UITableViewDataSource{
                                 if err !=  nil{
                                     return
                                 }
+                                
+                                  NotificationCenter.default.post(name: car_Notify_Key, object: nil)
                                 
                                // self?.carArray.remove(at: indexPath.row)
                                 

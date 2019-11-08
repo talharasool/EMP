@@ -35,7 +35,7 @@ class CarModel  : Codable  {
     
     var Car_Id : String
     var Image_Link : String?
-    var Mileag : Double?
+    var Mileage : String?
     var Model : String
     var Name : String
     
@@ -44,7 +44,7 @@ class CarModel  : Codable  {
         
         Car_Id =  data["Car_Id"] as? String ?? ""
         Image_Link =  data["Image_Link"] as? String ?? "No Image "
-      //  Mileag =  data["Mileage"] as? String ?? ""
+        Mileage =  data["Mileage"] as? String ?? ""
         Model =  data["Model"] as? String ?? "No model"
         Name =  data["Name"] as? String ?? "No name"
        

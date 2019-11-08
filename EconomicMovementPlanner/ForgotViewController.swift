@@ -106,7 +106,7 @@ class ForgotViewController: UIViewController {
                         }else{
                             
                             let phone = self.phoneTextField.text?.replacingOccurrences(of: " ", with: "")
-                            let alert = UIAlertController(title: "Error", message:"This \(self.countryCodeField.text!)\(phone!) number is not resgisterd", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Error", message:"This \(self.countryCodeField.text!)\(phone!) number is not resgistered", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
                             self.present(alert,animated: true)
                         }

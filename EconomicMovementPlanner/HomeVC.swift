@@ -301,15 +301,15 @@ extension HomeVC{
                 
             case .denied:
                 print("DENIED to go and use location")
-                 Alert.showLoginAlert(Message: "Sorry Please Enable Location", title: "", window: self)
+              //   Alert.showLoginAlert(Message: "Sorry Please Enable Location", title: "", window: self)
                 self.setUpAlpha(alpha: 0)
             case .restricted:
                 print("RESTRICTED to go and use location")
-                 Alert.showLoginAlert(Message: "Sorry Please Enable Location", title: "", window: self)
+                 //Alert.showLoginAlert(Message: "Sorry Please Enable Location", title: "", window: self)
                 self.setUpAlpha(alpha: 0)
             case .notDetermined:
                 print("NOT DETERMINED to go and use location")
-                Alert.showLoginAlert(Message: "Sorry Please Enable Location", title: "", window: self)
+             //   Alert.showLoginAlert(Message: "Sorry Please Enable Location", title: "", window: self)
                 self.setUpAlpha(alpha: 0)
                 
             default:
@@ -538,7 +538,17 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
         let now = Date()
         let formatter = DateFormatter()
        // formatter.locale = Locale(identifier: "fr_FR")
-        formatter.dateFormat = "dd MMMM YYYY HH:mm"
+        formatter.dateFormat = "dd MMMM YYYY HH:mm:ss"
+       return formatter.string(from: now)
+       
+    }
+    
+    
+    func getCurrentDateTimeWithVal(_ date : Date)-> String {
+        let now = Date()
+        let formatter = DateFormatter()
+       // formatter.locale = Locale(identifier: "fr_FR")
+        formatter.dateFormat = "dd MMMM YYYY HH:mm:ss"
        return formatter.string(from: now)
        
     }
@@ -554,20 +564,25 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
             
             self.endTime = Date()
             print("The Start and End time is ", self.startTime,self.endTime)
-            let difference  = Calendar.current.dateComponents([.hour, .minute], from: startTime, to: endTime)
+            let difference  = Calendar.current.dateComponents([.hour, .minute,.second], from: startTime, to: endTime)
          //       let formattedString = String(format: "%02ld%02ld", difference.hour!, difference.minute!)
             let formattedString = String(format: "%02ld", difference.minute!)
             print("The formatted string",formattedString)
+            let calendar = Calendar(identifier: .gregorian)
+            let date = calendar.date(from: difference)!
             
+            let diffFormatString = getCurrentDateTimeWithVal(date)
+            print(diffFormatString)
+            //print(timeConversion24(time12: diffFormatString))
             if self.compareArr.count == 1{
                 
                 self.isHiddenCancelBtn(val: true)
                 self.setCancelBtn(isSet: false)
                 
-                let milage = Double(CarManger.shared.singleCarData.Mileag ?? 0)
-                self.fuel = distanceValue/milage
+                let milage =  Int(CarManger.shared.singleCarData.Mileage!)
+                self.fuel = distanceValue/Double(milage!)
                 
-                let temp = tripServerData(date_record: currdate, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: fuel) ?? "", startpoint: self.startLocation, time: formattedString)
+                let temp = tripServerData(date_record: currentTime, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: fuel), startpoint: self.startLocation, time: diffFormatString)
                 
                 print("Data for database", temp)
                 self.serverObj.append(temp)
@@ -606,14 +621,16 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                 self.isHiddenCancelBtn(val: true)
                 self.setCancelBtn(isSet: false)
                 
-                let milage = Double(CarManger.shared.singleCarData.Mileag ?? 0)
-                let myFuel = distanceValue/milage
+                let milage = Int(CarManger.shared.singleCarData.Mileage!)
+                let myFuel = distanceValue/Double(milage!)
                 
-                let temp = tripServerData(date_record: currdate, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: myFuel) ?? "", startpoint: self.startLocation, time: formattedString)
+                let temp = tripServerData(date_record: currdate, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: myFuel), startpoint: self.startLocation, time: formattedString)
                 
-                
+                print("\n\nThe temp of data is here")
+                print(temp)
+                print("\n\n")
                 self.serverObj.append(temp)
-                
+    
                 self.addDataToServer { (succes) in
                     
                     print(succes)
@@ -640,6 +657,18 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
     
     
 
+    func timeConversion24(time12: String) -> String {
+        let dateAsString = time12
+        let df = DateFormatter()
+        df.dateFormat = "hh:mm:ss"
+
+        let date = df.date(from: dateAsString)
+        df.dateFormat = "HH:mm:ss"
+
+        let time24 = df.string(from: date!)
+        print(time24)
+        return time24
+    }
     
     @objc func openLocationList(){
         
@@ -1039,10 +1068,12 @@ extension HomeVC{
             let newID = DBRef.child("Routes").child(userID).child(carID).childByAutoId()
             
             print("The New Id Is here :: \(newID)")
-            let milage = Double(CarManger.shared.singleCarData.Mileag ?? 0)
-            let fuel = self.distanceValue/milage
+            let milage = Int(CarManger.shared.singleCarData.Mileage!)
             
-            let values  = ["trip_date:" : Date().timeIntervalSinceNow,"trip_endpoint:":self.destinatioName,"trip_startpoint:":compareArr.first!.lineString!,"trip_totaldistance":"0","trip_totalfuel" : "0","trip_totlatime":"9"] as [String : Any]
+            let fuel = self.distanceValue/Double(milage!)
+            
+            let values  = ["trip_date:" : Date().timeIntervalSinceNow,"trip_endpoint:":self.destinatioName,"trip_startpoint:":compareArr.first!.lineString!,"trip_totaldistance":"0","trip_totalfuel" : fuel,"trip_totlatime":"9"] as [String : Any]
+            print("Here are the values of data ")
             print(values)
             
             newDB.updateChildValues(values) { (error, refrence) in

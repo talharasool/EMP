@@ -144,7 +144,7 @@ extension RoutesViewController{
         
         //Setting Car Information On label
         self.carNameLbl.text = self.curretCar.Name
-        self.avgLbl.text = "Average of Car \(self.curretCar.Mileag)"
+        self.avgLbl.text = "Average of Car \(self.curretCar.Mileage)"
         
     }
 }

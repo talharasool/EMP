@@ -18,12 +18,14 @@ class CarsTVCell: UITableViewCell {
     
     
     var deleteCompletion : (()->())?
+    var editCompletion : (()->())?
+    
     
     @IBOutlet weak var editActionView: UIView!
     var carObject : CarModel?{
         didSet{
             
-            self.averageLabel.text = "Average :" + String(describing: carObject!.Mileag) + "KM" ?? "Average : 0.0 "
+            self.averageLabel.text = "Average :" + String(describing: carObject!.Mileage!) + " KM" ?? "Average : 0.0 "
              self.carNameLabel.text = carObject?.Name ?? "No Name"
            // print("The image link :   ", carObject?.Image_Link)
              self.carImageView.getImageFromUrl(imageURL: carObject?.Image_Link ?? "" , placeHolder: UIImage())
@@ -46,6 +48,8 @@ class CarsTVCell: UITableViewCell {
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongTap(_:))))
         
         self.deleteBtnOutlet.addTarget(self, action: #selector(handleDelete(_:)), for: .touchUpInside)
+        
+        self.editBtnOutlet.addTarget(self, action: #selector(handleEdit(_:)), for: .touchUpInside)
         hideView(0)
     }
 
@@ -76,6 +80,15 @@ class CarsTVCell: UITableViewCell {
         }
     }
     
+    
+    @objc func handleEdit(_ sender : UIButton){
+          
+          guard let comp = editCompletion else {
+                  return
+          }
+          
+          comp()
+      }
     
     @objc func handleDelete(_ sender : UIButton){
         

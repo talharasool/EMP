@@ -28,6 +28,7 @@
 		BC41D5DB2291507F008564BF /* EconomicMovementPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5DA2291507F008564BF /* EconomicMovementPlannerTests.swift */; };
 		BC41D5E62291507F008564BF /* EconomicMovementPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5E52291507F008564BF /* EconomicMovementPlannerUITests.swift */; };
 		BC41D5F422915AA5008564BF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5F322915AA5008564BF /* Helper.swift */; };
+		BC5B3AD0237579B9006FBFB7 /* CarUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5B3ACF237579B8006FBFB7 /* CarUpdateViewController.swift */; };
 		BC66595A229EB9AC007EFD40 /* DrawerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC665959229EB9AC007EFD40 /* DrawerVC.swift */; };
 		BC665960229EBB23007EFD40 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66595F229EBB23007EFD40 /* MenuCell.swift */; };
 		BC66596222A13E1D007EFD40 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC66596122A13E1D007EFD40 /* ProfileVC.swift */; };
@@ -109,6 +110,7 @@
 		BC41D5E52291507F008564BF /* EconomicMovementPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicMovementPlannerUITests.swift; sourceTree = "<group>"; };
 		BC41D5E72291507F008564BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC41D5F322915AA5008564BF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		BC5B3ACF237579B8006FBFB7 /* CarUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarUpdateViewController.swift; sourceTree = "<group>"; };
 		BC665959229EB9AC007EFD40 /* DrawerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerVC.swift; sourceTree = "<group>"; };
 		BC66595F229EBB23007EFD40 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		BC66596122A13E1D007EFD40 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				BC66595F229EBB23007EFD40 /* MenuCell.swift */,
 				BC41D5F322915AA5008564BF /* Helper.swift */,
 				BCEDCAB02297F3410011380D /* storyboardHelper.swift */,
+				BC5B3ACF237579B8006FBFB7 /* CarUpdateViewController.swift */,
 				BCEDCAAC22955F520011380D /* MenuVC.swift */,
 				BC9C28A7230E6BFF009177AC /* PacesTableXIB.swift */,
 				BC9C28A8230E6BFF009177AC /* PacesTableXIB.xib */,
@@ -590,6 +593,7 @@
 				BCF09A9022B4D65F0058378D /* PickerUtils.swift in Sources */,
 				BCB9F017229E8CF70027269A /* RegisterVC.swift in Sources */,
 				BC9C28AD230E7125009177AC /* NewListTVCell.swift in Sources */,
+				BC5B3AD0237579B9006FBFB7 /* CarUpdateViewController.swift in Sources */,
 				BC02945322F6F6830039A4FD /* Models.swift in Sources */,
 				BCF85331232E148600FC3135 /* TripVC.swift in Sources */,
 			);

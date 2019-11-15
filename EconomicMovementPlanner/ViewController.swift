@@ -108,7 +108,7 @@ class ViewController: UIViewController {
                         if (filter.count > 0){
                             
                             AuthServices.shared.loginVal = true
-                            
+                            print( filter.first!.image_URI)
                             AuthServices.shared.userValue = filter.first!.id
                             AuthServices.shared.userImage = filter.first!.image_URI
                             AuthServices.shared.userObj = filter.first!.name

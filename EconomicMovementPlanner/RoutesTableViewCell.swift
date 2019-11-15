@@ -44,24 +44,34 @@ class RoutesTableViewCell: UITableViewCell {
             // self.distanceView.value = CGFloat(fuel!)
         
             if let distance = Int(self.model!.distance!){
-                self.distanceView.progressAnimation(duration: 0.1, toValue: CGFloat(distance/100) )
+              //  self.distanceView.progressAnimation(duration: 0.1, toValue: CGFloat(distance/100) )
+                 self.distanceView.progressAnimation(duration: 0.1, toValue: 50 )
             }
             
             if let time = Int(self.model!.time!){
-                self.timeView.progressAnimation(duration: 0.1, toValue: CGFloat(time/100) )
+                
+                print("\n\nThe model time is here :: ", time)
+              //  self.timeView.progressAnimation(duration: 0.1, toValue: CGFloat(time/100) )
+                 self.timeView.progressAnimation(duration: 0.1, toValue: CGFloat(time/100) )
             }
             if let fuel = Int(self.model!.fuel!){
                // self.distanceView.progressAnimation(duration: 0.1, toValue: CGFloat(fuel/100) )
-                self.fuelView.progressAnimation(duration: 0.1, toValue: 10 )
+                print("\n\nThe fuel is here :: ", fuel)
+             //   self.fuelView.progressAnimation(duration: 0.1, toValue: 10 )
+                
+                 self.fuelView.progressAnimation(duration: 0.1, toValue: 50 )
             }
            
             if let distanceval = self.model!.distance{
+                print("\n\nThe distancevalue is here :: ", distanceval)
                 self.distanceLbl.text = distanceval
                        }
-            if let fuelVal = self.model!.distance{
+            if let fuelVal = self.model!.fuel{
+            print("\n\nThe fuel is here :: ", fuelVal)
             self.fuelLbl.text = fuelVal
                    }
-            if let timeVal = self.model!.distance{
+            if let timeVal = self.model!.time{
+            print("\n\nThe timeVAL is here :: ", timeVal)
             self.timeLbl.text = timeVal
                    }
             

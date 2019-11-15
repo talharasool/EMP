@@ -34,22 +34,26 @@ class ProfileVC: UIViewController {
     var passwordtext : String = ""
     var phonetext : String = ""
     
+    var authID : String = ""
+    
     var imagePickerController : ImagePickerUtils!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         imagePickerController = ImagePickerUtils(delegate: self, pickerViewController: self)
-        updateProfileAction.addTarget(self, action: #selector(updateUserprofile(sender:)), for: .touchUpInside)
+      
         
         
         if vcIdentifier.isEmpty{
               self.title = "Profile Setting"
+              updateProfileAction.addTarget(self, action: #selector(updateUserprofile(sender:)), for: .touchUpInside)
         }else {
               self.title = "Complete Profile"
+              updateProfileAction.setTitle("Sign Up", for: .normal)
+              updateProfileAction.addTarget(self, action: #selector(actionOnRegister(sender:)), for: .touchUpInside)
         }
       
-        
         setUpImageViewTap()
         
         if vcIdentifier.isEmpty{
@@ -282,7 +286,7 @@ extension ProfileVC{
                                   })
                               }
                           }else{
-                              
+                              self.stopAnimating()
                               print("Storage")
                           }
                     
@@ -306,6 +310,186 @@ extension ProfileVC{
         
         
     }
+    
+    
+}
+
+extension ProfileVC{
+    @objc func addUserprofile(){
+        let DBRef = Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/")
+        usernametext = username.text!; passwordtext = userPssword.text!;phonetext = userPhoneNumber.text!
+        
+        if (usernametext.isEmpty || passwordtext.isEmpty || phonetext.isEmpty){
+            Alert.showLoginAlert(Message: "", title: "Please fill all the fields", window: self)
+        }else{
+            if selectedImage == nil {
+                Alert.showLoginAlert(Message: "", title: "Please upload the image", window: self)
+                
+            }else {
+                
+//                auth_id:
+//                "QsKxf06l8dYR1GI7zlaJ7mEJncE2"
+//                id:
+//                "-LkkRrH3Qbl5Mi8Fprzy"
+//                image_URI:
+//                "https://firebasestorage.googleapis.com/v0/b/tac..."
+//                isfborgmail:
+//                true
+//                name:
+//                "Abidur.c@gmail.com"
+//                password:
+//                "choudhury1"
+//                phone:
+//                "+447764962892"
+
+                self.startAnimating()
+               
+                let dbAction = DBRef.child("User Details").childByAutoId()
+                
+           
+                let param = ["auth_id" : "","id" : dbAction.key!]
+                //print(dbAction.key)
+             //   dbAction.updateChildValues(<#T##values: [AnyHashable : Any]##[AnyHashable : Any]#>, withCompletionBlock: <#T##(Error?, DatabaseReference) -> Void#>)
+                
+                
+                
+                if let userID =  dbAction.key{
+
+                    print("The current user ID IS HERE :: \(userID)")
+                    let storageRef = Storage.storage().reference().child("myImage").child(userID).child("image.jpg")
+
+                          if  let imageData  = selectedImage.jpegData(compressionQuality: 0.5){
+                              print("Good walls")
+                              storageRef.putData(imageData, metadata: nil) { (metaData, err) in
+                                  if err != nil{
+                                      self.stopAnimating()
+                                      Alert.showLoginAlert(Message: "", title: err as! String, window: self)
+                                      print("error is here")
+                                      return
+                                  }
+
+
+                                  print(metaData)
+
+
+                                  guard let newImage = metaData else {return}
+
+                                  storageRef.downloadURL(completion: { (url, err) in
+                                      print(url)
+
+
+                                      let DBRef = Database.database().reference()
+
+                                    let newDB =   DBRef.child("User Details").child(userID)
+                                      print("The db is \(newDB.key)")
+
+                                    print("The new image url is here", url)
+                                    newDB.updateChildValues(["image_URI" : String(describing: url!),"password" : self.passwordtext, "phone" :  self.phonetext , "name" : self.usernametext,"auth_id":self.authID,"id": userID,"isfborgmail":false ], withCompletionBlock: { (error, dbre) in
+
+                                          if err != nil{
+                                              self.stopAnimating()
+                                              Alert.showLoginAlert(Message: "", title: err as! String, window: self)
+                                              print("err",err)
+                                              return
+                                          }
+  self.stopAnimating()
+                                        AuthServices.shared.userObj = self.username.text ?? ""
+                                        AuthServices.shared.userPassword = self.userPssword.text ?? ""
+                                        AuthServices.shared.userPhoneNumber = self.userPhoneNumber.text ?? ""
+                                        AuthServices.shared.userImage = String(describing: url!)
+                                        
+                                        AuthServices.shared.loginVal = true
+                                        
+                                        AuthServices.shared.userValue = userID
+                                        
+                                      
+                                       
+                                       
+                                        
+                                        let drawerVC = DrawerVC.instantiateViewController() as? DrawerVC
+                                      //  drawerVC!.userData = filter.first!
+                                        
+                                        let MainSB = KYDrawerController.instantiateViewController()
+                                        
+                                        //     AppDelegate.allUser = filter.first!
+                                        
+                                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                        appDelegate.window?.rootViewController = MainSB
+
+                                        
+
+                                       //   Alert.showLoginAlert(Message: "", title: "User Updated Sucessfully", window: self)
+                                          print(dbre.childByAutoId())
+
+                                      })
+
+                                      // newDB.updateChildValues(["Car_Id" : new])
+
+                                  })
+                              }
+                          }else{
+                              self.stopAnimating()
+                              print("Storage")
+                          }
+
+                }else{
+
+                    self.stopAnimating()
+
+                    print("\n\n User ID is herle ")
+                }
+
+                
+                
+                
+                
+                // Alert.showLoginAlert(Message: "", title: "Car added successfully", window: self)
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    func checkUserExsistance(completion : ((Bool)->())?){
+        
+         let DBRef = Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/")
+       // +923004534531
+        let newDB =   DBRef.child("User Details").queryOrdered(byChild: "phone").queryEqual(toValue: userPhoneNumber.text!)
+        newDB.observe(.value, with: { (snapPhot) in
+            print(snapPhot.value,snapPhot.childrenCount)
+            
+            if snapPhot.childrenCount == 0{
+                completion!(true)
+            }else{
+                completion!(false)
+            }
+            
+//            if let data  = snapPhot.value{
+//                print("good")
+//
+//
+//
+//            }else{
+//                completion!(false)
+//                print("bad")
+//            }
+        }) { (erooor) in
+            print(erooor)
+            completion!(false)
+        }
+    }
+    
+    
+    @objc func actionOnRegister(sender : UIButton){
+     
+         self.addUserprofile()
+    }
+    
+    
+    
+
 }
 
 

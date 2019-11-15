@@ -8,7 +8,9 @@ target 'EconomicMovementPlanner' do
   # Pods for EconomicMovementPlanner
 pod 'Firebase/Analytics'
 
+
 # Add the pod for Firebase Cloud Messaging
+pod 'GoogleSignIn'
 pod 'UICircularProgressRing'
 pod 'Firebase/Messaging'
 pod 'DropDown', '2.3.4'
@@ -26,6 +28,8 @@ pod 'CountryPickerView'
 pod 'KYDrawerController'
 pod 'Firebase/Auth'
 pod 'Firebase/Analytics'
+pod 'FacebookCore'
+pod 'FacebookLogin'
 pod 'Firebase/Storage'
 pod 'MRCountryPicker'
 pod 'CodableFirebase'

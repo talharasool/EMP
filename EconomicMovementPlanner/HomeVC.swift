@@ -409,16 +409,25 @@ extension HomeVC{
                     //  let pointingDistance
                     
                     let filterCompreArr = self.compareArr.filter({$0.isCompleted ==  false})
-                    
+                  //  31.4846739,74.3064136,14z
                     
                     let current  = CLLocation(latitude:self.currentCoordinateValue.latitude, longitude: self.currentCoordinateValue.longitude)
+                    
+                    print("The current", current)
                     let pointer = CLLocation(latitude:self.compareArr[0].lat!, longitude: self.compareArr[0].long!)
+                    
+                    let previousPointer = CLLocation(latitude:self.previousCoordinateValue.latitude, longitude: self.previousCoordinateValue.longitude)
                     let pointing = current.distance(from: pointer)
                     
+                    let nowtheDistance  =  previousPointer.distance(from: current)
+                    print("Now the distance value is here" , nowtheDistance )
                     print("Pointing values are here", pointing)
                     
-                    self.distanceValue += Double(pointing)
+                    self.distanceValue =  self.distanceValue + Double(pointing)
                     
+                    self.title = String(describing: self.distanceValue)
+                    
+                   print("DIstance values are here", self.distanceValue)
                 
                     if pointing < 100{
                         self.timer.invalidate()
@@ -433,7 +442,8 @@ extension HomeVC{
                         self.present(alert,animated: true,completion: {
                             self.endRouteView.alpha = 1
                             self.timer.invalidate()
-                               self.distanceValue = 0
+                            self.locationManger.stopUpdatingLocation()
+                              // self.distanceValue = 0
                             print("Comparing")
                         })
                         
@@ -580,15 +590,18 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                 self.setCancelBtn(isSet: false)
                 
                 let milage =  Int(CarManger.shared.singleCarData.Mileage!)
-                self.fuel = distanceValue/Double(milage!)
                 
-                let temp = tripServerData(date_record: currentTime, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: fuel), startpoint: self.startLocation, time: diffFormatString)
+                print("The new distande",self.distanceValue)
+                print("The milage", milage)
+                self.fuel = distanceValue/Double(milage!)
+                print("fuel", self.fuel!)
+                let temp = tripServerData(date_record: currentTime, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: fuel!), startpoint: self.startLocation, time: diffFormatString)
                 
                 print("Data for database", temp)
                 self.serverObj.append(temp)
                 
                 self.addDataToServer { (succes) in
-                    
+                    self.distanceValue = 0
                     print(succes)
                     
                     if succes{
@@ -636,7 +649,8 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                     print(succes)
                     
                     if succes{
-                        
+                        self.distanceValue = 0.0
+                        self.locationManger.stopUpdatingLocation()
                         self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: self.compareArr.count)
                                             
                         
@@ -800,6 +814,7 @@ extension HomeVC : StoryboardInitializable{
         
         
         self.startAnimating()
+        self.locationManger.startUpdatingLocation()
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)

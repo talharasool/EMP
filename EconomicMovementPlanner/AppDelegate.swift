@@ -8,21 +8,22 @@
 
 import UIKit
 import CoreData
+
 import IQKeyboardManagerSwift
 import UserNotifications
+
 import GoogleMaps
 import GooglePlaces
-import Firebase
-import FirebaseAuth
-import UserNotifications
-import FirebaseDatabase
-import KYDrawerController
+import GoogleSignIn
 
+import KYDrawerController
 import Firebase
 import FirebaseMessaging
-import UserNotifications
 import FirebaseInstanceID
-import UserNotifications
+import FirebaseAuth
+import FirebaseDatabase
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
@@ -35,8 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         IQKeyboardManager.shared.enable =  true
         
-          // FirebaseApp.configure()
+        FirebaseApp.configure()
         
+        GIDSignIn.sharedInstance().clientID = "YOUR_CLIENT_ID"
+        GIDSignIn.sharedInstance()?.delegate = self
         
         if let login = AuthServices.shared.loginVal{
             
@@ -55,25 +58,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         
         
-//        if #available(iOS 10.0, *) {
-//            // For iOS 10 display notification (sent via APNS)
-//            UNUserNotificationCenter.current().delegate = self
-//
-//            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-//            UNUserNotificationCenter.current().requestAuthorization(
-//                options: authOptions,
-//                completionHandler: {_, _ in })
-//        } else {
-//            let settings: UIUserNotificationSettings =
-//                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-//
-//
-//            application.registerUserNotificationSettings(settings)
-//        }
-//
-//        application.registerForRemoteNotifications()
+        if #available(iOS 10.0, *) {
+          // For iOS 10 display notification (sent via APNS)
+          UNUserNotificationCenter.current().delegate = self
+
+          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+          UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: {_, _ in })
+        } else {
+          let settings: UIUserNotificationSettings =
+          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+          application.registerUserNotificationSettings(settings)
+        }
+
+        application.registerForRemoteNotifications()
+
+        Messaging.messaging().delegate = self
         
-        configureFirebase(application: application)
+      //  configureFirebase(application: application)
         let isRegisteredForRemoteNotifications = UIApplication.shared.isRegisteredForRemoteNotifications
         if isRegisteredForRemoteNotifications {
             print("refi")
@@ -87,17 +90,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         Messaging.messaging().delegate = self
         
 
-//        InstanceID.instanceID().instanceID { (result, error) in
-//            if let error = error {
-//                print("Error fetching remote instance ID: \(error)")
-//            } else if let result = result {
-//                print("Remote instance ID token: \(result.token)")
-//                
-//                //self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
-//            }
-//        }
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                
+                //self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+            }
+        }
         
-          Messaging.messaging().shouldEstablishDirectChannel = true
+         // Messaging.messaging().shouldEstablishDirectChannel = true
         // Override point for customization after application launch.
         
         
@@ -193,42 +196,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 extension AppDelegate  : MessagingDelegate {
     
     
-//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-//       print("Register eroor",error)
-//    }
-//
-//
-//
-//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-//
-//        print("calling")
-//    }
-//
-//
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-//        print("Firebase registration token: \(fcmToken)")
-//
-//        let dataDict:[String: String] = ["token": fcmToken]
-//
-//        InstanceID.instanceID().instanceID { (result, error) in
-//            if let error = error {
-//                print("Error fetching remote instance ID: \(error)")
-//            } else if let result = result {
-//                print("Remote instance ID token: \(result.token)")
-//              //  self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
-//            }
-//        }
-//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-//        // TODO: If necessary send token to application server.
-//        // Note: This callback is fired at each app startup and whenever a new token is generated.
-//    }
-//
-//    func application(application: UIApplication,
-//                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-//        print(deviceToken)
-//        Messaging.messaging().apnsToken = deviceToken as Data
-//    }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+       print("Register eroor",error)
+    }
+
+
+
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+
+        print("calling")
+    }
+
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+
+        let dataDict:[String: String] = ["token": fcmToken]
+
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+              //  self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+            }
+        }
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        Messaging.messaging().apnsToken = deviceToken as Data
+        
+        application.registerForRemoteNotifications()
+        
+        print("\n\nRegistered\n\n")
+    }
     
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        
+    }
+    
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print("done")
+    }
+    
+   
 }
 
 
@@ -265,6 +281,9 @@ extension AppDelegate {
         
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert,.badge,.sound])
+    }
     
     //MARK: FCM Token Refreshed
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
@@ -272,28 +291,38 @@ extension AppDelegate {
     }
     
     
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("remoteMessage: \(remoteMessage)")
-    }
+//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+//        print("remoteMessage: \(remoteMessage)")
+//    }
     
     //Called when a notification is delivered to a foreground app.
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
-    }
+
     
     //Called to let your app know which action was selected by the user for a given notification.
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("User Info = \(response.notification.request.content.userInfo)")
+
+    
+    
+//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+//
+//        print(fcmToken)
+//        print("DOne")
+//    }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        completionHandler()
     }
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         
-        print(fcmToken)
-        print("DOne")
     }
     
 }
+
+extension AppDelegate : GIDSignInDelegate{
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
+    
+    
+}
+

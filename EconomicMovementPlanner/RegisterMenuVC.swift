@@ -11,7 +11,7 @@ import KYDrawerController
 import Firebase
 import FirebaseCore
 import FirebaseDatabase
-
+import GoogleSignIn
 
 class RegisterMenuVC: UIViewController {
 
@@ -21,11 +21,13 @@ class RegisterMenuVC: UIViewController {
     
     let activity = UIActivityIndicatorView()
     var usersArray : [User] = []
-     
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        GIDSignIn.sharedInstance().delegate = self
+     GIDSignIn.sharedInstance().presentingViewController = self
         mobileBtnOutlet.setShadowOnView(cornerRadius: self.mobileBtnOutlet.frame.height/2)
         mobileBtnOutlet.addTarget(self, action: #selector(openSignInController), for: .touchUpInside)
         
@@ -39,11 +41,21 @@ class RegisterMenuVC: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    
+    
 }
 
 extension RegisterMenuVC{
     
     @objc func openSignInController(){
         performSegue(withIdentifier: Keys.SegueName().registerSegue, sender: nil)
+    }
+}
+
+
+
+extension RegisterMenuVC : GIDSignInDelegate{
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
     }
 }

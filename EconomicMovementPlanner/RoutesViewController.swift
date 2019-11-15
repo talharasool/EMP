@@ -16,10 +16,8 @@ class RoutesViewController: UIViewController {
                  customCompletion!()
              }
     }
+    
     deinit {
-        
-     
-        
     }
     //LISTING DATA
     var listData : [TripData] = []
@@ -62,6 +60,7 @@ class RoutesViewController: UIViewController {
         print(listData.count)
         
         
+        print("The list of new data is here\n\n",self.listData)
        
         self.detailTV.tableFooterView = UIView(frame: .zero)
         let nib = UINib(nibName: identifier, bundle: nil)
@@ -84,13 +83,20 @@ class RoutesViewController: UIViewController {
 //        self.fuelView.layer.borderColor = UIColor.green.cgColor
 //        self.fuelView.layer.borderColor = UIColor.green.cgColor
         if let data = self.listData.first{
+            
             if let distance = data.trip_totaldistance?.floatValue{
-                 distanceView.progressAnimation(duration: 5, toValue:CGFloat(distance))
-            }
+                
+                print("\n\n The distance value is after calculation :", distance)
+                distanceView.progressAnimation(duration: 5, toValue:CGFloat(distance))
+            }else{print("Err in cal distance")}
+            
+            
             if let fuel = data.trip_totalfuel?.floatValue{
-                           fuelView.progressAnimation(duration: 5, toValue:CGFloat(fuel))
-                      }
-          
+                
+                print("\n\n The fuel value is after calculation :", fuel)
+                fuelView.progressAnimation(duration: 5, toValue:CGFloat(fuel))
+            }else{print("Err in fuel distance")}
+            
                   // fuelView.progressAnimation(duration: 5, toValue: 0.2)
                  //  timeView.progressAnimation(duration: 5, toValue: 0.3)
         }
@@ -168,15 +174,15 @@ class CircularProgressView: UIView {
         circleLayer.path = circularPath.cgPath
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.lineCap = .round
-        circleLayer.lineWidth = 20.0
-        circleLayer.strokeColor = UIColor.black.cgColor
+        circleLayer.lineWidth = 5.0
+        circleLayer.strokeColor = UIColor.lightGray.cgColor
         progressLayer.path = circularPath.cgPath
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.lineCap = .round
         progressLayer.lineWidth = 10.0
         progressLayer.strokeEnd = 0
         progressLayer.strokeColor = UIColor.red.cgColor
-       // layer.addSublayer(circleLayer)
+        layer.addSublayer(circleLayer)
         layer.addSublayer(progressLayer)
     }
     func progressAnimation(duration: TimeInterval,toValue: CGFloat) {

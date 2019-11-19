@@ -25,7 +25,8 @@ class ProfileVC: UIViewController {
     
      let activity = UIActivityIndicatorView()
     
-    
+    var socialEmail : String = ""
+    var socialImage : String = ""
     var selectedImage : UIImage! = nil
     
     var vcIdentifier : String = ""
@@ -49,9 +50,26 @@ class ProfileVC: UIViewController {
               self.title = "Profile Setting"
               updateProfileAction.addTarget(self, action: #selector(updateUserprofile(sender:)), for: .touchUpInside)
         }else {
+            
+            
               self.title = "Complete Profile"
               updateProfileAction.setTitle("Sign Up", for: .normal)
               updateProfileAction.addTarget(self, action: #selector(actionOnRegister(sender:)), for: .touchUpInside)
+            if !(self.socialImage.isEmpty){
+             
+                if let imageURL = URL(string: self.socialImage){
+                    self.userImageView.sd_setImage(with: imageURL, completed: nil)
+                    self.selectedImage =  self.userImageView.image
+                }else{
+                    print("\n\n\n Image url is nil \n\n")
+                }
+                
+            }
+            
+         
+            
+            
+            self.username.text = self.socialEmail ?? ""
         }
       
         setUpImageViewTap()

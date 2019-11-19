@@ -23,7 +23,11 @@ import FirebaseInstanceID
 import FirebaseAuth
 import FirebaseDatabase
 
+import FBSDKLoginKit
+import FacebookCore
+import FacebookLogin
 
+let GSignID = "963608192023-dqdosf7lrta4kulp6r4f5oglrtvgemcv.apps.googleusercontenet.com"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
@@ -37,9 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         IQKeyboardManager.shared.enable =  true
         
         FirebaseApp.configure()
+    
+    
+        FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        GIDSignIn.sharedInstance().clientID = GSignID
+        GIDSignIn.sharedInstance().delegate = self
         
-        GIDSignIn.sharedInstance().clientID = "YOUR_CLIENT_ID"
-        GIDSignIn.sharedInstance()?.delegate = self
         
         if let login = AuthServices.shared.loginVal{
             
@@ -319,9 +326,58 @@ extension AppDelegate {
 }
 
 extension AppDelegate : GIDSignInDelegate{
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
+ 
+    // [START openurl_new]
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        let handled = FBSDKCoreKit.ApplicationDelegate.shared.application(app, open: url, options: options)
+        return handled
     }
+    // [END openurl_new]
+
+    // [START signin_handler]
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+      if let error = error {
+        if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+          print("The user has not signed in before or they have since signed out.")
+        } else {
+          print("\(error.localizedDescription)")
+        }
+        // [START_EXCLUDE silent]
+        NotificationCenter.default.post(
+          name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: nil)
+        // [END_EXCLUDE]
+        return
+      }
+      // Perform any operations on signed in user here.
+      let userId = user.userID                  // For client-side use only!
+      let idToken = user.authentication.idToken // Safe to send to the server
+      let fullName = user.profile.name
+      let givenName = user.profile.givenName
+      let familyName = user.profile.familyName
+      let email = user.profile.email
+      // [START_EXCLUDE]
+      NotificationCenter.default.post(
+        name: Notification.Name(rawValue: "ToggleAuthUINotification"),
+        object: nil,
+        userInfo: ["statusText": "Signed in user:\n\(fullName!)"])
+      // [END_EXCLUDE]
+    }
+    // [END signin_handler]
+
+    // [START disconnect_handler]
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+      // Perform any operations when the user disconnects from app here.
+      // [START_EXCLUDE]
+      NotificationCenter.default.post(
+        name: Notification.Name(rawValue: "ToggleAuthUINotification"),
+        object: nil,
+        userInfo: ["statusText": "User has disconnected."])
+      // [END_EXCLUDE]
+    }
+    // [END disconnect_handler]
     
     
 }

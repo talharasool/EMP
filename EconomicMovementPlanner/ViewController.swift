@@ -208,8 +208,6 @@ extension ViewController :MRCountryPickerDelegate, UITextFieldDelegate {
                 print(snapshot.childrenCount)
                 
                 
-                
-                
         }) { (error) in
             print("The error is here \(error)")
         }

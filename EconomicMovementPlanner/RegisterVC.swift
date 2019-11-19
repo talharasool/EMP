@@ -15,7 +15,7 @@ import Firebase
 class RegisterVC: UIViewController {
 
     let btn  = GIDSignInButton()
-    @IBOutlet weak var signInBtnOutlet: UIButton!
+    @IBOutlet weak var signInBtnOutlet: GIDSignInButton!
     @IBOutlet weak var varificationBtnOutlet: UIButton!
     
     let activity = UIActivityIndicatorView()

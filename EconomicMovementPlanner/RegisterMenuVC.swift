@@ -12,24 +12,31 @@ import Firebase
 import FirebaseCore
 import FirebaseDatabase
 import GoogleSignIn
+import FacebookCore
+import FacebookLogin
+import FirebaseAuth
 
 class RegisterMenuVC: UIViewController {
 
     @IBOutlet weak var facebookBtnOutlet: UIButton!
     @IBOutlet weak var googleBtnOutlet: UIButton!
     @IBOutlet weak var mobileBtnOutlet: UIButton!
+        let activity = UIActivityIndicatorView()
     
-    let activity = UIActivityIndicatorView()
-    var usersArray : [User] = []
-   
 
+    var usersArray : [User] = []
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         GIDSignIn.sharedInstance().delegate = self
-     GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().presentingViewController = self
         mobileBtnOutlet.setShadowOnView(cornerRadius: self.mobileBtnOutlet.frame.height/2)
         mobileBtnOutlet.addTarget(self, action: #selector(openSignInController), for: .touchUpInside)
+        
+        // fbLogin.delegate = self
+        //  self.facebookBtnOutlet.delegate = self
         
     }
     
@@ -42,7 +49,114 @@ class RegisterMenuVC: UIViewController {
     }
     
     
+    @IBAction func gSignInAction(_ sender: Any) {
+         GIDSignIn.sharedInstance()?.signIn()
+    }
+    @IBAction func fbAction(_ sender: Any) {
+        
+        let loginManager = LoginManager()
+        self.startAnimating()
+        loginManager.logIn(permissions: [.email,.publicProfile], viewController: self) { (result) in
+            print(result)
+            print(result)
+            
+            
+            switch result{
+                
+            case .cancelled:
+                print("\n\n User cancelled data")
+                self.stopAnimating()
+            case .failed(let err):
+                print(err)
+                self.stopAnimating()
+                Alert.showLoginAlert(Message: "Error login facebook", title: "", window: self)
+         
+            case .success(let granted, let declined, let token):
+                
+                print(granted,token)
+                
+                let graphReq = GraphRequest(graphPath: "me", parameters: ["fields":"id, email, name, picture.width(480).height(480)"]).start {  (connection, result, error) in
+                    
+                    
+                    if(error == nil) {
+                        print("result \(result)")
+                        
+                        let field = result! as? [String:Any]
+                        
+                        var imageString = ""
+                        let email = field!["email"] as? String ?? ""
+                        if let imageURL = ((field!["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
+                            print(imageURL)
+                            imageString = imageURL
+                            let url = URL(string: imageURL)
+                            let data = NSData(contentsOf: url!)
+                            let image = UIImage(data: data! as Data)
+                            
+                        }
+                        print(AccessToken.current!.tokenString)
+                        print(token.tokenString)
+                        print(token.appID)
+                        let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
+                        
+                        Auth.auth().signIn(with: credential) { (authResult, error) in
+                            if let error = error {
+                                // ...
+                                
+                                print("fb error",error)
+                                self.stopAnimating()
+                                return
+                            }
+                            // User is signed in
+                            // ...
+                            self.stopAnimating()
+                            let vc = ProfileVC.instantiateViewController()
+                            vc.vcIdentifier = "Complete Profile"
+                            vc.authID = authResult?.user.uid ?? ""
+                            vc.socialEmail = email
+                            vc.socialImage = imageString
+                            
+                            self.navigationController?.pushViewController(self, animated: true)
+                        }
+                        
+                    } else {
+                        self.stopAnimating()
+                        print("error \(error)")
+                    }
+                }
+                
+//                let req =    GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: token.appID, version: nil, httpMethod: .get)
+//
+//                req.start { (connection, result, error) in
+//
+//                    if(error == nil) {
+//                        print("result \(result)")
+//                    } else {
+//                        print("error \(error)")
+//                    }
+//                }
+            }
+        }
+  
+    }
     
+//    loginManager.logIn(permissions: ["email","public_profile"], from: self) { (result, error) in
+//
+//          print(error,result)
+//
+//          if error != nil {
+//
+//              return
+//          }
+//          guard let token = AccessToken.current else {
+//              print("Failed to get access token")
+//
+//              return
+//          }
+//
+//          print("\n The token is here",token.appID)
+//
+//
+//      }
 }
 
 extension RegisterMenuVC{
@@ -59,3 +173,52 @@ extension RegisterMenuVC : GIDSignInDelegate{
         
     }
 }
+
+extension RegisterMenuVC : LoginButtonDelegate{
+    
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        
+        print(result)
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("Logout tap")
+    }
+    
+  
+    
+    
+    
+}
+
+extension RegisterMenuVC {
+    
+    // let activity = UIActivityIndicatorView()
+    func startAnimating(){
+        
+        //   UIApplication.shared.beginIgnoringInteractionEvents()
+        let width  = self.view.frame.width/2
+        let height = self.view.frame.height/2
+        activity.style = .whiteLarge
+        activity.color = UIColor.black
+        activity.backgroundColor = UIColor.clear
+        activity.frame = CGRect(x: width , y: height, width: 80, height: 70)
+        let label  = UILabel()
+        activity.layer.cornerRadius = 4
+        activity.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+        label.frame = CGRect(x: self.view.center.x, y: self.view.center.y, width: 80, height: 20)
+        // label.text =  "Please Wait"
+        activity.addSubview(label)
+        activity.startAnimating()
+        self.navigationController!.view.addSubview(activity)
+        
+    }
+    
+    func stopAnimating(){
+        
+        UIApplication.shared.endIgnoringInteractionEvents()
+        activity.stopAnimating()
+    }
+}
+

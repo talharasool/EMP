@@ -53,23 +53,26 @@ class ProfileVC: UIViewController {
             
             
               self.title = "Complete Profile"
+            print(self.socialEmail)
+         
               updateProfileAction.setTitle("Sign Up", for: .normal)
               updateProfileAction.addTarget(self, action: #selector(actionOnRegister(sender:)), for: .touchUpInside)
             if !(self.socialImage.isEmpty){
              
                 if let imageURL = URL(string: self.socialImage){
-                    self.userImageView.sd_setImage(with: imageURL, completed: nil)
-                    self.selectedImage =  self.userImageView.image
+                   // self.userImageView.sd_setImage(with: imageURL, completed: nil)
+                    self.userImageView.sd_setImage(with: imageURL) { (image, err, cache, url) in
+                        
+                        if err != nil {return}
+                          self.selectedImage =  image
+                    }
+                  
                 }else{
                     print("\n\n\n Image url is nil \n\n")
                 }
                 
             }
-            
-         
-            
-            
-            self.username.text = self.socialEmail ?? ""
+          
         }
       
         setUpImageViewTap()
@@ -93,6 +96,14 @@ class ProfileVC: UIViewController {
         
         self.uploadImageBtnOutlet.layer.cornerRadius = 10
         self.updateProfileAction.layer.cornerRadius = self.updateProfileAction.frame.height/2
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if self.vcIdentifier.isEmpty == false{
+               self.username.text = self.socialEmail
+        }
     }
     
     

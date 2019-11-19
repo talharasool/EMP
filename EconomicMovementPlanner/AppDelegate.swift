@@ -27,7 +27,7 @@ import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
 
-let GSignID = "963608192023-dqdosf7lrta4kulp6r4f5oglrtvgemcv.apps.googleusercontenet.com"
+let GSignID = "963608192023-dqdosf7lrta4kulp6r4f5og1rtvgemcv.apps.googleusercontent.com"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {

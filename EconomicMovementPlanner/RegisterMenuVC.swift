@@ -97,27 +97,46 @@ class RegisterMenuVC: UIViewController {
                         print(token.tokenString)
                         print(token.appID)
                         let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
+                        self.stopAnimating()
+//                        let vc = ProfileVC.instantiateViewController()
+//                        vc.vcIdentifier = "Complete Profile"
+//                        vc.authID = ""
+//                        vc.socialEmail = email
+//                        vc.socialImage = imageString
+//                        
+//                        self.navigationController?.pushViewController(vc, animated: true)
                         
-                        Auth.auth().signIn(with: credential) { (authResult, error) in
-                            if let error = error {
-                                // ...
-                                
-                                print("fb error",error)
-                                self.stopAnimating()
-                                return
-                            }
-                            // User is signed in
-                            // ...
+                        self.startAnimating()
+                        self.checkUserExsistance(email) { (val) in
                             self.stopAnimating()
-                            let vc = ProfileVC.instantiateViewController()
-                            vc.vcIdentifier = "Complete Profile"
-                            vc.authID = authResult?.user.uid ?? ""
-                            vc.socialEmail = email
-                            vc.socialImage = imageString
-                            
-                            self.navigationController?.pushViewController(self, animated: true)
+                            if val{
+                                let vc = ProfileVC.instantiateViewController()
+                                vc.vcIdentifier = "Complete Profile"
+                                vc.authID = ""
+                                vc.socialEmail = email
+                                vc.socialImage = imageString
+                                
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }else{
+                                Alert.showLoginAlert(Message: "User already in the database", title: "", window: self)
+                            }
                         }
                         
+                        
+//                        Auth.auth().signIn(with: credential) { (authResult, error) in
+//                            if let error = error {
+//                                // ...
+//
+//                                print("fb error",error)
+//                                self.stopAnimating()
+//                                return
+//                            }
+//                            // User is signed in
+//                            // ...
+//                            self.stopAnimating()
+//
+//                        }
+//
                     } else {
                         self.stopAnimating()
                         print("error \(error)")
@@ -169,7 +188,73 @@ extension RegisterMenuVC{
 
 
 extension RegisterMenuVC : GIDSignInDelegate{
+    
+    
+    func checkUserExsistance(_ email : String, completion : ((Bool)->())?){
+        
+        let DBRef = Database.database().reference(fromURL: "https://tactile-timer-238411.firebaseio.com/")
+        // +923004534531
+        let newDB =   DBRef.child("User Details").queryOrdered(byChild: "name").queryEqual(toValue: email)
+        newDB.observe(.value, with: { (snapPhot) in
+            print(snapPhot.value,snapPhot.childrenCount)
+            
+            if snapPhot.childrenCount == 0{
+                completion!(true)
+            }else{
+                completion!(false)
+            }
+            
+        }) { (erooor) in
+            print(erooor)
+            completion!(false)
+        }
+    }
+    
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        if let error = error {
+          if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+            print("The user has not signed in before or they have since signed out.")
+          } else {
+            print("\(error.localizedDescription)")
+          }
+          return
+        }
+        print("User details")
+        print(user.profile.name)
+        print(user.profile.familyName)
+        print(user.profile.imageURL(withDimension: 200))
+        
+        let userId = user.userID                  // For client-side use only!
+        let idToken = user.authentication.idToken // Safe to send to the server
+        let fullName = user.profile.name
+        let givenName = user.profile.givenName
+        let familyName = user.profile.familyName
+        let email = user.profile.email
+        
+        self.startAnimating()
+        self.checkUserExsistance(email!) { (val) in
+        self.stopAnimating()
+            if val{
+                let vc = ProfileVC.instantiateViewController()
+                       vc.vcIdentifier = "Complete Profile"
+                       vc.authID = user.authentication.idToken
+                       vc.socialEmail = email!
+                       if let img =  user.profile.imageURL(withDimension: 200){
+                            print("The image is", img)
+                            vc.socialImage = String(describing: img)
+                       }
+                      
+                       
+                       self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                Alert.showLoginAlert(Message: "User already in the database", title: "", window: self)
+            }
+        }
+        
+        print(email)
+       
         
     }
 }

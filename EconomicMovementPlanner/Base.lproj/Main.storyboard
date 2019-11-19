@@ -51,7 +51,6 @@
                                         </constraints>
                                         <state key="normal" backgroundImage="google"/>
                                         <connections>
-                                            <action selector="gSignInAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E0n-PK-RNL"/>
                                             <action selector="googleActionBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C88-Rj-8hu"/>
                                         </connections>
                                     </button>

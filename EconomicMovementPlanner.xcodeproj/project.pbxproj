@@ -18,6 +18,7 @@
 		BC18D5202335EF3B003B243A /* RoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */; };
 		BC18D5212335EF3B003B243A /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */; };
 		BC18D5232335F5EC003B243A /* viewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D5222335F5EC003B243A /* viewExt.swift */; };
+		BC1F55222383C6030092A4E8 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1F55212383C6030092A4E8 /* GoogleService-Info (1).plist */; };
 		BC36963523376F4A0021C8C2 /* HomeVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36963423376F4A0021C8C2 /* HomeVCExt.swift */; };
 		BC41D5C32291507C008564BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5C22291507C008564BF /* AppDelegate.swift */; };
 		BC41D5C52291507C008564BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5C42291507C008564BF /* ViewController.swift */; };
@@ -94,6 +95,7 @@
 		BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewCell.swift; sourceTree = "<group>"; };
 		BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
 		BC18D5222335F5EC003B243A /* viewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewExt.swift; sourceTree = "<group>"; };
+		BC1F55212383C6030092A4E8 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
 		BC36963423376F4A0021C8C2 /* HomeVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCExt.swift; sourceTree = "<group>"; };
 		BC41D5BF2291507C008564BF /* EconomicMovementPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EconomicMovementPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC41D5C22291507C008564BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				BCEDCAAC22955F520011380D /* MenuVC.swift */,
 				BC9C28A7230E6BFF009177AC /* PacesTableXIB.swift */,
 				BC9C28A8230E6BFF009177AC /* PacesTableXIB.xib */,
+				BC1F55212383C6030092A4E8 /* GoogleService-Info (1).plist */,
 				BC9C28AB230E7125009177AC /* NewListTVCell.swift */,
 				BC9C28AC230E7125009177AC /* NewListTVCell.xib */,
 				BC41D5C62291507C008564BF /* Main.storyboard */,
@@ -430,6 +433,7 @@
 				BC66596822A1A715007EFD40 /* CarsTVCell.xib in Resources */,
 				BCF8532F232E0E9600FC3135 /* TripsTableViewCell.xib in Resources */,
 				BC18D51B2335E958003B243A /* RoutesViewController.xib in Resources */,
+				BC1F55222383C6030092A4E8 /* GoogleService-Info (1).plist in Resources */,
 				BC9C28AE230E7125009177AC /* NewListTVCell.xib in Resources */,
 				BC41D5C82291507C008564BF /* Main.storyboard in Resources */,
 				BC9124F0232D0BAF006DB4BD /* GoogleService-Info.plist in Resources */,

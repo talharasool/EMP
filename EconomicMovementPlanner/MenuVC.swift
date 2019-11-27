@@ -20,12 +20,15 @@ class MenuVC: UIViewController {
 }
 
 extension MenuVC {
+
     
+//
 //    let drawer : KYDrawerController  = self.navigationController?.parent as! KYDrawerController
 //    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: sbName().AboutVC) as! AboutVC
 //    let nav = UINavigationController.init(rootViewController: vc)
 //
 //    drawer.mainViewController = nav
 //    drawer.setDrawerState(.closed, animated: true)
+//
     
 }

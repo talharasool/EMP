@@ -42,9 +42,21 @@ class DrawerVC: UIViewController {
     }
     
     
+    
     func createObserver(){
         print("Observer is Listing")
         NotificationCenter.default.addObserver(self, selector: #selector(self.getCarsFromServer), name: car_Notify_Key, object: nil)
+        
+        
+        DispatchQueue.main.async {
+            
+            //Perform any thing on UI
+            
+        }
+        
+        
+        
+        
     }
     
     var menuItems = [DrawerItems(name: "Home", image: #imageLiteral(resourceName: "home")),DrawerItems(name: "My Cars", image: #imageLiteral(resourceName: "basecar")),DrawerItems(name: "My Trips", image: #imageLiteral(resourceName: "trip")),DrawerItems(name: "Add Cars", image: #imageLiteral(resourceName: "ic_add")),DrawerItems(name: "Setting", image: #imageLiteral(resourceName: "settings-cog")),

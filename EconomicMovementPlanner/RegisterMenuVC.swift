@@ -115,7 +115,7 @@ class RegisterMenuVC: UIViewController {
                                 vc.authID = ""
                                 vc.socialEmail = email
                                 vc.socialImage = imageString
-                                
+                                vc.isGmailOrFB = true
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }else{
                                 Alert.showLoginAlert(Message: "User already in the database", title: "", window: self)
@@ -208,6 +208,11 @@ extension RegisterMenuVC : GIDSignInDelegate{
             print(erooor)
             completion!(false)
         }
+    
+ 
+        
+      
+        
     }
     
     
@@ -241,6 +246,7 @@ extension RegisterMenuVC : GIDSignInDelegate{
                        vc.vcIdentifier = "Complete Profile"
                        vc.authID = user.authentication.idToken
                        vc.socialEmail = email!
+                       vc.isGmailOrFB = true
                        if let img =  user.profile.imageURL(withDimension: 200){
                             print("The image is", img)
                             vc.socialImage = String(describing: img)

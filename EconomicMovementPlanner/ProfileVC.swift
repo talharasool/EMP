@@ -34,7 +34,7 @@ class ProfileVC: UIViewController {
     var usernametext : String = ""
     var passwordtext : String = ""
     var phonetext : String = ""
-    
+    var isGmailOrFB : Bool = false
     var authID : String = ""
     
     var imagePickerController : ImagePickerUtils!
@@ -184,11 +184,11 @@ extension ProfileVC {
         let tap = UITapGestureRecognizer(target: self, action: #selector(openCameraController))
         userImageView.isUserInteractionEnabled = true;
         //userImageView.addGestureRecognizer(tap)
-        uploadImageBtnOutlet.addTarget(self, action: #selector(openCameraController), for: .touchUpInside)
+        uploadImageBtnOutlet.addTarget(self, action: #selector(openCameraController(sender:)), for: .touchUpInside)
     }
     
     
-    @objc func openCameraController(){
+    @objc func openCameraController(sender : UIButton){
         
         let alert = UIAlertController(title: "Please select image", message: "", preferredStyle: .actionSheet)
         
@@ -203,6 +203,14 @@ extension ProfileVC {
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        
+        if UIDevice.isPad{
+            
+            alert.popoverPresentationController?.sourceRect = sender.frame
+            alert.popoverPresentationController?.sourceView = self.view
+        }
+        
         self.present(alert,animated: true,completion: nil)
         
     }
@@ -413,7 +421,7 @@ extension ProfileVC{
                                       print("The db is \(newDB.key)")
 
                                     print("The new image url is here", url)
-                                    newDB.updateChildValues(["image_URI" : String(describing: url!),"password" : self.passwordtext, "phone" :  self.phonetext , "name" : self.usernametext,"auth_id":self.authID,"id": userID,"isfborgmail":false ], withCompletionBlock: { (error, dbre) in
+                                    newDB.updateChildValues(["image_URI" : String(describing: url!),"password" : self.passwordtext, "phone" :  self.phonetext , "name" : self.usernametext,"auth_id":self.authID,"id": userID,"isfborgmail":self.isGmailOrFB ], withCompletionBlock: { (error, dbre) in
 
                                           if err != nil{
                                               self.stopAnimating()
@@ -529,4 +537,26 @@ struct PlaceData {
     var placeAddress : String?
     var TimeFormat : String?
     
+}
+
+
+
+public extension UIDevice {
+
+    public class var isPhone: Bool {
+        return UIDevice.current.userInterfaceIdiom == .phone
+    }
+
+    public class var isPad: Bool {
+        return UIDevice.current.userInterfaceIdiom == .pad
+    }
+
+    public class var isTV: Bool {
+        return UIDevice.current.userInterfaceIdiom == .tv
+    }
+
+    public class var isCarPlay: Bool {
+        return UIDevice.current.userInterfaceIdiom == .carPlay
+    }
+
 }

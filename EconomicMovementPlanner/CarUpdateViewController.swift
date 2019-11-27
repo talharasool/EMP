@@ -228,11 +228,11 @@ extension CarUpdateViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(openCameraController))
         userImageView.isUserInteractionEnabled = true;
         //userImageView.addGestureRecognizer(tap)
-        uploadImageBtnOutlet.addTarget(self, action: #selector(openCameraController), for: .touchUpInside)
+        uploadImageBtnOutlet.addTarget(self, action: #selector(openCameraController(sender:)), for: .touchUpInside)
     }
     
     
-    @objc func openCameraController(){
+    @objc func openCameraController(sender : UIButton){
         
         let alert = UIAlertController(title: "Please select image", message: "", preferredStyle: .actionSheet)
         
@@ -246,7 +246,14 @@ extension CarUpdateViewController {
             self.imagePickerController.photoFromCamera()
         }))
         
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        if UIDevice.isPad{
+            
+            alert.popoverPresentationController?.sourceRect = sender.frame
+            alert.popoverPresentationController?.sourceView = self.view
+        }
         self.present(alert,animated: true,completion: nil)
         
     }

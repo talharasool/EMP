@@ -193,11 +193,11 @@ extension CarMenuVC {
         let tap = UITapGestureRecognizer(target: self, action: #selector(openCameraController))
         userImageView.isUserInteractionEnabled = true;
         //userImageView.addGestureRecognizer(tap)
-        uploadImageBtnOutlet.addTarget(self, action: #selector(openCameraController), for: .touchUpInside)
+        uploadImageBtnOutlet.addTarget(self, action: #selector(openCameraController(sender:)), for: .touchUpInside)
     }
     
     
-    @objc func openCameraController(){
+    @objc func openCameraController(sender : UIButton){
         
         let alert = UIAlertController(title: "Please select image", message: "", preferredStyle: .actionSheet)
         
@@ -210,6 +210,11 @@ extension CarMenuVC {
             
             self.imagePickerController.photoFromCamera()
         }))
+        if UIDevice.isPad{
+            
+            alert.popoverPresentationController?.sourceRect = sender.frame
+            alert.popoverPresentationController?.sourceView = self.view
+        }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert,animated: true,completion: nil)

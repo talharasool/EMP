@@ -252,6 +252,7 @@
 				BC66596322A14189007EFD40 /* CarMenuVC.swift */,
 				BC960B3922B29E98002896AD /* FirebaseAuth.swift */,
 				BC9124EF232D0BAF006DB4BD /* GoogleService-Info.plist */,
+				BC87147F238E593A00D63CC0 /* New Group1 */,
 				BC41D5CC2291507F008564BF /* Assets.xcassets */,
 				BC41D5CE2291507F008564BF /* LaunchScreen.storyboard */,
 				BC41D5D12291507F008564BF /* Info.plist */,
@@ -284,6 +285,13 @@
 			children = (
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		BC87147F238E593A00D63CC0 /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 		E3794D05F6F40031CB1D0D7A /* Pods */ = {
@@ -777,6 +785,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EconomicMovementPlanner/EconomicMovementPlanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.9;
 				DEVELOPMENT_TEAM = 8P4N6UJTLQ;
 				INFOPLIST_FILE = EconomicMovementPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -798,6 +807,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EconomicMovementPlanner/EconomicMovementPlanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.9;
 				DEVELOPMENT_TEAM = 8P4N6UJTLQ;
 				INFOPLIST_FILE = EconomicMovementPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

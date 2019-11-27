@@ -1077,11 +1077,19 @@
                                             <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDs-gk-1W9">
+                                        <rect key="frame" x="40" y="372" width="240" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="11T-qv-hy7"/>
+                                            <constraint firstAttribute="width" constant="240" id="mer-ad-BvR"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="5I9-Ir-X3t" firstAttribute="leading" secondItem="bSG-EU-231" secondAttribute="leading" constant="8" id="4Wl-qG-aez"/>
                                     <constraint firstAttribute="trailing" secondItem="2pn-9q-yKc" secondAttribute="trailing" id="4bH-jo-3v8"/>
+                                    <constraint firstItem="xDs-gk-1W9" firstAttribute="centerX" secondItem="bSG-EU-231" secondAttribute="centerX" id="6KW-8M-0uV"/>
                                     <constraint firstItem="5I9-Ir-X3t" firstAttribute="top" secondItem="9te-Di-kuN" secondAttribute="bottom" constant="8" id="BDS-Te-nej"/>
                                     <constraint firstItem="2pn-9q-yKc" firstAttribute="leading" secondItem="bSG-EU-231" secondAttribute="leading" id="E0C-pc-Ihl"/>
                                     <constraint firstItem="nAD-fH-4vd" firstAttribute="top" secondItem="5I9-Ir-X3t" secondAttribute="bottom" constant="14" id="ITc-Us-QuS"/>
@@ -1090,6 +1098,7 @@
                                     <constraint firstItem="KjY-R6-A4f" firstAttribute="centerX" secondItem="bSG-EU-231" secondAttribute="centerX" id="Myv-SR-Nrl"/>
                                     <constraint firstItem="KjY-R6-A4f" firstAttribute="top" secondItem="2ef-u8-c52" secondAttribute="bottom" id="RBF-mR-Lz3"/>
                                     <constraint firstItem="2ef-u8-c52" firstAttribute="top" secondItem="nAD-fH-4vd" secondAttribute="bottom" id="U6N-oy-LRT"/>
+                                    <constraint firstItem="xDs-gk-1W9" firstAttribute="top" secondItem="KjY-R6-A4f" secondAttribute="bottom" constant="8" id="V47-58-Dnf"/>
                                     <constraint firstAttribute="bottom" secondItem="2pn-9q-yKc" secondAttribute="bottom" constant="-38" id="ePR-4Z-a8v"/>
                                     <constraint firstItem="2ef-u8-c52" firstAttribute="centerX" secondItem="bSG-EU-231" secondAttribute="centerX" id="gxh-a9-dLz"/>
                                     <constraint firstItem="2ef-u8-c52" firstAttribute="top" secondItem="nAD-fH-4vd" secondAttribute="bottom" id="j9J-gE-sEF"/>
@@ -1110,6 +1119,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gje-0F-IIe"/>
                     <connections>
+                        <outlet property="appleSignInView" destination="xDs-gk-1W9" id="1iU-ZR-pOP"/>
                         <outlet property="facebookBtnOutlet" destination="nAD-fH-4vd" id="nAm-UC-CdM"/>
                         <outlet property="googleBtnOutlet" destination="KjY-R6-A4f" id="saw-S0-K2W"/>
                         <outlet property="mobileBtnOutlet" destination="KjY-R6-A4f" id="WUy-Jd-3Gs"/>
@@ -1118,7 +1128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJs-xz-zNp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1016" y="825"/>
+            <point key="canvasLocation" x="-1016.25" y="825"/>
         </scene>
         <!--RegisterVC-->
         <scene sceneID="K6I-in-9ZZ">

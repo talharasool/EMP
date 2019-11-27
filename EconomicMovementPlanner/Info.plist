@@ -12,6 +12,11 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
@@ -34,34 +39,23 @@
 				<string>com.googleusercontent.apps.963608192023-dqdosf7lrta4kulp6r4f5og1rtvgemcv</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.963608192023-dqdosf7lrta4kulp6r4f5og1rtvgemcv</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.959222362346-at144ki3rvehtac6s9bs5r6locjmit1o</string>
+			</array>
+		</dict>
 	</array>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>***Your bundle ID***</string>
-            </array>
-        </dict>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.959222362346-at144ki3rvehtac6s9bs5r6locjmit1o</string>
-            </array>
-        </dict>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>***Something here***</string>
-            </array>
-        </dict>
-    </array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
@@ -80,17 +74,17 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>EMP want to access photo for your profile.</string>
+	<string>EMP want to access camera for your profile picture and the car image.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>EMP want to access of location</string>
+	<string>EMP want to access of location.This location will be used to track your movement on google map</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>EMP want to access of location</string>
+	<string>EMP want to access of location.This location will be used to track your movement on google map</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>EMP want to access of location</string>
+	<string>EMP want to access of location.This location will be used to track your movement on google map</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>EMP want to access photo for your profile.</string>
+	<string>EMP want to access camera for your profile picture and the car image.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>EMP want to access photo for your profile.</string>
+	<string>EMP want to access camera for your profile picture and the car image.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

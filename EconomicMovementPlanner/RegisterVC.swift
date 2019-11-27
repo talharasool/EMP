@@ -11,6 +11,7 @@ import MRCountryPicker
 import GoogleSignIn
 import FirebaseAuth
 import Firebase
+import AuthenticationServices
 
 class RegisterVC: UIViewController {
 
@@ -31,6 +32,8 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
         
         // mobileBtnOutlet.layer.cornerRadius = self.mobileBtnOutlet.frame.height/2
+        
+        
         self.navigationController?.isNavigationBarHidden = false
         self.signInBtnOutlet.addTarget(self, action: #selector(numberVerifyAction(_:)), for: .touchUpInside)
         self.varificationBtnOutlet.addTarget(self, action: #selector(phoneVerifyAction(sender:)), for: .touchUpInside)

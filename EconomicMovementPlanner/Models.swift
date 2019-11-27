@@ -9,6 +9,7 @@
 import Foundation
 
 
+
 class User   {
     
     var  auth_id : String

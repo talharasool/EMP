@@ -15,17 +15,22 @@ import GoogleSignIn
 import FacebookCore
 import FacebookLogin
 import FirebaseAuth
+import AuthenticationServices
+
 
 class RegisterMenuVC: UIViewController {
-
+    
+    @IBOutlet weak var appleSignInView: UIView!
     @IBOutlet weak var facebookBtnOutlet: UIButton!
     @IBOutlet weak var googleBtnOutlet: UIButton!
     @IBOutlet weak var mobileBtnOutlet: UIButton!
-        let activity = UIActivityIndicatorView()
     
-
+    
+    let activity = UIActivityIndicatorView()
+    
+    
     var usersArray : [User] = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +42,13 @@ class RegisterMenuVC: UIViewController {
         
         // fbLogin.delegate = self
         //  self.facebookBtnOutlet.delegate = self
+        if #available(iOS 13.0, *) {
+            self.setupSignInButton()
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
         
     }
     
@@ -50,7 +62,7 @@ class RegisterMenuVC: UIViewController {
     
     
     @IBAction func gSignInAction(_ sender: Any) {
-         GIDSignIn.sharedInstance()?.signIn()
+        GIDSignIn.sharedInstance()?.signIn()
     }
     @IBAction func fbAction(_ sender: Any) {
         
@@ -70,7 +82,7 @@ class RegisterMenuVC: UIViewController {
                 print(err)
                 self.stopAnimating()
                 Alert.showLoginAlert(Message: "Error login facebook", title: "", window: self)
-         
+                
             case .success(let granted, let declined, let token):
                 
                 print(granted,token)
@@ -98,13 +110,13 @@ class RegisterMenuVC: UIViewController {
                         print(token.appID)
                         let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
                         self.stopAnimating()
-//                        let vc = ProfileVC.instantiateViewController()
-//                        vc.vcIdentifier = "Complete Profile"
-//                        vc.authID = ""
-//                        vc.socialEmail = email
-//                        vc.socialImage = imageString
-//                        
-//                        self.navigationController?.pushViewController(vc, animated: true)
+                        //                        let vc = ProfileVC.instantiateViewController()
+                        //                        vc.vcIdentifier = "Complete Profile"
+                        //                        vc.authID = ""
+                        //                        vc.socialEmail = email
+                        //                        vc.socialImage = imageString
+                        //
+                        //                        self.navigationController?.pushViewController(vc, animated: true)
                         
                         self.startAnimating()
                         self.checkUserExsistance(email) { (val) in
@@ -123,59 +135,59 @@ class RegisterMenuVC: UIViewController {
                         }
                         
                         
-//                        Auth.auth().signIn(with: credential) { (authResult, error) in
-//                            if let error = error {
-//                                // ...
-//
-//                                print("fb error",error)
-//                                self.stopAnimating()
-//                                return
-//                            }
-//                            // User is signed in
-//                            // ...
-//                            self.stopAnimating()
-//
-//                        }
-//
+                        //                        Auth.auth().signIn(with: credential) { (authResult, error) in
+                        //                            if let error = error {
+                        //                                // ...
+                        //
+                        //                                print("fb error",error)
+                        //                                self.stopAnimating()
+                        //                                return
+                        //                            }
+                        //                            // User is signed in
+                        //                            // ...
+                        //                            self.stopAnimating()
+                        //
+                        //                        }
+                        //
                     } else {
                         self.stopAnimating()
                         print("error \(error)")
                     }
                 }
                 
-//                let req =    GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: token.appID, version: nil, httpMethod: .get)
-//
-//                req.start { (connection, result, error) in
-//
-//                    if(error == nil) {
-//                        print("result \(result)")
-//                    } else {
-//                        print("error \(error)")
-//                    }
-//                }
+                //                let req =    GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: token.appID, version: nil, httpMethod: .get)
+                //
+                //                req.start { (connection, result, error) in
+                //
+                //                    if(error == nil) {
+                //                        print("result \(result)")
+                //                    } else {
+                //                        print("error \(error)")
+                //                    }
+                //                }
             }
         }
-  
+        
     }
     
-//    loginManager.logIn(permissions: ["email","public_profile"], from: self) { (result, error) in
-//
-//          print(error,result)
-//
-//          if error != nil {
-//
-//              return
-//          }
-//          guard let token = AccessToken.current else {
-//              print("Failed to get access token")
-//
-//              return
-//          }
-//
-//          print("\n The token is here",token.appID)
-//
-//
-//      }
+    //    loginManager.logIn(permissions: ["email","public_profile"], from: self) { (result, error) in
+    //
+    //          print(error,result)
+    //
+    //          if error != nil {
+    //
+    //              return
+    //          }
+    //          guard let token = AccessToken.current else {
+    //              print("Failed to get access token")
+    //
+    //              return
+    //          }
+    //
+    //          print("\n The token is here",token.appID)
+    //
+    //
+    //      }
 }
 
 extension RegisterMenuVC{
@@ -208,10 +220,10 @@ extension RegisterMenuVC : GIDSignInDelegate{
             print(erooor)
             completion!(false)
         }
-    
- 
         
-      
+        
+        
+        
         
     }
     
@@ -219,12 +231,12 @@ extension RegisterMenuVC : GIDSignInDelegate{
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
         if let error = error {
-          if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-            print("The user has not signed in before or they have since signed out.")
-          } else {
-            print("\(error.localizedDescription)")
-          }
-          return
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+                print("\(error.localizedDescription)")
+            }
+            return
         }
         print("User details")
         print(user.profile.name)
@@ -240,27 +252,27 @@ extension RegisterMenuVC : GIDSignInDelegate{
         
         self.startAnimating()
         self.checkUserExsistance(email!) { (val) in
-        self.stopAnimating()
+            self.stopAnimating()
             if val{
                 let vc = ProfileVC.instantiateViewController()
-                       vc.vcIdentifier = "Complete Profile"
-                       vc.authID = user.authentication.idToken
-                       vc.socialEmail = email!
-                       vc.isGmailOrFB = true
-                       if let img =  user.profile.imageURL(withDimension: 200){
-                            print("The image is", img)
-                            vc.socialImage = String(describing: img)
-                       }
-                      
-                       
-                       self.navigationController?.pushViewController(vc, animated: true)
+                vc.vcIdentifier = "Complete Profile"
+                vc.authID = user.authentication.idToken
+                vc.socialEmail = email!
+                vc.isGmailOrFB = true
+                if let img =  user.profile.imageURL(withDimension: 200){
+                    print("The image is", img)
+                    vc.socialImage = String(describing: img)
+                }
+                
+                
+                self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 Alert.showLoginAlert(Message: "User already in the database", title: "", window: self)
             }
         }
         
         print(email)
-       
+        
         
     }
 }
@@ -277,7 +289,7 @@ extension RegisterMenuVC : LoginButtonDelegate{
         print("Logout tap")
     }
     
-  
+    
     
     
     
@@ -313,3 +325,75 @@ extension RegisterMenuVC {
     }
 }
 
+
+
+
+extension RegisterMenuVC : ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding{
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    
+    
+    
+    
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+            return
+        }
+        print(appleIDCredential.fullName,appleIDCredential.email)
+        
+        print("AppleID Credential Authorization: userId: \(appleIDCredential.user), email: \(String(describing: appleIDCredential.email))")
+        
+        let vc = ProfileVC.instantiateViewController()
+        vc.vcIdentifier = "Complete Profile"
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("AppleID Credential failed with error: \(error.localizedDescription)")
+    }
+    
+    private func setupSignInButton() {
+        if #available(iOS 13.0, *) {
+            let signInButton = ASAuthorizationAppleIDButton()
+            signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchDown)
+            
+            signInButton.translatesAutoresizingMaskIntoConstraints = false
+            self.appleSignInView.addSubview(signInButton)
+            //signInButton.frame = self.appleSignInView.frame
+            
+            NSLayoutConstraint.activate([
+                signInButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.appleSignInView.centerXAnchor, multiplier: 1),
+                   signInButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.appleSignInView.centerYAnchor, multiplier: 1),
+                   signInButton.heightAnchor.constraint(equalToConstant: 40),
+                   signInButton.widthAnchor.constraint(equalToConstant: 200)
+               ])
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
+   
+    }
+    
+    @objc private func signInButtonTapped() {
+        if #available(iOS 13.0, *) {
+            let authorizationProvider = ASAuthorizationAppleIDProvider()
+            let request = authorizationProvider.createRequest()
+            request.requestedScopes = [.email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+}

@@ -12,6 +12,7 @@ import KYDrawerController
 import Firebase
 import FirebaseCore
 import FirebaseDatabase
+import AuthenticationServices
 
 class ViewController: UIViewController {
     
@@ -24,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCodeField: UITextField!
-    
+    @IBOutlet weak var appleSignInView: UIView!
     
     let activity = UIActivityIndicatorView()
     var usersArray : [User] = []
@@ -52,6 +53,15 @@ class ViewController: UIViewController {
         
         countryCodeField.inputView = countriesPikerView
         setCountryPickerDelegate()
+        
+        if #available(iOS 13.0, *) {
+              self.setupSignInButton()
+          } else {
+            
+            self.appleSignInView.isHidden =  true
+              // Fallback on earlier versions
+          }
+          
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -270,3 +280,75 @@ extension ViewController {
 
 
 extension ViewController : StoryboardInitializable{}
+
+
+
+extension ViewController : ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding{
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    
+    
+    
+    
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+            return
+        }
+        print(appleIDCredential.fullName,appleIDCredential.email)
+        
+        print("AppleID Credential Authorization: userId: \(appleIDCredential.user), email: \(String(describing: appleIDCredential.email))")
+        
+        let vc = ProfileVC.instantiateViewController()
+        vc.vcIdentifier = "Complete Profile"
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("AppleID Credential failed with error: \(error.localizedDescription)")
+    }
+    
+    private func setupSignInButton() {
+        if #available(iOS 13.0, *) {
+            let signInButton = ASAuthorizationAppleIDButton()
+            signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchDown)
+            
+            signInButton.translatesAutoresizingMaskIntoConstraints = false
+            self.appleSignInView.addSubview(signInButton)
+            //signInButton.frame = self.appleSignInView.frame
+            
+            NSLayoutConstraint.activate([
+                signInButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.appleSignInView.centerXAnchor, multiplier: 1),
+                   signInButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.appleSignInView.centerYAnchor, multiplier: 1),
+                   signInButton.heightAnchor.constraint(equalToConstant: 40),
+                   signInButton.widthAnchor.constraint(equalToConstant: 200)
+               ])
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
+   
+    }
+    
+    @objc private func signInButtonTapped() {
+        if #available(iOS 13.0, *) {
+            let authorizationProvider = ASAuthorizationAppleIDProvider()
+            let request = authorizationProvider.createRequest()
+            request.requestedScopes = [.email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+}

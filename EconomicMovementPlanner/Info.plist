@@ -74,17 +74,17 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>EMP want to access camera for your profile picture and the car image.</string>
+	<string>Enable EMP to access your camera roll to upload your photos and save ones you have taken with the app.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>EMP want to access your location.This location will be used to track your movement on google map. Only when ride will active.</string>
+	<string>Turn on location service to tag your location. This allow us to use your location to provide you certain features like tracking more accurately.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>EMP want to access your location.This location will be used to track your movement on google map. Only when ride will active.</string>
+	<string>Turn on location service to tag your location. This allow us to use your location to provide you certain features like tracking more accurately.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>EMP want to access your location.This location will be used to track your movement on google map. Only when ride will active.</string>
+	<string>Turn on location service to tag your location. This allow us to use your location to provide you certain features like tracking more accurately.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>EMP want to access camera for your profile picture and the car image.</string>
+	<string>Enable EMP to access your gallery to upload your photos and save ones you have taken with the app.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>EMP want to access camera for your profile picture and the car image.</string>
+	<string>Enable EMP to access your gallery to upload your photos and save ones you have taken with the app.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

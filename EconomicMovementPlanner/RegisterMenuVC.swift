@@ -38,13 +38,16 @@ class RegisterMenuVC: UIViewController {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self
         mobileBtnOutlet.setShadowOnView(cornerRadius: self.mobileBtnOutlet.frame.height/2)
+        facebookBtnOutlet.setShadowOnView(cornerRadius: self.mobileBtnOutlet.frame.height/2)
+        googleBtnOutlet.setShadowOnView(cornerRadius: self.mobileBtnOutlet.frame.height/2)
         mobileBtnOutlet.addTarget(self, action: #selector(openSignInController), for: .touchUpInside)
         
         // fbLogin.delegate = self
         //  self.facebookBtnOutlet.delegate = self
         if #available(iOS 13.0, *) {
-            self.setupSignInButton()
+           self.setupSignInButton()
         } else {
+            
             // Fallback on earlier versions
         }
         
@@ -347,9 +350,10 @@ extension RegisterMenuVC : ASAuthorizationControllerDelegate,ASAuthorizationCont
         print(appleIDCredential.fullName,appleIDCredential.email)
         
         print("AppleID Credential Authorization: userId: \(appleIDCredential.user), email: \(String(describing: appleIDCredential.email))")
-        
+        print(appleIDCredential)
         let vc = ProfileVC.instantiateViewController()
         vc.vcIdentifier = "Complete Profile"
+        vc.isApple = true
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -362,6 +366,7 @@ extension RegisterMenuVC : ASAuthorizationControllerDelegate,ASAuthorizationCont
         if #available(iOS 13.0, *) {
             let signInButton = ASAuthorizationAppleIDButton()
             signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchDown)
+            self.appleSignInView.getRoundedcorner(cornerRadius: self.appleSignInView.roundHeight())
             
             signInButton.translatesAutoresizingMaskIntoConstraints = false
             self.appleSignInView.addSubview(signInButton)
@@ -371,7 +376,7 @@ extension RegisterMenuVC : ASAuthorizationControllerDelegate,ASAuthorizationCont
                 signInButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.appleSignInView.centerXAnchor, multiplier: 1),
                    signInButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.appleSignInView.centerYAnchor, multiplier: 1),
                    signInButton.heightAnchor.constraint(equalToConstant: 40),
-                   signInButton.widthAnchor.constraint(equalToConstant: 200)
+                   signInButton.widthAnchor.constraint(equalToConstant:400)
                ])
         } else {
             // Fallback on earlier versions

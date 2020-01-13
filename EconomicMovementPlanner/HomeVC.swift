@@ -12,7 +12,7 @@ import CoreLocation
 import MapKit
 import KYDrawerController
 import Firebase
-
+import GoogleMobileAds
 
 protocol PaceCellDelegate : class {
     func getData(arr  :[CoordinatesValue])
@@ -48,6 +48,8 @@ class HomeVC: UIViewController  {
     var pointerCoordinate : CLLocationCoordinate2D!
     var draggingCoordinate : CLLocationCoordinate2D!
    
+    
+    var placeTitle : String = ""
     //Coordinates Array
     var originalArr : [CoordinatesValue] = []
     var compareArr : [CoordinatesValue] = []
@@ -196,6 +198,7 @@ class HomeVC: UIViewController  {
         makingRoutesView.isUserInteractionEnabled = true
         openGoogleSearchController.isUserInteractionEnabled  =  true
         self.endRouteBtnOutlet.bringSubviewToFront(self.googleMapView)
+        self.addBanner()
         
     }
     
@@ -425,7 +428,7 @@ extension HomeVC{
                     
                     self.distanceValue =  self.distanceValue + Double(pointing)
                     
-                    self.title = String(describing: self.distanceValue)
+                  //  self.title = String(describing: self.distanceValue)
                     
                    print("DIstance values are here", self.distanceValue)
                 
@@ -500,10 +503,15 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                         
                         if let lines = place.lines {
                             print("GEOCODE: Formatted Address: \(lines)")
+                            print(self.placeTitle)
+                            if self.placeTitle == ""{
+                                self.placeTitle = lines.first ?? ""
+                            }
                             
-                            let temp = CoordinatesValue(lineString: lines.first ?? "", title: "", lat: coordinate.latitude, long: coordinate.longitude, isSelect: false, isCompleted: false)
+                            let temp = CoordinatesValue(lineString: lines.first ?? "", title:  self.placeTitle, lat: coordinate.latitude, long: coordinate.longitude, isSelect: false, isCompleted: false)
                             
                             self.locArray.append(temp)
+                            self.placeTitle = ""
                         }
                         
                         if let newPlace = place.postalCode{
@@ -912,7 +920,8 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
         
         print("The Current Address is Here")
         print(place.name)
-        
+        print(place.addressComponents)
+        self.placeTitle = place.name ?? ""
         //self.placeName.append(PlaceData(placeName: place.name, placeAddress: place.name, TimeFormat: ""))
 //        let temp = CoordinatesValue(lineString:  place.name!, title: place.name!, lat: place.coordinate.latitude, long: place.coordinate.longitude, isSelect: false, isCompleted: false)
 //
@@ -933,6 +942,7 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
             let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 16)
             self.googleMapView.animate(to: camera)
             self.draggingCoordinate = place.coordinate
+   
             let image = UIImage(named: "pins")
             self.mainMarker = GMSMarker(position: place.coordinate)
             self.mainMarker.isDraggable = true
@@ -1206,3 +1216,84 @@ extension GMSMapView{
 //            }
 //        })
 //    }
+
+
+
+extension HomeVC : GADBannerViewDelegate{
+    
+    func addBanner(){
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width - 20, height: 30))
+
+        var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView)
+        
+        bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+        bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+
+          
+    }
+
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+      bannerView.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(bannerView)
+        view.bringSubviewToFront(bannerView)
+      view.addConstraints(
+        [NSLayoutConstraint(item: bannerView,
+                            attribute: .bottom,
+                            relatedBy: .equal,
+                            toItem: bottomLayoutGuide,
+                            attribute: .top,
+                            multiplier: 1,
+                            constant: 0),
+         NSLayoutConstraint(item: bannerView,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0)
+        ])
+     }
+    
+}
+
+
+
+extension HomeVC{
+    
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+      print("adViewDidReceiveAd")
+    }
+
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+        didFailToReceiveAdWithError error: GADRequestError) {
+      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+      print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+      print("adViewWillLeaveApplication")
+    }
+    
+}

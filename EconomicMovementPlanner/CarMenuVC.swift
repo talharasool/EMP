@@ -4,7 +4,7 @@ import UIKit
 import KYDrawerController
 import FirebaseDatabase
 import FirebaseStorage
-
+import GoogleMobileAds
 
 class CarMenuVC: UIViewController {
     
@@ -35,7 +35,7 @@ class CarMenuVC: UIViewController {
         updateProfileAction.addTarget(self, action: #selector(updateUserprofile(sender:)), for: .touchUpInside)
         
         self.title = "Add Car"
-        
+        self.addBanner()
         
         self.navigationController?.setUpBarColor()
         self.navigationController?.setUpTitleColor()
@@ -253,4 +253,85 @@ extension CarMenuVC {
         UIApplication.shared.endIgnoringInteractionEvents()
         activity.stopAnimating()
     }
+}
+
+
+
+extension CarMenuVC : GADBannerViewDelegate{
+    
+    func addBanner(){
+        let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width - 20, height: 50))
+
+        var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView)
+        
+        bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+        bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+
+          
+    }
+
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+      bannerView.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(bannerView)
+        view.bringSubviewToFront(bannerView)
+      view.addConstraints(
+        [NSLayoutConstraint(item: bannerView,
+                            attribute: .bottom,
+                            relatedBy: .equal,
+                            toItem: bottomLayoutGuide,
+                            attribute: .top,
+                            multiplier: 1,
+                            constant: 0),
+         NSLayoutConstraint(item: bannerView,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0)
+        ])
+     }
+    
+}
+
+
+
+extension CarMenuVC{
+    
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+      print("adViewDidReceiveAd")
+    }
+
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+        didFailToReceiveAdWithError error: GADRequestError) {
+      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+      print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+      print("adViewWillLeaveApplication")
+    }
+    
 }

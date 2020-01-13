@@ -117,6 +117,8 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - Google-Mobile-Ads-SDK (7.53.1):
+    - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -210,6 +212,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - Firebase/Storage
+  - Google-Mobile-Ads-SDK
   - GoogleMaps
   - GooglePlaces
   - GoogleSignIn
@@ -265,6 +268,7 @@ SPEC REPOS:
     - FacebookLogin
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Google-Mobile-Ads-SDK
     - GoogleSignIn
     - GTMAppAuth
 
@@ -293,6 +297,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
   FirebaseMessaging: 930e4cce01f8f1e634cfdd1881db471fb61be883
   FirebaseStorage: 618dd8fd886b30adf6e5d1915b1f5c18cb5c3944
+  Google-Mobile-Ads-SDK: fac081606dbd438d8db57198b83ba8b5f875a601
   GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
   GoogleDataTransport: 9c3d63ed82f882a9a74d4be67dd7ad01bf046102
   GoogleDataTransportCCTSupport: 6b545f7149111180763dc18c6f372c963de4a310
@@ -314,6 +319,6 @@ SPEC CHECKSUMS:
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   UICircularProgressRing: b52543c79dbd89844e13f0053e3f565b7d7efc5c
 
-PODFILE CHECKSUM: efe8667122b89dcb0f9b9033f7afccc26d4215b4
+PODFILE CHECKSUM: 0a3cf9a16314c221e24b6fd169bb247bad198855
 
 COCOAPODS: 1.8.4

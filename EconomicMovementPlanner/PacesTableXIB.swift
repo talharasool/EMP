@@ -71,6 +71,7 @@ extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
             cell.switchOutlet.tag = indexPath.row
             cell.switchOutlet.addTarget(self, action: #selector(tapOnSwitch(_:)), for: .valueChanged)
             cell.directionLbl.text = self.array[indexPath.row].lineString
+            cell.headerLbl.text = self.array[indexPath.row].title
             
             return cell
         }

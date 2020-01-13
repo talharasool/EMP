@@ -57,6 +57,8 @@
 	<string>2573260779374976</string>
 	<key>FacebookDisplayName</key>
 	<string>EMP</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-5725707446720007~5295260724</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlechromes</string>
@@ -71,6 +73,10 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsForMedia</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>

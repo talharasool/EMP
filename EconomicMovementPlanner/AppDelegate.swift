@@ -27,6 +27,8 @@ import FBSDKLoginKit
 import FacebookCore
 import FacebookLogin
 
+import GoogleMobileAds
+
 let GSignID = "963608192023-dqdosf7lrta4kulp6r4f5og1rtvgemcv.apps.googleusercontent.com"
 
 @UIApplicationMain
@@ -42,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         FirebaseApp.configure()
     
+         GADMobileAds.sharedInstance().start(completionHandler: nil)
     
         FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = GSignID

@@ -35,7 +35,7 @@ class TripDataSource:  NSObject, UITableViewDataSource, UITableViewDelegate {
         //           var curretCar : CarModel!
         print(AuthServices.shared.userValue, AuthServices.shared.carId)
         
-        if let userID =   AuthServices.shared.userValue ,let  carID =  AuthServices.shared.carId{
+        if let userID =   AuthServices.shared.userValue ,let  carID =  AuthServices.shared.carId,carID.isEmpty == false{
             let dbRef =   Database.database().reference().child("Routes").child( userID)
             let dbRefForCar =   Database.database().reference().child("Car Details").child( userID)
             let carvalue = dbRefForCar.child(carID).observe(.value) { (snap) in
@@ -44,10 +44,9 @@ class TripDataSource:  NSObject, UITableViewDataSource, UITableViewDelegate {
                 
                 if let data = snap.value as? [String : Any]{
                     
+                    
                     let temp = CarModel(data: data)
-                    
                     print(temp.Car_Id)
-                    
                     self.curretCar = temp
                     
                     let values = dbRef.child( carID).observe(.value) { (snap) in

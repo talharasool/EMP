@@ -6,6 +6,7 @@ import KYDrawerController
 import Firebase
 import FirebaseCore
 import FirebaseDatabase
+import GoogleMobileAds
 
 class ForgotViewController: UIViewController {
     
@@ -32,6 +33,7 @@ class ForgotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.addBanner()
         parentView.setBackground(imageName: "background")
   //      signUpAction.addTarget(self, action: #selector(openRegister), for: .touchUpInside)
         
@@ -234,3 +236,85 @@ extension ForgotViewController {
 
 
 extension ForgotViewController : StoryboardInitializable{}
+
+
+
+
+extension ForgotViewController : GADBannerViewDelegate{
+    
+    func addBanner(){
+        let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 50))
+
+        var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
+        addBannerViewToView(bannerView)
+        
+        bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+        bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+
+          
+    }
+
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+      bannerView.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(bannerView)
+        view.bringSubviewToFront(bannerView)
+      view.addConstraints(
+        [NSLayoutConstraint(item: bannerView,
+                            attribute: .bottom,
+                            relatedBy: .equal,
+                            toItem: bottomLayoutGuide,
+                            attribute: .top,
+                            multiplier: 1,
+                            constant: 0),
+         NSLayoutConstraint(item: bannerView,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0)
+        ])
+     }
+    
+}
+
+
+
+extension ForgotViewController{
+    
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+      print("adViewDidReceiveAd")
+    }
+
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+        didFailToReceiveAdWithError error: GADRequestError) {
+      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+      print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+      print("adViewWillLeaveApplication")
+    }
+    
+}

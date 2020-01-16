@@ -399,6 +399,13 @@
                                     <constraint firstItem="mze-Ez-eTD" firstAttribute="top" secondItem="Njk-L7-SS7" secondAttribute="top" id="sJS-iS-w19"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97H-CK-l9j" customClass="GADBannerView">
+                                <rect key="frame" x="20" y="486" width="280" height="38"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="Kxs-EQ-cd3"/>
+                                </constraints>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1I-lS-cKj">
                                 <rect key="frame" x="254" y="238" width="50" height="50"/>
                                 <subviews>
@@ -525,15 +532,18 @@
                             <constraint firstItem="ar9-SR-LUc" firstAttribute="leading" secondItem="57M-L4-bmp" secondAttribute="leading" constant="8" id="KMt-Ih-zxb"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="EGI-Rd-eAD" secondAttribute="trailing" constant="16" id="NMD-E4-wJo"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="bottom" secondItem="EGI-Rd-eAD" secondAttribute="bottom" constant="150" id="P1S-eu-u6a"/>
+                            <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="97H-CK-l9j" secondAttribute="trailing" constant="20" id="PFg-VN-MRE"/>
                             <constraint firstItem="Njk-L7-SS7" firstAttribute="centerX" secondItem="jl2-KO-BIq" secondAttribute="centerX" id="PKC-yW-mfe"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="bottom" secondItem="ar9-SR-LUc" secondAttribute="bottom" constant="50" id="U7b-bc-SXn"/>
                             <constraint firstItem="nQH-Kz-pzY" firstAttribute="top" secondItem="szL-Wa-7Qu" secondAttribute="bottom" constant="30" id="Usd-DS-RQa"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="MtI-Ep-ze9" secondAttribute="trailing" constant="16" id="Vyx-sW-Vhh"/>
+                            <constraint firstItem="57M-L4-bmp" firstAttribute="bottom" secondItem="97H-CK-l9j" secondAttribute="bottom" constant="0.10000000000000001" id="XEO-89-jGm"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="k1I-lS-cKj" secondAttribute="trailing" constant="16" id="eoc-9H-POS"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="bottom" secondItem="Njk-L7-SS7" secondAttribute="bottom" constant="50" id="gQg-se-S3H"/>
                             <constraint firstItem="QLu-Is-fOn" firstAttribute="trailing" secondItem="57M-L4-bmp" secondAttribute="trailing" id="i4b-6m-nMZ"/>
                             <constraint firstItem="QLu-Is-fOn" firstAttribute="leading" secondItem="57M-L4-bmp" secondAttribute="leading" id="iAx-cC-Zm9"/>
                             <constraint firstItem="EGI-Rd-eAD" firstAttribute="top" secondItem="k1I-lS-cKj" secondAttribute="bottom" constant="36" id="ljZ-SQ-Ouo"/>
+                            <constraint firstItem="97H-CK-l9j" firstAttribute="leading" secondItem="57M-L4-bmp" secondAttribute="leading" constant="20" id="tO0-Oa-CDP"/>
                             <constraint firstItem="QLu-Is-fOn" firstAttribute="bottom" secondItem="57M-L4-bmp" secondAttribute="bottom" id="ueF-hx-LZs"/>
                             <constraint firstItem="gd0-26-Ck2" firstAttribute="top" secondItem="57M-L4-bmp" secondAttribute="top" constant="100" id="x35-Cq-kYo"/>
                         </constraints>
@@ -552,6 +562,7 @@
                         <outlet property="cancelBtnOutlet" destination="DxX-xe-I5k" id="220-DS-zb0"/>
                         <outlet property="endRouteBtnOutlet" destination="mze-Ez-eTD" id="Vry-c9-wbT"/>
                         <outlet property="endRouteView" destination="Njk-L7-SS7" id="zbC-ig-w76"/>
+                        <outlet property="gadView" destination="97H-CK-l9j" id="Oag-7P-qeu"/>
                         <outlet property="googleMapView" destination="QLu-Is-fOn" id="jza-e6-IQJ"/>
                         <outlet property="goolePaceSerachBtn" destination="YOQ-3b-MUq" id="AVE-EN-LpX"/>
                         <outlet property="makingRoutesView" destination="nQH-Kz-pzY" id="ygb-Bw-Hiv"/>
@@ -1520,23 +1531,34 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWH-vH-jHz" customClass="GADBannerView">
+                                <rect key="frame" x="20" y="528" width="280" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Mys-5X-SjR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ZWH-vH-jHz" firstAttribute="bottom" secondItem="smq-co-Ifo" secondAttribute="bottom" constant="0.10000000000000001" id="CEO-Ui-rEK"/>
                             <constraint firstItem="smq-co-Ifo" firstAttribute="trailing" secondItem="aFZ-pW-A93" secondAttribute="trailing" id="VtT-1U-Mk0"/>
                             <constraint firstItem="smq-co-Ifo" firstAttribute="bottom" secondItem="aFZ-pW-A93" secondAttribute="bottom" id="WWe-vv-NVp"/>
+                            <constraint firstItem="ZWH-vH-jHz" firstAttribute="leading" secondItem="smq-co-Ifo" secondAttribute="leading" constant="20" id="gTg-Rh-LH2"/>
+                            <constraint firstItem="smq-co-Ifo" firstAttribute="trailing" secondItem="ZWH-vH-jHz" secondAttribute="trailing" constant="20" id="mtR-fK-8zz"/>
                             <constraint firstItem="aFZ-pW-A93" firstAttribute="leading" secondItem="smq-co-Ifo" secondAttribute="leading" id="r2A-zw-zZb"/>
                             <constraint firstItem="aFZ-pW-A93" firstAttribute="top" secondItem="smq-co-Ifo" secondAttribute="top" id="wft-FX-7Mo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="smq-co-Ifo"/>
                     </view>
                     <connections>
+                        <outlet property="gadView" destination="ZWH-vH-jHz" id="12V-tk-xgN"/>
                         <outlet property="tripTV" destination="aFZ-pW-A93" id="r7r-RH-66e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lo-Jf-fgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3696" y="1457"/>
+            <point key="canvasLocation" x="3695.625" y="1456.6901408450703"/>
         </scene>
         <!--Forgot View Controller-->
         <scene sceneID="e1y-sq-hxB">

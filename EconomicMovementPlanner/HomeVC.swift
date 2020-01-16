@@ -23,6 +23,7 @@ typealias valCompletion = (Bool)->()
 
 class HomeVC: UIViewController  {
     
+    @IBOutlet weak var gadView: GADBannerView!
     //Buttons
     @IBOutlet weak var okBtnOutlet: UIButton!
     @IBOutlet weak var cancelBtnOutlet: UIButton!
@@ -30,7 +31,7 @@ class HomeVC: UIViewController  {
     
     //Map
     @IBOutlet weak var googleMapView: GMSMapView!
-    
+    var zoom : Float = 16
     //View
     @IBOutlet weak var endRouteView: UIView!
     @IBOutlet weak var makingRoutesView: UIView!
@@ -198,7 +199,11 @@ class HomeVC: UIViewController  {
         makingRoutesView.isUserInteractionEnabled = true
         openGoogleSearchController.isUserInteractionEnabled  =  true
         self.endRouteBtnOutlet.bringSubviewToFront(self.googleMapView)
-        self.addBanner()
+        self.gadView.bringSubviewToFront(self.googleMapView)
+            // self.googleMapView.alpha = 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.addBanner()
+        }
         
     }
     
@@ -252,6 +257,9 @@ class HomeVC: UIViewController  {
         super.viewDidAppear(animated)
         locationManger.startUpdatingLocation()
         
+
+        
+        // self.addBanner()
     }
     
     
@@ -263,6 +271,8 @@ class HomeVC: UIViewController  {
         //   self.navigationController?.navigationBar.barTintColor = UIColor.white
     }
     
+    
+
     
     @IBAction func menuButtonAction(_ sender: Any) {
         
@@ -327,7 +337,7 @@ extension HomeVC{
             print("Locatio  Is updating ther")
             let location = locations.last
             print("The CURRENT location is :\(location)")
-            let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 16)
+            let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: zoom)
             
             // self.googleMapView.animate(toZoom: 40)
             self.googleMapView?.isMyLocationEnabled = true
@@ -871,8 +881,8 @@ extension HomeVC : StoryboardInitializable{
                                 self.setupNavigationBtn(alpha: 1)
                                 let path = GMSPath(fromEncodedPath: polyString)
                                 let polyline = GMSPolyline(path: path)
-                                polyline.strokeWidth = 5.0
-                                polyline.strokeColor = UIColor.red
+                                polyline.strokeWidth = 8.0
+                                polyline.strokeColor = UIColor.blue
                                 polyline.map = self.googleMapView
                                 self.isTripStart = true
                                 self.setCancelBtn(isSet: true)
@@ -974,7 +984,16 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
 extension HomeVC{
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-  
+        var zoom : Float = mapView.camera.zoom
+        print("\n\n :: New zoom value ::\t",mapView.camera.zoom)
+        
+        if mapView.camera.zoom < 16{
+            self.zoom = 16
+        }else{
+             self.zoom = zoom
+        }
+        print(mapView.camera.zoom)
+       
     }
 }
 
@@ -1224,13 +1243,14 @@ extension HomeVC : GADBannerViewDelegate{
     func addBanner(){
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width - 20, height: 30))
 
-        var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
-        addBannerViewToView(bannerView)
+      //  var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
+        //addBannerViewToView(bannerView)
         
-        bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
-        bannerView.rootViewController = self
-        bannerView.delegate = self
-        bannerView.load(GADRequest())
+        gadView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+        gadView.rootViewController = self
+        gadView.delegate = self
+    
+        gadView.load(GADRequest())
 
           
     }

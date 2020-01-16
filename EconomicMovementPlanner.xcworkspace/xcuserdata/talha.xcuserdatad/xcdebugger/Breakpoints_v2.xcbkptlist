@@ -270,8 +270,8 @@
             timestampString = "590698580.290168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "929"
-            endingLineNumber = "929"
+            startingLineNumber = "939"
+            endingLineNumber = "939"
             landmarkName = "viewController(_:didAutocompleteWith:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -287,8 +287,8 @@
             timestampString = "590698580.290906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "736"
-            endingLineNumber = "736"
+            startingLineNumber = "746"
+            endingLineNumber = "746"
             landmarkName = "openLocationList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -304,8 +304,8 @@
             timestampString = "590698580.293483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "490"
-            endingLineNumber = "490"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "HomeVC"
             landmarkType = "21">
          </BreakpointContent>
@@ -321,8 +321,8 @@
             timestampString = "590698580.294304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "874"
-            endingLineNumber = "874"
+            startingLineNumber = "884"
+            endingLineNumber = "884"
             landmarkName = "draw(src:dst:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -338,8 +338,8 @@
             timestampString = "590698580.295378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "834"
-            endingLineNumber = "834"
+            startingLineNumber = "844"
+            endingLineNumber = "844"
             landmarkName = "draw(src:dst:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -372,8 +372,8 @@
             timestampString = "590698580.29646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1016"
-            endingLineNumber = "1016"
+            startingLineNumber = "1035"
+            endingLineNumber = "1035"
             landmarkName = "cancelRouter()"
             landmarkType = "7">
          </BreakpointContent>
@@ -423,8 +423,8 @@
             timestampString = "590698580.297659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "messaging(_:didReceiveRegistrationToken:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -542,8 +542,8 @@
             timestampString = "590698580.298195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "748"
-            endingLineNumber = "748"
+            startingLineNumber = "758"
+            endingLineNumber = "758"
             landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -559,8 +559,8 @@
             timestampString = "590698580.298561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "486"
-            endingLineNumber = "486"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
             landmarkName = "mapView(_:didTapAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -610,8 +610,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "605"
-            endingLineNumber = "605"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
             landmarkName = "endRoute(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -627,8 +627,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "859"
-            endingLineNumber = "859"
+            startingLineNumber = "869"
+            endingLineNumber = "869"
             landmarkName = "draw(src:dst:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -637,74 +637,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "137C661E-5A9D-4C72-B1B7-6B5CC47C2AE1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/HomeVC.swift"
-            timestampString = "0"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "860"
-            endingLineNumber = "860"
-            landmarkName = "draw(src:dst:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "67B73E13-56C4-4A6D-9EA2-8125E7F39643"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/HomeVC.swift"
-            timestampString = "0"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "858"
-            endingLineNumber = "858"
-            landmarkName = "draw(src:dst:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2ED29720-9F71-4448-9C10-9D5DCAC720D2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/HomeVC.swift"
-            timestampString = "0"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "867"
-            endingLineNumber = "867"
-            landmarkName = "draw(src:dst:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F68F81D-D478-499B-B0A0-64A8D3A4ADCA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/HomeVC.swift"
-            timestampString = "0"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "865"
-            endingLineNumber = "865"
-            landmarkName = "draw(src:dst:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E74A55B1-553F-4403-B165-2CBB0C76EF7E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -721,6 +653,74 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "67B73E13-56C4-4A6D-9EA2-8125E7F39643"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/HomeVC.swift"
+            timestampString = "0"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "868"
+            endingLineNumber = "868"
+            landmarkName = "draw(src:dst:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2ED29720-9F71-4448-9C10-9D5DCAC720D2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/HomeVC.swift"
+            timestampString = "0"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "877"
+            endingLineNumber = "877"
+            landmarkName = "draw(src:dst:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F68F81D-D478-499B-B0A0-64A8D3A4ADCA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/HomeVC.swift"
+            timestampString = "0"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "875"
+            endingLineNumber = "875"
+            landmarkName = "draw(src:dst:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E74A55B1-553F-4403-B165-2CBB0C76EF7E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/HomeVC.swift"
+            timestampString = "0"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "880"
+            endingLineNumber = "880"
+            landmarkName = "draw(src:dst:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "E7A95ADA-A36F-4D55-B7C6-A9AA41C99E7A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -729,8 +729,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "866"
-            endingLineNumber = "866"
+            startingLineNumber = "876"
+            endingLineNumber = "876"
             landmarkName = "draw(src:dst:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,8 +746,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "placeMarkerOnMapOnButtonTap(coordinate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -763,8 +763,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "490"
+            endingLineNumber = "490"
             landmarkName = "didTapMyLocationButton(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -797,8 +797,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "640"
-            endingLineNumber = "640"
+            startingLineNumber = "650"
+            endingLineNumber = "650"
             landmarkName = "endRoute(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -814,8 +814,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "604"
-            endingLineNumber = "604"
+            startingLineNumber = "614"
+            endingLineNumber = "614"
             landmarkName = "endRoute(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -831,8 +831,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "668"
-            endingLineNumber = "668"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
             landmarkName = "endRoute(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -881,8 +881,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "getDataFromDataBase(_:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -897,8 +897,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
             endingLineNumber = "84"
-            landmarkName = "getDataFromDataBase(_:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "513D63D4-FEA9-4D8E-A37E-412C1CDF6876 - 81324efc680004a0"
@@ -945,8 +945,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "getDataFromDataBase(_:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1055,8 +1055,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1100"
-            endingLineNumber = "1100"
+            startingLineNumber = "1119"
+            endingLineNumber = "1119"
             landmarkName = "addDataToServer(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1071,8 +1071,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "603"
+            endingLineNumber = "603"
             landmarkName = "endRoute(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1087,8 +1087,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "602"
+            endingLineNumber = "602"
             landmarkName = "endRoute(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1103,8 +1103,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "690"
-            endingLineNumber = "690"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
             landmarkName = "timeConversion24(time12:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1119,8 +1119,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "940"
-            endingLineNumber = "940"
+            startingLineNumber = "950"
+            endingLineNumber = "950"
             landmarkName = "viewController(_:didAutocompleteWith:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1151,8 +1151,8 @@
             filePath = "EconomicMovementPlanner/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "configureFirebase(application:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1167,8 +1167,8 @@
             filePath = "EconomicMovementPlanner/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1183,8 +1183,8 @@
             filePath = "EconomicMovementPlanner/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "application(application:didRegisterForRemoteNotificationsWithDeviceToken:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1231,9 +1231,41 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "944"
-            endingLineNumber = "944"
+            startingLineNumber = "954"
+            endingLineNumber = "954"
             landmarkName = "viewController(_:didAutocompleteWith:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D1D802E2-6B89-46F3-A3CD-13ABF71188D2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08AEDBB2-E360-40FE-A615-F6021CCA1294"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EconomicMovementPlanner/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "995"
+            endingLineNumber = "995"
+            landmarkName = "mapView(_:didChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

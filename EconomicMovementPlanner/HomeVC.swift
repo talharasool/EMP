@@ -23,6 +23,7 @@ typealias valCompletion = (Bool)->()
 
 class HomeVC: UIViewController  {
     
+    @IBOutlet weak var signgletripCancelBtn: UIButton!
     @IBOutlet weak var gadView: GADBannerView!
     //Buttons
     @IBOutlet weak var okBtnOutlet: UIButton!
@@ -101,7 +102,7 @@ class HomeVC: UIViewController  {
     //Time Differnce Calculation
     var startTime : Date!
     var endTime : Date!
- 
+    var isdragDisable = false
    func isHiddenEndRouteView(val : Bool){
          if val  {self.endRouteView.alpha = 0}else{self.endRouteView.alpha = 1}
      }
@@ -126,6 +127,10 @@ class HomeVC: UIViewController  {
    func isHiddenNBIV(val : Bool){
                    if val  {self.navigationImgView.alpha = 0}else{self.navigationImgView.alpha = 1}
                }
+    
+    func hideView<T:UIView>(v : T,val : Bool){
+        if val  {v.alpha = 0}else{v.alpha = 1}
+    }
     
     func setUpLocationManager(){
         locationManger = CLLocationManager()
@@ -187,13 +192,20 @@ class HomeVC: UIViewController  {
         googleMapView.delegate = self
         self.setUpLocationManager()
         self.setUpAction()
-        
+        self.googleMapView.settings.allowScrollGesturesDuringRotateOrZoom = true
+        self.googleMapView.animate(toZoom: 16)
+        let mapDrag = UIPanGestureRecognizer(target: self, action: #selector(didDragMap(_:)))
+        self.googleMapView.addGestureRecognizer(mapDrag)
+        self.signgletripCancelBtn.backgroundColor = UIColor.red
         setUpAlpha(alpha: 0)
         hideViewsOnMainView()
       
         //Setup Navigation bar
         self.setUpNavigationBar()
         
+        self.signgletripCancelBtn.addTarget(self, action: #selector(endSingleRoute(sender:)), for: .touchUpInside)
+        
+        hideView(v: self.signgletripCancelBtn, val: true)
         //Enabling Intractions and setup View
         navigationImgView.isUserInteractionEnabled = true
         makingRoutesView.isUserInteractionEnabled = true
@@ -201,6 +213,7 @@ class HomeVC: UIViewController  {
         self.endRouteBtnOutlet.bringSubviewToFront(self.googleMapView)
         self.gadView.bringSubviewToFront(self.googleMapView)
             // self.googleMapView.alpha = 0
+        self.googleMapView.settings.consumesGesturesInView = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.addBanner()
         }
@@ -233,6 +246,7 @@ class HomeVC: UIViewController  {
         makingRoutesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openLocationList)))
         self.cancelBtnOutlet.addTarget(self, action: #selector(addActionOnCancel(sender:)), for: .touchUpInside)
         self.endRouteBtnOutlet.addTarget(self, action: #selector(endRoute(sender:)), for: .touchUpInside)
+        
         
     }
     
@@ -294,6 +308,7 @@ class HomeVC: UIViewController  {
         self.navigationImgView.getRoundedcorner(cornerRadius: self.navigationImgView.frame.height/2)
         self.cancelBtnOutlet.getRoundedcorner(cornerRadius: self.cancelBtnOutlet.frame.height/2)
         self.okBtnOutlet.getRoundedcorner(cornerRadius: self.okBtnOutlet.frame.height/2)
+        self.signgletripCancelBtn.getRoundedcorner(cornerRadius: self.signgletripCancelBtn.frame.height/2)
         
         
     }
@@ -340,6 +355,7 @@ extension HomeVC{
             let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: zoom)
             
             // self.googleMapView.animate(toZoom: 40)
+  
             self.googleMapView?.isMyLocationEnabled = true
             self.googleMapView.animate(to: camera)
             
@@ -447,6 +463,7 @@ extension HomeVC{
                         self.locationManger.stopUpdatingLocation()
                         self.isHiddenCancelBtn(val: true)
                         self.setCancelBtn(isSet: false)
+                         hideView(v: self.signgletripCancelBtn, val: true)
                         let alert = UIAlertController(title: "You have reaced your destination", message: "Do you want to continue?", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (action) in
                             
@@ -461,7 +478,12 @@ extension HomeVC{
                         })
                         
                         
+                    }else{
+                        print("Pointing value is grea")
+                        self.locationManger.stopUpdatingLocation()
                     }
+                }else{
+                     self.locationManger.stopUpdatingLocation()
                 }
                 
             }
@@ -582,6 +604,120 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
     }
     
     //Action -- End_Route
+    
+    
+    
+    //New
+    @objc func endSingleRoute(sender : UIButton){
+        
+        let currentTime  = getCurrentDateTime()
+        let currdate = String(describing: Date.timeIntervalSinceReferenceDate)
+        print("The Current Date is here", currentTime)
+      //  self.present(info,animated: true)
+        if self.compareArr.count > 0{
+            
+            self.endTime = Date()
+            print("The Start and End time is ", self.startTime,self.endTime)
+            let difference  = Calendar.current.dateComponents([.hour, .minute,.second], from: startTime, to: endTime)
+         //       let formattedString = String(format: "%02ld%02ld", difference.hour!, difference.minute!)
+            let formattedString = String(format: "%02ld", difference.minute!)
+            print("The formatted string",formattedString)
+            let calendar = Calendar(identifier: .gregorian)
+            let date = calendar.date(from: difference)!
+            
+            let diffFormatString = getCurrentDateTimeWithVal(date)
+            print(diffFormatString)
+            //print(timeConversion24(time12: diffFormatString))
+            if self.compareArr.count == 1{
+                
+                self.isHiddenCancelBtn(val: true)
+                self.setCancelBtn(isSet: false)
+                 hideView(v: self.signgletripCancelBtn, val: true)
+                let milage =  Int(CarManger.shared.singleCarData.Mileage!)
+                
+                print("The new distande",self.distanceValue)
+                print("The milage", milage)
+                self.fuel = distanceValue/Double(milage!)
+                print("fuel", self.fuel!)
+                let temp = tripServerData(date_record: currentTime, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: fuel!), startpoint: self.startLocation, time: diffFormatString)
+                
+                print("Data for database", temp)
+                //self.serverObj.append(temp)
+                
+//                self.addDataToServer { (succes) in
+//                    self.distanceValue = 0
+//                    print(succes)
+//
+//                    if succes{
+//                        self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: 0)
+//                    }else{
+//                        print("Unable to  get list")
+//                    }
+//
+//                }
+                 self.distanceValue = 0
+               // self.updateLOC()
+                self.googleMapView.clear()
+                self.compareArr.removeFirst()
+                self.locArray.removeAll()
+                self.locationManger.stopUpdatingLocation()
+                
+                
+               // Alert.showLoginAlert(Message: "", title: "You Have completed your destination", window: self)
+            }else{
+                
+                
+                
+                self.endTime = Date()
+                print("The Start and End time is ", self.startTime,self.endTime)
+                let difference  = Calendar.current.dateComponents([.hour, .minute], from: startTime, to: endTime)
+                //    let formattedString = String(format: "%02ld%02ld", difference.hour!, difference.minute!)
+                let formattedString = String(format: "%02ld", difference.minute!)
+                print("The formatted string",formattedString)
+                     
+            
+                self.isHiddenCancelBtn(val: true)
+                self.setCancelBtn(isSet: false)
+                 hideView(v: self.signgletripCancelBtn, val: true)
+                let milage = Int(CarManger.shared.singleCarData.Mileage!)
+                let myFuel = distanceValue/Double(milage!)
+                
+               // let temp = tripServerData(date_record: currdate, distance: String(describing: distanceValue), endpoint: self.destinatioName, fuel: String(describing: myFuel), startpoint: self.startLocation, time: formattedString)
+                
+                print("\n\nThe temp of data is here")
+               // print(temp)
+                print("\n\n")
+               // self.serverObj.append(temp)
+                
+    
+//                self.addDataToServer { (succes) in
+//
+//                    print(succes)
+//
+//                    if succes{
+//                        self.distanceValue = 0.0
+//                        self.locationManger.stopUpdatingLocation()
+//                        self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: self.compareArr.count)
+//
+//
+//                    }
+//                }
+                
+                self.endRouteHandling()
+                            
+            }
+            
+        }else{
+            
+            print("reached")
+            Alert.showLoginAlert(Message: "", title: "You Have reached your destination", window: self)
+        }
+        
+    }
+    
+    
+    
+    
     @objc func endRoute(sender : UIButton){
         
         let currentTime  = getCurrentDateTime()
@@ -606,7 +742,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                 
                 self.isHiddenCancelBtn(val: true)
                 self.setCancelBtn(isSet: false)
-                
+                 hideView(v: self.signgletripCancelBtn, val: true)
                 let milage =  Int(CarManger.shared.singleCarData.Mileage!)
                 
                 print("The new distande",self.distanceValue)
@@ -630,10 +766,11 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                     
                 }
                 
-                self.updateLOC()
+                //self.updateLOC()
                 self.googleMapView.clear()
                 self.compareArr.removeFirst()
                 self.locArray.removeAll()
+                self.locationManger.stopUpdatingLocation()
                 
                 
                // Alert.showLoginAlert(Message: "", title: "You Have completed your destination", window: self)
@@ -651,7 +788,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
             
                 self.isHiddenCancelBtn(val: true)
                 self.setCancelBtn(isSet: false)
-                
+                 hideView(v: self.signgletripCancelBtn, val: true)
                 let milage = Int(CarManger.shared.singleCarData.Mileage!)
                 let myFuel = distanceValue/Double(milage!)
                 
@@ -780,8 +917,24 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
 //Map Dragging Delgates And Function
 extension HomeVC {
     
+    
+    
+    
+
+    @objc func didDragMap(_ gestureRecognizer: UIGestureRecognizer) {
+        if (gestureRecognizer.state == UIGestureRecognizer.State.began) {
+           print("Map drag began")
+           self.locationManger.stopUpdatingLocation()
+       }
+        if (gestureRecognizer.state == UIGestureRecognizer.State.ended) {
+           print("Map drag ended")
+           updateLOC()
+       }
+    }
+    
+    
      func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
-         
+         print("drag doing")
          print(mapView.myLocation?.coordinate)
      }
      
@@ -886,6 +1039,7 @@ extension HomeVC : StoryboardInitializable{
                                 polyline.map = self.googleMapView
                                 self.isTripStart = true
                                 self.setCancelBtn(isSet: true)
+                                self.hideView(v: self.signgletripCancelBtn, val: false)
                                 self.isHiddenCancelBtn(val: false)
                                 self.startTime = Date()
                                 print("The Start time is ", self.startTime)
@@ -985,13 +1139,14 @@ extension HomeVC{
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         var zoom : Float = mapView.camera.zoom
+    
         print("\n\n :: New zoom value ::\t",mapView.camera.zoom)
         
-        if mapView.camera.zoom < 16{
-            self.zoom = 16
-        }else{
-             self.zoom = zoom
-        }
+//        if mapView.camera.zoom < 16{
+//            self.zoom = 16
+//        }else{
+//             self.zoom = zoom
+//        }
         print(mapView.camera.zoom)
        
     }
@@ -1014,7 +1169,7 @@ extension HomeVC : PaceCellDelegate{
     func getData(arr: [CoordinatesValue]) {
         
         print("The Current Array \(arr)")
-        
+        self.isdragDisable = true
         print("The Current Coordiante after Point", self.currentCoordinateValue)
         self.isHiddenMRV(val: true)
         self.compareArr = arr
@@ -1024,7 +1179,7 @@ extension HomeVC : PaceCellDelegate{
         self.pointerCoordinate = CLLocationCoordinate2D(latitude: compareArr[0].lat!, longitude: compareArr[0].lat!)
         print("The Radius is here", self.googleMapView.getRadius())
         
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateLOC), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateLOC), userInfo: nil, repeats: false)
         
     }
     
@@ -1317,3 +1472,5 @@ extension HomeVC{
     }
     
 }
+
+

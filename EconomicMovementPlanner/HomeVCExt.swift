@@ -140,3 +140,47 @@ extension HomeVC {
     
         
 }
+
+
+
+extension HomeVC{
+    
+    func endRouteHandling(){
+        self.endRouteView.alpha  = 0
+        
+        if !(self.compareArr.isEmpty){
+            self.compareArr.removeFirst()
+            self.compareArr.sort { (val1, val2) -> Bool in
+                
+                let d1  = CLLocation(latitude: val1.lat!, longitude: val1.long!)
+                let d2  = CLLocation(latitude: val2.lat!, longitude: val2.long!)
+                let result = d1.distance(from: d2)
+                let result2 = d2.distance(from: d1)
+                
+                if (result>result2){
+                    
+                    return true
+                }
+                return false
+            }
+            self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.updateLOC), userInfo: nil, repeats: true)
+            self.googleMapView.clear()
+            let marker  = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude:  self.compareArr[0].lat!, longitude:  self.compareArr[0].long!)
+            marker.map = self.googleMapView
+            
+            self.locArray = self.compareArr
+            
+            self.destinatioName = self.compareArr[0].lineString!
+            let dst = CLLocationCoordinate2D(latitude: self.compareArr[0].lat!, longitude:  self.compareArr[0].long!)
+            let src = self.currentCoordinateValue
+            self.draw(src: src!, dst:dst)
+            
+            
+            
+        }else{
+            
+            HomeVC.instantiateViewController()
+        }
+    }
+}

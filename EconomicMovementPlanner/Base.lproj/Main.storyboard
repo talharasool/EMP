@@ -465,6 +465,27 @@
                                     <constraint firstAttribute="bottom" secondItem="BaZ-ma-Uys" secondAttribute="bottom" id="w5g-pJ-CEv"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Exf-iR-sT4">
+                                <rect key="frame" x="10" y="382" width="70" height="41"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yB0-zv-F6W">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="41"/>
+                                        <color key="backgroundColor" red="0.73788928990000002" green="0.042877562340000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                        <state key="normal" title="Cancel Current trip">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="FFy-88-oZs"/>
+                                    <constraint firstItem="yB0-zv-F6W" firstAttribute="top" secondItem="Exf-iR-sT4" secondAttribute="top" id="TrV-aQ-YKP"/>
+                                    <constraint firstItem="yB0-zv-F6W" firstAttribute="leading" secondItem="Exf-iR-sT4" secondAttribute="leading" id="Vcu-lv-iEk"/>
+                                    <constraint firstAttribute="bottom" secondItem="yB0-zv-F6W" secondAttribute="bottom" id="hMG-b9-M2L"/>
+                                    <constraint firstAttribute="trailing" secondItem="yB0-zv-F6W" secondAttribute="trailing" id="mvX-aD-wNS"/>
+                                    <constraint firstAttribute="height" constant="41" id="uhN-z4-FNq"/>
+                                </constraints>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szL-Wa-7Qu">
                                 <rect key="frame" x="16" y="239" width="50" height="50"/>
                                 <subviews>
@@ -528,9 +549,11 @@
                             <constraint firstItem="szL-Wa-7Qu" firstAttribute="leading" secondItem="57M-L4-bmp" secondAttribute="leading" constant="16" id="2bm-L6-9fe"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="bottom" secondItem="szL-Wa-7Qu" secondAttribute="bottom" constant="235" id="5FT-xy-NlC"/>
                             <constraint firstItem="QLu-Is-fOn" firstAttribute="top" secondItem="57M-L4-bmp" secondAttribute="top" id="Euu-hx-zWi"/>
+                            <constraint firstItem="ar9-SR-LUc" firstAttribute="top" secondItem="Exf-iR-sT4" secondAttribute="bottom" constant="10" id="FM8-Gh-fqq"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="gd0-26-Ck2" secondAttribute="trailing" constant="10" id="Ghg-tb-xKW"/>
                             <constraint firstItem="ar9-SR-LUc" firstAttribute="leading" secondItem="57M-L4-bmp" secondAttribute="leading" constant="8" id="KMt-Ih-zxb"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="EGI-Rd-eAD" secondAttribute="trailing" constant="16" id="NMD-E4-wJo"/>
+                            <constraint firstItem="Exf-iR-sT4" firstAttribute="leading" secondItem="57M-L4-bmp" secondAttribute="leading" constant="10" id="O6q-2g-VCZ"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="bottom" secondItem="EGI-Rd-eAD" secondAttribute="bottom" constant="150" id="P1S-eu-u6a"/>
                             <constraint firstItem="57M-L4-bmp" firstAttribute="trailing" secondItem="97H-CK-l9j" secondAttribute="trailing" constant="20" id="PFg-VN-MRE"/>
                             <constraint firstItem="Njk-L7-SS7" firstAttribute="centerX" secondItem="jl2-KO-BIq" secondAttribute="centerX" id="PKC-yW-mfe"/>
@@ -570,6 +593,7 @@
                         <outlet property="navigationImgView" destination="PT7-J2-ou6" id="Iyv-fY-9hx"/>
                         <outlet property="okBtnOutlet" destination="BaZ-ma-Uys" id="baG-t5-Ucv"/>
                         <outlet property="openGoogleSearchController" destination="k1I-lS-cKj" id="HKX-s1-Q3I"/>
+                        <outlet property="signgletripCancelBtn" destination="yB0-zv-F6W" id="O2F-IC-NWW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54E-QF-0kK" userLabel="First Responder" sceneMemberID="firstResponder"/>

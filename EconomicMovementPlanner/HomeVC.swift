@@ -975,6 +975,11 @@ extension HomeVC : StoryboardInitializable{
     @objc func getCurrentLoc(sender : UITapGestureRecognizer){
         
         self.locationManger.startUpdatingLocation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            print("Stop updating location")
+                self.locationManger.stopUpdatingLocation()
+        }
+    
     }
     
     static var storyboardName: UIStoryboard.Storyboard {

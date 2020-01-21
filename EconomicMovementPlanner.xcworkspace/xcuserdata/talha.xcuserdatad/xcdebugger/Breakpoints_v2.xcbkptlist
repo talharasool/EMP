@@ -272,8 +272,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "969"
             endingLineNumber = "969"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "HomeVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -323,8 +323,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "898"
             endingLineNumber = "898"
-            landmarkName = "HomeVC"
-            landmarkType = "21">
+            landmarkName = "locationManager(_:didFailWithError:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -372,8 +372,8 @@
             timestampString = "590698580.29646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1065"
-            endingLineNumber = "1065"
+            startingLineNumber = "1068"
+            endingLineNumber = "1068"
             landmarkName = "setCancelBtn(isSet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -680,8 +680,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "891"
             endingLineNumber = "891"
-            landmarkName = "HomeVC"
-            landmarkType = "21">
+            landmarkName = "openLocationList()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -731,8 +731,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "890"
             endingLineNumber = "890"
-            landmarkName = "HomeVC"
-            landmarkType = "21">
+            landmarkName = "openLocationList()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -765,8 +765,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "501"
             endingLineNumber = "501"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1055,8 +1055,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1150"
-            endingLineNumber = "1150"
+            startingLineNumber = "1153"
+            endingLineNumber = "1153"
             landmarkName = "mapView(_:didChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1119,10 +1119,10 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "980"
-            endingLineNumber = "980"
-            landmarkName = "storyboardName"
-            landmarkType = "24">
+            startingLineNumber = "983"
+            endingLineNumber = "983"
+            landmarkName = "getCurrentLoc(sender:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1231,10 +1231,10 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "984"
-            endingLineNumber = "984"
-            landmarkName = "draw(src:dst:)"
-            landmarkType = "7">
+            startingLineNumber = "987"
+            endingLineNumber = "987"
+            landmarkName = "storyboardName"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1263,8 +1263,8 @@
             filePath = "EconomicMovementPlanner/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1025"
-            endingLineNumber = "1025"
+            startingLineNumber = "1028"
+            endingLineNumber = "1028"
             landmarkName = "draw(src:dst:)"
             landmarkType = "7">
          </BreakpointContent>

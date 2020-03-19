@@ -116,6 +116,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>com.EconomicMovementPlanner.EconomicMovementPlanner.applesignin</key>
 	<array>
 		<string>Default</string>

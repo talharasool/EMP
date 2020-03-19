@@ -15,7 +15,7 @@ class PacesTableXIB: UIViewController {
     let id  = "listCell"
     
     
-    weak var delegate : PaceCellDelegate?
+  //  weak var delegate : PaceCellDelegate?
     
     var placeName : [String] = []
     var array : [CoordinatesValue] = []
@@ -51,7 +51,7 @@ class PacesTableXIB: UIViewController {
     
     @IBAction func cancelRideAction(_ sender: Any) {
         
-        delegate?.cancelRouter()
+       // delegate?.cancelRouter()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -115,7 +115,7 @@ extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
         let filer = self.array.filter({$0.isSelect == true})
         if filer.count > 0{
             self.dismiss(animated: true) {
-                self.delegate?.getData(arr: self.array.filter(({$0.isSelect! == true})))
+                //self.delegate?.getData(arr: self.array.filter(({$0.isSelect! == true})))
             }
             
         }

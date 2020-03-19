@@ -71,9 +71,7 @@ class ViewController: UIViewController {
     }
     
     
-    
 
-    
     @IBAction func signInAction(_ sender: Any) {
         
         self.view.endEditing(true)
@@ -303,9 +301,26 @@ extension ViewController : ASAuthorizationControllerDelegate,ASAuthorizationCont
         
         print("AppleID Credential Authorization: userId: \(appleIDCredential.user), email: \(String(describing: appleIDCredential.email))")
         
-        let vc = ProfileVC.instantiateViewController()
-        vc.vcIdentifier = "Complete Profile"
-        self.navigationController?.pushViewController(vc, animated: true)
+        AuthServices.shared.userObj = "UserDumm" ?? ""
+        AuthServices.shared.userPassword = "12345"
+        AuthServices.shared.userPhoneNumber = "923347507000"
+        AuthServices.shared.userImage = String(describing:
+        "")
+        
+        AuthServices.shared.loginVal = true
+        
+        AuthServices.shared.userValue = "1213213213"
+
+        let drawerVC = DrawerVC.instantiateViewController() as? DrawerVC
+        //  drawerVC!.userData = filter.first!
+        
+        let MainSB = KYDrawerController.instantiateViewController()
+        
+        //     AppDelegate.allUser = filter.first!
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = MainSB
+                                
         
     }
     @available(iOS 13.0, *)
@@ -321,13 +336,15 @@ extension ViewController : ASAuthorizationControllerDelegate,ASAuthorizationCont
             signInButton.translatesAutoresizingMaskIntoConstraints = false
             self.appleSignInView.addSubview(signInButton)
             //signInButton.frame = self.appleSignInView.frame
+         
             
             NSLayoutConstraint.activate([
                 signInButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.appleSignInView.centerXAnchor, multiplier: 1),
                    signInButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.appleSignInView.centerYAnchor, multiplier: 1),
                    signInButton.heightAnchor.constraint(equalToConstant: 40),
-                   signInButton.widthAnchor.constraint(equalToConstant: 200)
+                   signInButton.widthAnchor.constraint(equalToConstant: 230)
                ])
+                self.appleSignInView.layer.cornerRadius = appleSignInView.roundHeight()
         } else {
             // Fallback on earlier versions
         }

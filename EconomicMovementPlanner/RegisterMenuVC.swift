@@ -284,18 +284,12 @@ extension RegisterMenuVC : LoginButtonDelegate{
     
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        
         print(result)
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("Logout tap")
     }
-    
-    
-    
-    
-    
 }
 
 extension RegisterMenuVC {

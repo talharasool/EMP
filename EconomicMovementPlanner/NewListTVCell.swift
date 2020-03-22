@@ -10,11 +10,11 @@ import UIKit
 
 class NewListTVCell: UITableViewCell {
 
-    @IBOutlet weak var headerLbl: UILabel!
-   
-    @IBOutlet weak var switchOutlet: UISwitch!
-    
     @IBOutlet weak var directionLbl: UILabel!
+    @IBOutlet weak var headerLbl: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var switchOutlet: UISwitch!
     @IBOutlet weak var locationImage: UIImageView!
     
     override func awakeFromNib() {

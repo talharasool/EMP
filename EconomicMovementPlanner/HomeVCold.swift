@@ -21,7 +21,7 @@ protocol PaceCellDelegate : class {
 
 typealias valCompletion = (Bool)->()
 
-class HomeVC: UIViewController  {
+class HomeVC1: UIViewController  {
     
     @IBOutlet weak var signgletripCancelBtn: UIButton!
     @IBOutlet weak var gadView: GADBannerView!
@@ -320,7 +320,7 @@ var oldPolyLines = [GMSPolyline]()
 
 //Location Manager Function here you can handel the locatio
 
-extension HomeVC{
+extension HomeVC1{
         
         func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
             
@@ -374,7 +374,7 @@ extension HomeVC{
             print(self.currentCoordinateValue)
             if self.currentCoordinateValue == nil {
                 
-                HomeVC.isFirst = true
+               // HomeVC.isFirst = true
                 self.currentCoordinateValue  = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 
                 var geocoder = CLGeocoder()
@@ -539,7 +539,7 @@ extension HomeVC{
         }
 }
 //MAPVIEW DELEGATES
-extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
+extension HomeVC1 : CLLocationManagerDelegate, GMSMapViewDelegate{
     
     func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
         print("good yarr")
@@ -825,7 +825,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
 //                    }
 //                }
                 
-                self.endRouteHandling()
+               // self.endRouteHandling()
                             
             }
             
@@ -881,7 +881,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                     print(succes)
                     
                     if succes{
-                        self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: 0)
+                      //  self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: 0)
                     }else{
                         print("Unable to  get list")
                     }
@@ -924,18 +924,14 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
                 self.addDataToServer { (succes) in
                     
                     print(succes)
-                    
                     if succes{
                         self.distanceValue = 0.0
                         self.locationManger.stopUpdatingLocation()
-                        self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: self.compareArr.count)
+                     //   self.getDataTripDataFromFirebase(dbID: self.currentDBKey, count: self.compareArr.count)
                                             
                         
                     }
                 }
-                
-                
-                
             }
             
         }else{
@@ -964,7 +960,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
     @objc func openLocationList(){
         
         let vc = PacesTableXIB()
-        vc.delegate = self
+      //  vc.delegate = self
         
 //        self.locArray.sort (by: { (value, valu2) -> Bool in
 //
@@ -998,6 +994,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
             let result2 = comparing.distance(from: ditance)
             
             if (result>result2){
+                
                 
                 return true
             }
@@ -1038,7 +1035,7 @@ extension HomeVC : CLLocationManagerDelegate, GMSMapViewDelegate{
 }
 
 //Map Dragging Delgates And Function
-extension HomeVC {
+extension HomeVC1 {
     
 
     @objc func didDragMap(_ gestureRecognizer: UIGestureRecognizer) {
@@ -1096,7 +1093,7 @@ extension HomeVC {
 }
 
 
-extension HomeVC : StoryboardInitializable{
+extension HomeVC1 : StoryboardInitializable{
     
     
     @objc func getCurrentLoc(sender : UITapGestureRecognizer){
@@ -1294,7 +1291,7 @@ extension HomeVC : StoryboardInitializable{
 
 
 //Autocompte GMSMapView
-extension HomeVC : GMSAutocompleteViewControllerDelegate{
+extension HomeVC1 : GMSAutocompleteViewControllerDelegate{
     
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
@@ -1352,7 +1349,7 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
 }
 
 
-extension HomeVC{
+extension HomeVC1{
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         var zoom : Float = mapView.camera.zoom
@@ -1369,7 +1366,7 @@ extension HomeVC{
     }
 }
 
-extension HomeVC : PaceCellDelegate{
+extension HomeVC1 : PaceCellDelegate{
     
     func openVC(){
         let drawerVC = DrawerVC.instantiateViewController() as? DrawerVC
@@ -1394,7 +1391,7 @@ extension HomeVC : PaceCellDelegate{
         self.draw(src: CLLocationCoordinate2D(latitude: lat, longitude: long), dst: CLLocationCoordinate2D(latitude: arr[0].lat!, longitude: arr[0].long!))
         
         self.pointerCoordinate = CLLocationCoordinate2D(latitude: compareArr[0].lat!, longitude: compareArr[0].lat!)
-        print("The Radius is here", self.googleMapView.getRadius())
+       // print("The Radius is here", self.googleMapView.getRadius())
         
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateLOC), userInfo: nil, repeats: true)
         
@@ -1419,7 +1416,7 @@ extension HomeVC : PaceCellDelegate{
 
 
 //DB AND ACTIVITY ACTIONS
-extension HomeVC {
+extension HomeVC1 {
 
     func startAnimating(){
         
@@ -1456,7 +1453,7 @@ extension HomeVC {
 
 
 //Dealing With Server
-extension HomeVC{
+extension HomeVC1{
     
     func addDataToServer(completion : @escaping (Bool)->()){
         
@@ -1527,7 +1524,7 @@ extension HomeVC{
 
 
 //Open Google Maps From APP
-extension HomeVC{
+extension HomeVC1{
     
     @objc func openGoogleMaps(){
         let newLat  =  self.locArray.first!.lat!
@@ -1542,31 +1539,31 @@ extension HomeVC{
 
 
 //Others
-extension GMSMapView{
-    
-    func getCenterCoordinate() -> CLLocationCoordinate2D {
-        let centerPoint = self.center
-        let centerCoordinate = self.projection.coordinate(for: centerPoint)
-        return centerCoordinate
-    }
-    
-    func getTopCenterCoordinate() -> CLLocationCoordinate2D {
-        // to get coordinate from CGPoint of your map
-        let topCenterCoor = self.convert(CGPoint(x: self.frame.size.width, y: 0), from: self)
-        let point = self.projection.coordinate(for: topCenterCoor)
-        return point
-    }
-    
-    func getRadius() -> CLLocationDistance {
-        let centerCoordinate = getCenterCoordinate()
-        let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
-        let topCenterCoordinate = self.getTopCenterCoordinate()
-        let topCenterLocation = CLLocation(latitude: topCenterCoordinate.latitude, longitude: topCenterCoordinate.longitude)
-        let radius = CLLocationDistance(centerLocation.distance(from: topCenterLocation))
-        return round(radius)
-    }
-}
-
+//extension GMSMapView1{
+//
+//    func getCenterCoordinate() -> CLLocationCoordinate2D {
+//        let centerPoint = self.center
+//        let centerCoordinate = self.projection.coordinate(for: centerPoint)
+//        return centerCoordinate
+//    }
+//
+//    func getTopCenterCoordinate() -> CLLocationCoordinate2D {
+//        // to get coordinate from CGPoint of your map
+//        let topCenterCoor = self.convert(CGPoint(x: self.frame.size.width, y: 0), from: self)
+//        let point = self.projection.coordinate(for: topCenterCoor)
+//        return point
+//    }
+//
+//    func getRadius() -> CLLocationDistance {
+//        let centerCoordinate = getCenterCoordinate()
+//        let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
+//        let topCenterCoordinate = self.getTopCenterCoordinate()
+//        let topCenterLocation = CLLocation(latitude: topCenterCoordinate.latitude, longitude: topCenterCoordinate.longitude)
+//        let radius = CLLocationDistance(centerLocation.distance(from: topCenterLocation))
+//        return round(radius)
+//    }
+//}
+//
 
 
 //        self.selectedCoordinate = CLLocation(latitude: arr[0].lat!, longitude:  arr[0].long!)
@@ -1610,7 +1607,7 @@ extension GMSMapView{
 
 
 
-extension HomeVC : GADBannerViewDelegate{
+extension HomeVC1 : GADBannerViewDelegate{
     
     func addBanner(){
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width - 20, height: 30))
@@ -1653,7 +1650,7 @@ extension HomeVC : GADBannerViewDelegate{
 
 
 
-extension HomeVC{
+extension HomeVC1{
     
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
@@ -1691,3 +1688,83 @@ extension HomeVC{
 }
 
 
+
+func setTimestamp(epochTime: String) -> String {
+    let currentDate = Date()
+    let epochDate = Date(timeIntervalSince1970: TimeInterval(epochTime) as! TimeInterval)
+
+    let calendar = Calendar.current
+
+    let currentDay = calendar.component(.day, from: currentDate)
+    let currentHour = calendar.component(.hour, from: currentDate)
+    let currentMinutes = calendar.component(.minute, from: currentDate)
+    let currentSeconds = calendar.component(.second, from: currentDate)
+
+    let epochDay = calendar.component(.day, from: epochDate)
+    let epochMonth = calendar.component(.month, from: epochDate)
+    let epochYear = calendar.component(.year, from: epochDate)
+    let epochHour = calendar.component(.hour, from: epochDate)
+    let epochMinutes = calendar.component(.minute, from: epochDate)
+    let epochSeconds = calendar.component(.second, from: epochDate)
+
+    if (currentDay - epochDay < 30) {
+        if (currentDay == epochDay) {
+            if (currentHour - epochHour == 0) {
+                if (currentMinutes - epochMinutes == 0) {
+                    if (currentSeconds - epochSeconds <= 1) {
+                        return String(currentSeconds - epochSeconds) + " second ago"
+                    } else {
+                        return String(currentSeconds - epochSeconds) + " seconds ago"
+                    }
+
+                } else if (currentMinutes - epochMinutes <= 1) {
+                    return String(currentMinutes - epochMinutes) + " minute ago"
+                } else {
+                    return String(currentMinutes - epochMinutes) + " minutes ago"
+                }
+            } else if (currentHour - epochHour <= 1) {
+                return String(currentHour - epochHour) + " hour ago"
+            } else {
+                return String(currentHour - epochHour) + " hours ago"
+            }
+        } else if (currentDay - epochDay <= 1) {
+            return String(currentDay - epochDay) + " day ago"
+        } else {
+            return String(currentDay - epochDay) + " days ago"
+        }
+    } else {
+        return String(epochDay) + " " + getMonthNameFromInt(month: epochMonth) + " " + String(epochYear)
+    }
+}
+
+
+func getMonthNameFromInt(month: Int) -> String {
+    switch month {
+    case 1:
+        return "Jan"
+    case 2:
+        return "Feb"
+    case 3:
+        return "Mar"
+    case 4:
+        return "Apr"
+    case 5:
+        return "May"
+    case 6:
+        return "Jun"
+    case 7:
+        return "Jul"
+    case 8:
+        return "Aug"
+    case 9:
+        return "Sept"
+    case 10:
+        return "Oct"
+    case 11:
+        return "Nov"
+    case 12:
+        return "Dec"
+    default:
+        return ""
+    }
+}

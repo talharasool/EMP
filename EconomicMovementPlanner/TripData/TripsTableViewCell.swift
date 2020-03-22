@@ -104,6 +104,55 @@ struct CoordinatesValue{
     let long : Double?
     var isSelect : Bool?
     var isCompleted : Bool?
+    var distance : Double?
+    var timeAndDate : String?
     
 }
 
+
+
+
+func getTodayString() -> String{
+    
+    let date = Date()
+    let calender = Calendar.current
+    let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+    
+    let year = components.year
+    let month = components.month
+    let day = components.day
+    let hour = components.hour
+    let minute = components.minute
+    let second = components.second
+    
+    let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + " " + String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EE, d MMM yyyy HH:mm:ss Z"
+    let availabletoDateTime = dateFormatter.string(from: date)
+    return availabletoDateTime
+    
+}
+
+
+func getDateFromUNIX(myDate : Date) -> String{
+    
+    let date = Date()
+    let calender = Calendar.current
+    let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+    
+    let year = components.year
+    let month = components.month
+    let day = components.day
+    let hour = components.hour
+    let minute = components.minute
+    let second = components.second
+    
+    let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + " " + String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EE, d MMM yyyy HH:mm:ss Z"
+    let availabletoDateTime = dateFormatter.string(from: myDate)
+    return availabletoDateTime
+    
+}

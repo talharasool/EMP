@@ -36,15 +36,15 @@ class LocManager : NSObject{
 extension LocManager : CLLocationManagerDelegate {
     
     fileprivate func setUpLocationManagerDelegate(){
-           locationManager = CLLocationManager()
-           locationManager.delegate = self
-           locationManager.desiredAccuracy = kCLLocationAccuracyBest
-           locationManager.requestWhenInUseAuthorization()
-         locationManager.requestLocation()
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         locationManager.requestAlwaysAuthorization()
-        locationManager.allowsBackgroundLocationUpdates = true
-         
-       }
+        //locationManager.allowsBackgroundLocationUpdates = true
+        
+    }
    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -67,7 +67,7 @@ extension LocManager : CLLocationManagerDelegate {
                 print("\n\nCurrent Coordinates",self.c_Coordinates)
                 
                 print("The currenent differnce is here",difference)
-               // self.stopUpdateLocation()
+                self.stopUpdateLocation()
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     
                     guard let self  = self else {return}

@@ -9,17 +9,8 @@
 import UIKit
 
 class PacesTableXIB: UIViewController {
-
+    
     @IBOutlet weak var goOutletAction: UIButton!
-    
-    let id  = "listCell"
-    
-    
-  //  weak var delegate : PaceCellDelegate?
-    
-    var placeName : [String] = []
-    var array : [CoordinatesValue] = []
-    var filterArray : [CoordinatesValue] = []
     
     @IBOutlet weak var listTV : UITableView!{
         didSet{
@@ -29,38 +20,42 @@ class PacesTableXIB: UIViewController {
         }
     }
     
+    let id  = "listCell"
+    var placeName : [String] = []
+    var array : [CoordinatesValue] = []
+    var filterArray : [CoordinatesValue] = []
+    
+    //Completions here
+    var compLocArray : (([CoordinatesValue])->())?
+    var cancelAction : (()->())?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.listTV.tableFooterView = UIView(frame: .zero)
-        
         self.goOutletAction.addTarget(self, action: #selector(goAction(sender:)), for: .touchUpInside)
-        
-        
         let nib = UINib(nibName: "NewListTVCell", bundle: nil)
         self.listTV.register(nib, forCellReuseIdentifier: id)
-        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.listTV.reloadData()
     }
     
     @IBAction func cancelRideAction(_ sender: Any) {
-        
-       // delegate?.cancelRouter()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            if let cancel = self.cancelAction{cancel()}})
     }
     
 }
 
 extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-     
         return array.count
     }
     
@@ -72,6 +67,7 @@ extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
             cell.switchOutlet.addTarget(self, action: #selector(tapOnSwitch(_:)), for: .valueChanged)
             cell.directionLbl.text = self.array[indexPath.row].lineString
             cell.headerLbl.text = self.array[indexPath.row].title
+            cell.timeLabel.text = self.array[indexPath.row].timeAndDate ?? ""
             
             return cell
         }
@@ -110,14 +106,19 @@ extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
     }
     
     @objc func goAction(sender : UIButton){
+    
+        let filterArray = self.array.filter({$0.isSelect == true})
         
-        
-        let filer = self.array.filter({$0.isSelect == true})
-        if filer.count > 0{
+        if filterArray.count > 0{
             self.dismiss(animated: true) {
+                if let arr = self.compLocArray{
+                    arr(filterArray)
+                }else{
+                    print("Noitems in giler array")}
                 //self.delegate?.getData(arr: self.array.filter(({$0.isSelect! == true})))
             }
-            
+        }else{
+            Alert.showLoginAlert(Message: "Please mark all the location where you want to go.", title:"Select location" , window: self)
         }
        
 //        if self.array.filter(({$0.isSelect == false})).count == 0{

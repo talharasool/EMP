@@ -53,6 +53,26 @@ class PacesTableXIB: UIViewController {
     
 }
 
+
+extension PacesTableXIB{
+    
+    func confirmDelete(index : Int) {
+        let alert = UIAlertController(title: "Delete Route", message: "Are you sure you want to  delete route?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            
+            self.array.remove(at: index)
+            self.listTV.reloadData()
+        }))
+        
+        
+        self.present(alert,animated: true,completion: nil)
+        
+        
+    }
+}
+
 extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +87,10 @@ extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
             cell.switchOutlet.addTarget(self, action: #selector(tapOnSwitch(_:)), for: .valueChanged)
             cell.directionLbl.text = self.array[indexPath.row].lineString
             cell.headerLbl.text = self.array[indexPath.row].title
-            cell.timeLabel.text = self.array[indexPath.row].timeAndDate ?? ""
+            
+            let timeStamp = self.array[indexPath.row].timeAndDate ?? 0.0//Date.init(timeIntervalSinceNow: self.array[indexPath.row].timeAndDate ?? 0.0)
+            print("The real time is here",timeStamp.getDateStringFromUTC())
+            cell.timeLabel.text = timeStamp.getDateStringFromUTC()
             
             return cell
         }
@@ -79,6 +102,13 @@ extension PacesTableXIB : UITableViewDelegate, UITableViewDataSource{
         return 56
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete{
+            let index = indexPath.row
+            self.confirmDelete(index: index)
+        }
+    }
     
     @objc func  tapOnSwitch(_ sender : UISwitch){
         

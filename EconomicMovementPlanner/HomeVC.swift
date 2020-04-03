@@ -18,8 +18,10 @@ import GoogleMobileAds
 
 class HomeVC: UIViewController {
     
+    @IBOutlet weak var dataMainLabel: UILabel!
     @IBOutlet weak var gMapView: UIView!
     @IBOutlet weak var googleAdBanner: GADBannerView!
+    
     @IBOutlet weak var okBtnOutlet: UIButton!
     @IBOutlet weak var cancelBtnOutlet: UIButton!
     @IBOutlet weak var endRouteBtnOutlet: UIButton!
@@ -30,6 +32,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var googleMapOutlet: UIButton!
     @IBOutlet weak var cancelTripBtnOutlet: UIButton!
     
+    let label  = UILabel()
+    
+    var activityText = "Please wait making route for you"
     private lazy var mapVC: MapExtensionVC = {
         var viewController = MapExtensionVC.instantiateViewController()
         self.add(asChildViewController: viewController, to: gMapView)
@@ -41,6 +46,10 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Home"
+        self.navigationController?.setUpBarColor()
+        self.navigationController?.setUpTitleColor()
+        
         self.setRoundness()
         self.setUpAddBanner()
         self.initalHideButtons()
@@ -51,6 +60,37 @@ class HomeVC: UIViewController {
         self.setActionOkOutlet()
         self.setActionOnListButton()
         self.setEndRouteAction()
+        self.setActionOnCancelTripButton()
+        self.setGoogleRouteAction()
+        self.setCompletionOfDistanceReaching()
+        
+        self.showDistance()
+        
+        self.mapVC.resetOutletCompletion = {[unowned self] (isSingle) in
+            
+            if isSingle{
+                
+                self.endRouteBtnOutlet.isHidden =  true
+                self.dropPointOutlet.isHidden = false
+                self.cancelBtnOutlet.isHidden = true
+                self.searchBtnOutlet.isHidden = false
+                self.googleMapOutlet.isHidden = true
+                self.cancelTripBtnOutlet.isHidden = true
+                self.cancelBtnOutlet.backgroundColor = UIColor.gray
+                
+            }else{
+                
+                self.endRouteBtnOutlet.isHidden = true
+                self.cancelTripBtnOutlet.isHidden = false
+                self.cancelBtnOutlet.isHidden = false
+                
+                if self.mapVC.getCountOfLocArray() == 0{
+                    self.mapVC.googleMapView.clear()
+                }
+            }
+            
+            
+        }
         
         self.mapVC.mapCancelCompletion = {
             [unowned self] in
@@ -94,7 +134,8 @@ extension HomeVC {
     func setUpActionForUserLocationTracking(){
         
         self.mapVC.mapRouteCompletion = {[unowned self] in
-            
+            self.activityText = ""
+            self.activityText = "Please wait making route for you"
             self.startAnimating()
             let source  = CLLocationCoordinate2D(latitude: self.mapVC.currentCoordinates.lat, longitude:  self.mapVC.currentCoordinates.lang)
             
@@ -102,17 +143,24 @@ extension HomeVC {
                 self.stopAnimating()
                 return
             }
-          
+            
             let destCoordinates = CLLocationCoordinate2D(latitude: dest?.lat ?? 0.0, longitude: dest?.long ?? 0.0)
-              print("The dest is here",dest?.lat , dest?.long,destCoordinates,source)
+            print("The dest is here",dest?.lat , dest?.long,destCoordinates,source)
             self.mapVC.drawPolygonForLocation(src: source, dst: destCoordinates, completion: {
                 self.stopAnimating()
                 self.mapVC.startTimer()
                 self.cancelBtnOutlet.backgroundColor = UIColor.red
                 self.cancelBtnOutlet.isHidden = false
-                self.searchBtnOutlet.isHidden = true
-                self.dropPointOutlet.isHidden = true
+                self.searchBtnOutlet.isHidden = false
+                self.dropPointOutlet.isHidden = false
                 self.rideSelectOutlet.isHidden = true
+                self.googleMapOutlet.isHidden = false
+                
+                if self.mapVC.getCountOfLocArray() == 1{
+                    self.cancelTripBtnOutlet.isHidden = false
+                }else{
+                     self.cancelTripBtnOutlet.isHidden = false
+                }
             }) { (err) in
                 self.stopAnimating()
                 Alert.showLoginAlert(Message: "Sorry Unable to find out your route", title: "Route error", window: self)
@@ -123,8 +171,8 @@ extension HomeVC {
 
 extension HomeVC {
     
-
-  private  func initalHideButtons(){
+    
+    private  func initalHideButtons(){
         self.cancelTripBtnOutlet.isHidden = true
         self.googleMapOutlet.isHidden = true
         self.rideSelectOutlet.isHidden = true
@@ -151,23 +199,58 @@ extension HomeVC : GADBannerViewDelegate{
 
 extension HomeVC{
     
-    func setCompletionOfDistanceReacing(){
+    func setCompletionOfDistanceReaching(){
         
         self.mapVC.distanceRemainCompletion = { [unowned self] in
             self.endRouteBtnOutlet.isHidden = false
-            self.mapVC.pauseTimer()
-        
+            self.cancelBtnOutlet.isHidden = true
+            self.mapVC.actionOnReachingToOneEndPoint()
+            self.showTemporaryAlert()
         }
     }
     
+    
+    func showTemporaryAlert(_ title : String = "Destination Arrived" , _ msg : String = "You have reached at your destination."){
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        self.present(alert,animated: true,completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+    }
     func setEndRouteAction(){
         self.endRouteBtnOutlet.addTarget(self, action: #selector(actionOnEndRoute(_:)), for: .touchUpInside)
     }
     
+    func setGoogleRouteAction(){
+        self.googleMapOutlet.addTarget(self, action: #selector(actionOnGoogleRoute(_:)), for: .touchUpInside)
+    }
+    
+    @objc func actionOnGoogleRoute(_ sender : UIButton){
+        
+        self.mapVC.openGoogleMaps()
+    }
+    
     @objc func actionOnEndRoute(_ sender : UIButton){
         print("End route")
+        self.activityText = ""
+        self.activityText = "Please Wait\n updating trip data."
+        self.startAnimating()
         
-        
+        self.mapVC.updateDataBase { (isAdded, msg) in
+            self.stopAnimating()
+            if isAdded{
+                if self.mapVC.getCountOfLocArray() == 1{
+                    self.googleMapOutlet.isHidden = true
+                }
+                print("\n\n Every thing added succesfully")
+                // self.showTemporaryAlert()
+            }else{
+                self.showTemporaryAlert("Something went wrong", msg ?? "")
+            }
+        }
     }
 }
 
@@ -177,7 +260,7 @@ extension HomeVC {
     func setCurrentLocationAction(){
         
         self.currentLocOutlet.addTarget(self, action: #selector(currentLocationAction(sender:)), for: .touchUpInside)
-
+        
     }
     
     @objc func currentLocationAction(sender : UIButton){
@@ -216,7 +299,11 @@ extension HomeVC {
     func setActionOnListButton(){
         self.rideSelectOutlet.addTarget(self, action: #selector(openRiderSelectionVC(sender:)), for: .touchUpInside)
     }
-    
+
+    func setActionOnCancelTripButton(){
+        self.cancelTripBtnOutlet.addTarget(self, action: #selector(actionOnCancelTrip(sender:)), for: .touchUpInside)
+    }
+
     @objc func actionOndropPointOutlet(sender : UIButton){
         
         self.cancelBtnOutlet.isHidden = false
@@ -224,6 +311,21 @@ extension HomeVC {
         self.mapVC.isPinDropEnable = true
         
         self.mapVC.setMarkerOnCoordinates()
+    }
+    
+    @objc func actionOnCancelTrip(sender : UIButton){
+        
+        self.startAnimating()
+        self.mapVC.updateDataBase { (isAdded, msg) in
+            self.stopAnimating()
+            if isAdded{
+                print("\n\n Every thing added succesfully")
+                // self.showTemporaryAlert()
+            }else{
+                self.showTemporaryAlert("Something went wrong\n \( msg ?? "")")
+            }
+        }
+        
     }
     
     @objc func actionOnCancelButton(sender : UIButton){
@@ -234,13 +336,19 @@ extension HomeVC {
             self.searchBtnOutlet.isHidden = false
             self.rideSelectOutlet.isHidden = true
             self.cancelBtnOutlet.isHidden = true
+            self.googleMapOutlet.isHidden = true
+            self.mapVC.getUserCurrentPlaceName()
+            self.mapVC.actionOnCancelButtonPress()
             self.cancelBtnOutlet.backgroundColor = UIColor.gray
-    
+            
         }else{
             
             self.cancelBtnOutlet.isHidden = true
             self.okBtnOutlet.isHidden = true
             self.dropPointOutlet.isHidden = false
+            self.mapVC.isPinDropEnable = false
+            
+            
             
         }
         
@@ -252,15 +360,23 @@ extension HomeVC {
         self.dropPointOutlet.isHidden = false
         self.rideSelectOutlet.isHidden = false
         self.okBtnOutlet.isHidden = true
-         self.mapVC.isPinDropEnable = false
-       
-        self.mapVC.placeTempMarkerAtCoordinate(geoCoordinates: self.mapVC.draggingCoordinate)
-
-        self.mapVC.resetPointers()
+        self.mapVC.isPinDropEnable = false
+        
+       self.mapVC.placeTempMarkerAtCoordinate(geoCoordinates: self.mapVC.draggingCoordinate)
+       self.mapVC.resetPointers()
+        
+        if self.mapVC.isDraggigMarkerOnMap == true{
+             
+        }else{
+            
+            
+            print("Dragging is not enable yet")
+        }
       
         
+        
     }
-
+    
     @objc func openRiderSelectionVC(sender : UIButton){
         self.mapVC.openListVC()
     }
@@ -270,9 +386,6 @@ extension HomeVC {
 //PlacePicker action and delegate
 extension HomeVC : GMSAutocompleteViewControllerDelegate{
     
-    
-    
-
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         viewController.dismiss(animated: true, completion: {
             self.hideandShowButtonsSelectingLocation()
@@ -284,7 +397,7 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
             self.mapVC.setMarkerFromSearchLocation(locCoordinate: place.coordinate)
             
         })
-      
+        
         print("\nPlace Coordinatee:\(place.coordinate.latitude),\(place.coordinate.longitude)")
     }
     
@@ -295,7 +408,7 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         print("\n\nCancelled")
-         viewController.dismiss(animated: true, completion: nil)
+        viewController.dismiss(animated: true, completion: nil)
     }
     
     func setActionOnPlacePicker(){
@@ -311,51 +424,57 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
         
     }
     
-
+    
+    func showDistance(){
+        self.mapVC.dummyCompletion = { [unowned self](val) in
+            self.dataMainLabel.text = "Hence covered distance is here \(val)"
+        }
+    }
+    
 }
 
 
 extension HomeVC{
-
+    
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-      print("adViewDidReceiveAd")
+        print("adViewDidReceiveAd")
     }
-
+    
     /// Tells the delegate an ad request failed.
     func adView(_ bannerView: GADBannerView,
-        didFailToReceiveAdWithError error: GADRequestError) {
-      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
-
+    
     /// Tells the delegate that a full-screen view will be presented in response
     /// to the user clicking on an ad.
     func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-      print("adViewWillPresentScreen")
+        print("adViewWillPresentScreen")
     }
-
+    
     /// Tells the delegate that the full-screen view will be dismissed.
     func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-      print("adViewWillDismissScreen")
+        print("adViewWillDismissScreen")
     }
-
+    
     /// Tells the delegate that the full-screen view has been dismissed.
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-      print("adViewDidDismissScreen")
+        print("adViewDidDismissScreen")
     }
-
+    
     /// Tells the delegate that a user click will open another app (such as
     /// the App Store), backgrounding the current app.
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-      print("adViewWillLeaveApplication")
+        print("adViewWillLeaveApplication")
     }
-
+    
 }
 
 
 
 extension HomeVC {
-
+    
     func startAnimating(){
         
         //   UIApplication.shared.beginIgnoringInteractionEvents()
@@ -365,14 +484,14 @@ extension HomeVC {
         activity.color = UIColor.black
         activity.backgroundColor = UIColor.white
         activity.frame = CGRect(x: width , y: height, width: 100, height: 100)
-        let label  = UILabel()
+        
         activity.layer.cornerRadius = 4
         activity.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
         label.frame = CGRect(x: 0, y: 0, width: 80, height: 50)
         label.center = CGPoint(x:activity.frame.width/2, y: activity.frame.height/2 + 30)
         
-    
-        label.text =  "Please wait making route for you"
+        
+        label.text =  self.activityText
         label.textAlignment  = .center
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 8, weight: .semibold)
@@ -382,9 +501,13 @@ extension HomeVC {
         
     }
     
+    
     func stopAnimating(){
-        
-        UIApplication.shared.endIgnoringInteractionEvents()
-        activity.stopAnimating()
-    }
+         
+         UIApplication.shared.endIgnoringInteractionEvents()
+         activity.stopAnimating()
+     }
+    
+ 
 }
+

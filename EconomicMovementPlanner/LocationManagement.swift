@@ -16,6 +16,7 @@ class LocManager : NSObject{
     var permission : ((Bool?)->())?
     var currentLatLong : ((Double?, Double?)->())?
     var distanceFigure : ((Double?, Double?)->())?
+  
     
     private var locationManager : CLLocationManager!
     

@@ -595,7 +595,7 @@ extension HomeVC1 : CLLocationManagerDelegate, GMSMapViewDelegate{
                                 self.placeTitle = lines.first ?? ""
                             }
                             
-                            let temp = CoordinatesValue(lineString: lines.first ?? "", title:  self.placeTitle, lat: coordinate.latitude, long: coordinate.longitude, isSelect: false, isCompleted: false)
+                            let temp = CoordinatesValue(lineString: lines.first ?? "", title:  self.placeTitle, startPoint: "", lat: coordinate.latitude, long: coordinate.longitude, isSelect: false, isCompleted: false)
                             
                             self.locArray.append(temp)
                             self.placeTitle = ""
@@ -656,7 +656,7 @@ extension HomeVC1 : CLLocationManagerDelegate, GMSMapViewDelegate{
                                            self.placeTitle = lines.first ?? ""
                                        }
                                        
-                                       let temp = CoordinatesValue(lineString: lines.first ?? "", title:  self.placeTitle, lat: coordinate.latitude, long: coordinate.longitude, isSelect: false, isCompleted: false)
+                                    let temp = CoordinatesValue(lineString: lines.first ?? "", title:  self.placeTitle, startPoint: "", lat: coordinate.latitude, long: coordinate.longitude, isSelect: false, isCompleted: false)
                                        
                                        self.locArray.append(temp)
                                        self.placeTitle = ""
@@ -1488,6 +1488,7 @@ extension HomeVC1{
             let values  = ["trip_date:" : Date().timeIntervalSinceNow,"trip_endpoint:":self.destinatioName,"trip_startpoint:":compareArr.first!.lineString!,"trip_totaldistance":"0","trip_totalfuel" : fuel,"trip_totlatime":"9"] as [String : Any]
             print("Here are the values of data ")
             print(values)
+            
             
             newDB.updateChildValues(values) { (error, refrence) in
                 

@@ -19,7 +19,9 @@ class MapExtensionVC: UIViewController {
     @IBOutlet weak var googleMapView: GMSMapView!
     
     var placeMarker  = GMSMarker()
+    let geoCoder = GMSGeocoder()
     var locationManager : LocManager!
+    
 
     var placesClient: GMSPlacesClient!
     var draggingCoordinate : CLLocationCoordinate2D!
@@ -36,35 +38,40 @@ class MapExtensionVC: UIViewController {
     var mapRouteCompletion  : (()->())?
     var distanceCompletion  : (()->())?
     var distanceRemainCompletion  : (()->())?
+    var resetOutletCompletion  : ((Bool)->())?
+    var dummyCompletion  : ((String)->())?
     
     var polyline = GMSPolyline()
     
     var timer : Timer!
     var curretDiatance : Double? = 0.0
     var coveredDiatance : Double? = 0.0
-    
     var currentTime : Double? = nil
+    var currentDBKey : String = ""
+    var userPinLocation : String = ""
+    
+    var startTime : Double? = nil
+    var endTime : Double?  = nil
+    
+    
+    var curretCar : CarModel!
+    var tripData : [TripData] = []
+    var serverObj : [tripServerData] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let date = NSDate() // current date
-        let unixtime = date.timeIntervalSince1970
-        self.curretDiatance = unixtime
-        print("\n\n The current unix time",unixtime)
-        let timeStamp = Date.init(timeIntervalSinceNow: unixtime)
-        print("\n\n The New Time Stamp here",timeStamp)
-    
-        getDateFromUNIX(myDate: timeStamp)
-        
-        print("\n\n The ",   getDateFromUNIX(myDate: timeStamp))
         placesClient = GMSPlacesClient.shared()
         googleMapView.delegate = self
         locationManager = LocManager(self)
         locationManager.currentLatLong = { (lat, lang) in
             print("\n\nThe current Lat and Lang",lat,lang)
             self.currentCoordinates = (lat: lat!, lang : lang!)
+            let position =  CLLocation(latitude: lat!, longitude: lang!)
+            self.getCurrentPositionName(coordinates: position) { (placeName, PlaceAddress) in
+                self.userPinLocation = placeName ?? ""
+            }
             DispatchQueue.main.async {
                 self.callGoogleMap(lat: lat!, long: lang!)
                 self.setDragOnMap()
@@ -74,20 +81,55 @@ class MapExtensionVC: UIViewController {
     
 }
 
+extension MapExtensionVC{
+    
+
+    func getCurrentPositionName(coordinates : CLLocation,comp : ((String?, String?)->())?){
+    
+        var coreLocGeoCoder = CLGeocoder()
+        
+        coreLocGeoCoder.reverseGeocodeLocation(coordinates) { (places, err) in
+            if err != nil{return}
+            guard let placeName  = places?.first else {return}
+            print("\n\nThe CLGeocoder are here",placeName.name,placeName,placeName.addressDictionary,placeName.locality,placeName.location)
+            if let location = placeName.location , let name = placeName.name{
+                let loc = String(describing: location)
+                guard  let placeComp = comp else {
+                    return
+                }
+                print("\nThe fetching place and line",name,loc)
+                placeComp(name,loc)
+            }
+        }
+    }
+    
+    
+    func getUnixDate()->Double{
+        let date = NSDate() // current date
+        let unixtime = date.timeIntervalSince1970
+     //   self.curretDiatance = unixtime
+        print("\n\n The current unix time",unixtime)
+        let timeStamp = Date.init(timeIntervalSinceNow: unixtime)
+        print("\n\n The New Time Stamp here",timeStamp)
+        print("\n\n The ",   getDateFromUNIX(myDate: timeStamp))
+        return unixtime
+        
+    }
+}
+
 //Geocoding value
 extension MapExtensionVC {
     
     
     
     func getLocationNameFromGeoCode(_ coordinate : CLLocationCoordinate2D, completion  :@escaping ((CoordinatesValue?)->())){
-        let geoCoder = GMSGeocoder()
-        
-        
+    
         geoCoder.reverseGeocodeCoordinate(coordinate) { (placeValue, err) in
             
             if err != nil {completion(nil);return}
             
             switch placeValue?.results(){
+                
             case .some(let val):
                 guard let singleAddress = val.first else {print("Unable to fetch place");return}
                 print(singleAddress)
@@ -96,7 +138,9 @@ extension MapExtensionVC {
                 if placeTitle.isEmpty{
                     placeTitle = singleAddress.locality ?? ""
                 }
-                let tempAddress = CoordinatesValue(lineString: placeAddress, title: placeTitle, lat: coordinate.latitude, long: coordinate.longitude,isSelect: false, isCompleted: false, timeAndDate: getTodayString())
+               
+                let tempAddress = CoordinatesValue(lineString: placeAddress, title: placeTitle, startPoint: "", lat: coordinate.latitude, long: coordinate.longitude,isSelect: false, isCompleted: false, timeAndDate: self.getUnixDate())
+       
                 
                 self.placeName = ""
                 completion(tempAddress)
@@ -292,12 +336,18 @@ extension MapExtensionVC {
         self.coveredDiatance = distanceInMeters
         print("The distance is here",distanceInMeters)
         
+        if let com = self.dummyCompletion{
+            let values = String(describing: self.coveredDiatance ?? 0.0)
+            com(values)
+        }
         if coveredDiatance! < 60.0{
             print("You have reached your location")
             
             if let comp = self.distanceRemainCompletion{
                 comp()
-            }
+            }else{print("Distance completion is nil here")}
+            
+            
         }else{
             print("You are going")
         }
@@ -351,6 +401,7 @@ extension MapExtensionVC {
             
             print("\n\n:: the new count is here",self.getCountOfLocArray())
             if let goComp = self.mapRouteCompletion{
+                self.startTime = self.getUnixDate()
                 goComp()
             }else{print("Not found any completion")}
             
@@ -372,24 +423,44 @@ extension MapExtensionVC {
     }
     
     @objc func openGoogleMaps(){
-        let newLat  = self.locationCoordinates.lat
-        let newLang  = self.locationCoordinates.lang
-        print(newLat,newLang)
-        if let url = URL(string: "comgooglemaps://?saddr=&daddr=\(newLat),\(newLang)&directionsmode=driving") {
-            UIApplication.shared.open(url, options: [:])
+        if let newLat  = self.userLocationArray.first??.lat
+            ,let newLang  = self.userLocationArray.first??.long{
+            
+            print(newLat,newLang)
+            if let url = URL(string: "comgooglemaps://?saddr=&daddr=\(newLat),\(newLang)&directionsmode=driving") {
+                UIApplication.shared.open(url, options: [:])
+            }
+            
         }
+        
     }
 }
 
 
 extension MapExtensionVC {
     
+    
+    func getUserCurrentPlaceName(){
+        locationManager.currentLatLong = { (lat, lang) in
+            print("\n\nThe current Lat and Lang",lat,lang)
+            self.currentCoordinates = (lat: lat!, lang : lang!)
+            let position =  CLLocation(latitude: lat!, longitude: lang!)
+            self.getCurrentPositionName(coordinates: position) { (placeName, PlaceAddress) in
+                self.userPinLocation = placeName ?? ""
+            }
+            DispatchQueue.main.async {
+                self.callGoogleMap(lat: lat!, long: lang!)
+               
+            }
+        }
+    }
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
     }
     
     
     func pauseTimer(){
+        self.locationManager.stopUpdateLocation()
         timer.invalidate()
     }
     
@@ -416,6 +487,7 @@ extension MapExtensionVC {
                 
                 self.currentCoordinates = (lat: lat!, lang : lang!)
                 let currCor = CLLocationCoordinate2D(latitude: lat!, longitude: lang!)
+              //  self.callGoogleMap(lat: lat!, long: lat!)
                 
                 print("\n\nThe current Lat and Lang",lat,lang)
                 guard let destValue = self.userLocationArray.first else{return}
@@ -544,3 +616,155 @@ extension MapExtensionVC{
     
     
 }
+
+
+extension MapExtensionVC {
+    
+    func actionOnReachingToOneEndPoint(){
+        self.pauseTimer()
+       // self.coveredDiatance = 0.0
+      //  self.curretDiatance = 0.0
+        
+    }
+    
+    func actionOnCancelButtonPress(){
+        self.pauseTimer()
+        self.googleMapView.clear()
+        self.userLocationArray.removeAll()
+        self.getUserCurrentPlaceName()
+        
+    }
+}
+
+
+
+extension MapExtensionVC {
+    
+    func updateDataBase(comp : @escaping (Bool, String?)->()){
+        if let obj = self.userLocationArray.first, let serverObj = obj{
+            
+            self.addDataToServer(serverObj) { (isAdded, message)  in
+                if isAdded{
+                    print("We have added this data from server")
+                    comp(true, message)
+                }else{
+                    print("Sorry We are unable to add data")
+                    comp(false,message)
+                }
+            }
+            
+        }else{
+            print("Error in finfinf data")
+            Alert.showLoginAlert(Message: "Sorry for inconvienece", title: "Something went wrong while adding data", window: self)
+        }
+        
+    }
+    
+    
+    fileprivate func addDataToServer(_ addedObject : CoordinatesValue, completion : @escaping (Bool, String?)->()){
+        let DBRef = Database.database().reference()
+        var tempArray : [[String : Any]] = []
+        
+        print(AuthServices.shared.userValue,AuthServices.shared.carId)
+        print("\n\n")
+        if let userID = AuthServices.shared.userValue , let carID = AuthServices.shared.carId{
+            var newDB =   DBRef.child("Routes").child(userID).child(carID)
+            if self.currentDBKey.isEmpty{
+                newDB = newDB.childByAutoId()
+            }else{
+                newDB = newDB.child(self.currentDBKey)
+            }
+            let newID = DBRef.child("Routes").child(userID).child(carID).childByAutoId()
+            print("The New Id Is here :: \(newID)")
+            let milage = Int(CarManger.shared.singleCarData.Mileage ?? "0")
+            let fuel = self.coveredDiatance!/Double(milage!)
+            print("The original milage",milage)
+            let eTime  =   getUnixDate() - self.startTime!
+            print("\n\n The real time is here",self.startTime!,"   ",eTime)
+            let totalTime = self.startTime! + eTime
+            print("\n\n:->)The end time is here",totalTime)
+            
+            
+         
+//
+            let formatter = DateComponentsFormatter()
+            formatter.allowedUnits = [.minute]
+            formatter.unitsStyle = .abbreviated
+            var formatted = formatter.string(from: eTime) ?? ""
+            print(formatted)
+                //
+            
+            
+            let listObject = tripServerData(date_record: self.startTime!.getDateStringFromUTC(), distance: String(describing: self.coveredDiatance ?? 0.0), endpoint: addedObject.lineString!, fuel: String(describing: fuel ?? 0.0), startpoint: self.userPinLocation, time: formatted.replacingOccurrences(of: "m", with: ""))
+                     
+            
+            formatted = formatted.replacingOccurrences(of: "m", with: "")
+    
+            self.serverObj.append(listObject)
+            let values  = ["trip_date:" : self.startTime!.getDateStringFromUTC(),
+                           "trip_endpoint:":addedObject.lineString!,
+                           "trip_startpoint:":self.userPinLocation,
+                           "trip_totaldistance":String(describing : self.coveredDiatance!),
+                           "trip_totalfuel" :String(describing: fuel),
+                           "trip_totlatime":formatted] as [String : Any]
+            
+            
+            print("\n\nParameter before saving is here")
+            print(values)
+            print("The time", eTime.getDateStringFromUTC(), addedObject.timeAndDate!.getDateStringFromUTC())
+            
+            newDB.updateChildValues(values) { (error, refrence) in
+                if error != nil{
+                    completion(false, "Error in adding values to DB")
+                    return
+                }
+                
+                for (index , val) in self.serverObj.enumerated(){
+                    tempArray.append(val.valDict())
+                }
+                
+                
+                let listKey = newDB.child("list")
+                self.currentDBKey = newDB.key ?? ""
+
+                 listKey.setValue(tempArray)
+                
+                
+                print("The values in the server object")
+                self.getDataTripDataFromFirebase(dbID: self.currentDBKey) { (isShown,  message) in
+                    if isShown{
+                          completion(true, message)
+                    }else{
+                        completion(false,message)
+                    }
+                    
+                }
+                
+   
+            }
+            
+        }else{
+            
+            Alert.showLoginAlert(Message: "Sorry you cannot proceed without car", title: "Please select car first", window: self)
+            print("\n\n CarId and UserId at the HOME \n\n\n")
+        }
+        
+    }
+}
+
+
+
+//                for (index , val) in self.serverObj.enumerated(){
+   //
+   //                    self.tempArray.append(val.valDict())
+   //                }
+   //
+   //                print(self.tempArray)
+   //                let arryVal = newDB.child("list")
+   //                // let arrayDict : [[:]] = []
+   //
+   //
+   //                let mapVal = self.serverObj.map({_ in NSArray(array: self.serverObj)})
+   //                print(mapVal)
+   //                arryVal.setValue(self.tempArray)
+   //                completion(true)

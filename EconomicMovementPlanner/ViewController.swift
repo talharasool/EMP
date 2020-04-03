@@ -195,8 +195,11 @@ class ViewController: UIViewController {
         
         countriesPikerView.countryPickerDelegate = self
         countriesPikerView.showPhoneNumbers = true
-        countriesPikerView.setCountry("PK")
-        countriesPikerView.setCountryByName("Pakistan")
+        //        countriesPikerView.setCountry("PK")
+        //        countriesPikerView.setCountryByName("Pakistan")
+        
+        countriesPikerView.setCountry("JO")
+        countriesPikerView.setCountryByName("Jordan")
     }
     
     
@@ -301,7 +304,7 @@ extension ViewController : ASAuthorizationControllerDelegate,ASAuthorizationCont
         
         print("AppleID Credential Authorization: userId: \(appleIDCredential.user), email: \(String(describing: appleIDCredential.email))")
         
-        AuthServices.shared.userObj = "UserDumm" ?? ""
+        AuthServices.shared.userObj = "No Name" ?? ""
         AuthServices.shared.userPassword = "12345"
         AuthServices.shared.userPhoneNumber = "923347507000"
         AuthServices.shared.userImage = String(describing:

@@ -42,7 +42,6 @@ class SocialViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.signInbtnOutlet.layer.cornerRadius = self.signInbtnOutlet.frame.height/2

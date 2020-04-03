@@ -12,9 +12,8 @@ class RoutesViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if newCount > 0{
-                 customCompletion!()
-             }
+        
+         customCompletion!()
     }
     
     deinit {
@@ -42,6 +41,8 @@ class RoutesViewController: UIViewController {
     @IBOutlet weak var timeView: CircularProgressView!
     @IBOutlet weak var distanceView: CircularProgressView!
     
+    var deletePlanetIndexPath: NSIndexPath? = nil
+    
     //Table View
     @IBOutlet weak var detailTV: UITableView!{
         didSet{
@@ -60,7 +61,7 @@ class RoutesViewController: UIViewController {
         print(listData.count)
         
         
-        print("The list of new data is here\n\n",self.listData)
+        print("The list of new data is here\n\n",self.listData.count)
        
         self.detailTV.tableFooterView = UIView(frame: .zero)
         let nib = UINib(nibName: identifier, bundle: nil)
@@ -84,23 +85,35 @@ class RoutesViewController: UIViewController {
 //        self.fuelView.layer.borderColor = UIColor.green.cgColor
         if let data = self.listData.first{
             
+            print("\n\nTrip Data is here",data.trip_totaldistance,data.trip_totalfuel,data.trip_totlatime)
+            
             if let distance = data.trip_totaldistance?.floatValue{
-                
+                disLbl.text = String(describing: distance)
                 print("\n\n The distance value is after calculation :", distance)
-                distanceView.progressAnimation(duration: 5, toValue:CGFloat(distance))
+                distanceView.progressAnimation(duration: 1, toValue:CGFloat(distance/1000))
             }else{print("Err in cal distance")}
             
             
             if let fuel = data.trip_totalfuel?.floatValue{
                 
+                fuelLbl.text = String(describing: fuel)
                 print("\n\n The fuel value is after calculation :", fuel)
-                fuelView.progressAnimation(duration: 5, toValue:CGFloat(fuel))
+                fuelView.progressAnimation(duration: 1, toValue:CGFloat(fuel/100))
             }else{print("Err in fuel distance")}
             
-                  // fuelView.progressAnimation(duration: 5, toValue: 0.2)
-                 //  timeView.progressAnimation(duration: 5, toValue: 0.3)
+            
+            
+            if let time = data.trip_totlatime?.floatValue{
+                
+                timeLbl.text = String(describing: time)
+                print("\n\n The time value is after calculation :", time)
+                timeView.progressAnimation(duration: 1, toValue:CGFloat(time/100))
+            }else{print("Err in fuel distance")}
+            
+            // fuelView.progressAnimation(duration: 5, toValue: 0.2)
+            //  timeView.progressAnimation(duration: 5, toValue: 0.3)
         }
-       
+        
         
     }
     
@@ -114,6 +127,7 @@ extension RoutesViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let count = listData.first?.list.count{
+           // print("\n\nThe list count is here",count)
             return count
         }
         return  0
@@ -137,8 +151,21 @@ extension RoutesViewController : UITableViewDelegate,UITableViewDataSource{
         return 242
     }
     
+//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCell.EditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if editingStyle == .Delete {
+//            deletePlanetIndexPath = indexPath
+//            let planetToDelete = planets[indexPath.row]
+//            confirmDelete(planetToDelete)
+//        }
+//    }
+    
+    
+    
+    
+    
     
 }
+
 
 extension RoutesViewController{
     

@@ -280,7 +280,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnq-pc-MZM">
                                         <rect key="frame" x="0.0" y="41" width="300" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -353,7 +353,6 @@
         <!--View Controller-->
         <scene sceneID="s81-DR-AvN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="54E-QF-0kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="gZY-pk-eYe" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="jl2-KO-BIq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -597,6 +596,7 @@
                         <outlet property="signgletripCancelBtn" destination="yB0-zv-F6W" id="O2F-IC-NWW"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="54E-QF-0kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3264.375" y="71.83098591549296"/>
         </scene>
@@ -2154,13 +2154,24 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SY-jl-gwX">
+                                <rect key="frame" x="10" y="10" width="232" height="157"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157" id="vLZ-gr-poj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="P7M-VT-FXc" firstAttribute="top" secondItem="ZkJ-OL-E9A" secondAttribute="bottom" constant="8" id="1mf-pj-azF"/>
+                            <constraint firstItem="dEe-oE-9H2" firstAttribute="leading" secondItem="7SY-jl-gwX" secondAttribute="trailing" constant="10" id="2qJ-Oq-80u"/>
                             <constraint firstItem="0X9-is-MOn" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="20" id="3oo-rv-8HD"/>
                             <constraint firstItem="tda-Ow-Xf1" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="8" id="6Ae-Zm-zdX"/>
                             <constraint firstItem="0X9-is-MOn" firstAttribute="top" secondItem="tEB-MH-RP7" secondAttribute="bottom" constant="8" id="7Nc-F9-m18"/>
+                            <constraint firstItem="7SY-jl-gwX" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="10" id="7fy-xB-goj"/>
                             <constraint firstItem="b7R-Oa-C5N" firstAttribute="trailing" secondItem="dEe-oE-9H2" secondAttribute="trailing" constant="8" id="BMH-tO-6cr"/>
                             <constraint firstItem="eJF-9g-ZNP" firstAttribute="top" secondItem="RfN-o4-BAx" secondAttribute="bottom" constant="15" id="Dm9-Ld-oYM"/>
                             <constraint firstItem="0X9-is-MOn" firstAttribute="bottom" secondItem="b7R-Oa-C5N" secondAttribute="bottom" constant="0.10000000000000001" id="Ep2-Dn-05J"/>
@@ -2181,6 +2192,7 @@
                             <constraint firstItem="NOF-pe-wWL" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="0.10000000000000001" id="rUD-BW-6SW"/>
                             <constraint firstItem="b7R-Oa-C5N" firstAttribute="trailing" secondItem="eJF-9g-ZNP" secondAttribute="trailing" constant="8" id="s5l-No-wSq"/>
                             <constraint firstItem="dEe-oE-9H2" firstAttribute="top" secondItem="b7R-Oa-C5N" secondAttribute="top" constant="50" id="u5w-MQ-9sP"/>
+                            <constraint firstItem="7SY-jl-gwX" firstAttribute="top" secondItem="b7R-Oa-C5N" secondAttribute="top" constant="10" id="xM2-va-ize"/>
                             <constraint firstItem="tda-Ow-Xf1" firstAttribute="top" secondItem="W4W-f8-bII" secondAttribute="bottom" constant="15" id="yCO-Wk-lbB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b7R-Oa-C5N"/>
@@ -2197,6 +2209,7 @@
                         <outlet property="cancelBtnOutlet" destination="P7M-VT-FXc" id="SUc-cM-Vqc"/>
                         <outlet property="cancelTripBtnOutlet" destination="ZkJ-OL-E9A" id="JqL-yv-X2J"/>
                         <outlet property="currentLocOutlet" destination="eJF-9g-ZNP" id="Tl6-mi-64H"/>
+                        <outlet property="dataMainLabel" destination="7SY-jl-gwX" id="q2h-r0-psY"/>
                         <outlet property="dropPointOutlet" destination="W4W-f8-bII" id="gL9-az-dGV"/>
                         <outlet property="endRouteBtnOutlet" destination="FxE-nT-vZP" id="40j-TB-XQc"/>
                         <outlet property="gMapView" destination="NOF-pe-wWL" id="yAY-tr-ub4"/>
@@ -2209,7 +2222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPC-pe-bQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3240" y="-644"/>
+            <point key="canvasLocation" x="3240" y="-644.36619718309862"/>
         </scene>
         <!--Map ExtensionVC-->
         <scene sceneID="VCU-mE-Rvf">
@@ -2231,6 +2244,7 @@
                             <constraint firstItem="ji2-UX-Qco" firstAttribute="top" secondItem="4n6-Pn-68B" secondAttribute="top" constant="0.10000000000000001" id="S0y-cy-BRF"/>
                             <constraint firstItem="ji2-UX-Qco" firstAttribute="leading" secondItem="4n6-Pn-68B" secondAttribute="leading" constant="0.10000000000000001" id="u24-tM-Fsv"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="qgw-9s-TWB"/>
                     </view>
                     <connections>
                         <outlet property="googleMapView" destination="ji2-UX-Qco" id="Nkp-fU-qUd"/>

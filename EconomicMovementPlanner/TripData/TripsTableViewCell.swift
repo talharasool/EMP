@@ -12,7 +12,10 @@ import SDWebImage
 
 class TripsTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var fuelLabel: UILabel!
     
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     static let reuseIdentifier = "TripsTableViewCell"
     
     @IBOutlet weak var alpha_destinationLbl: UILabel!
@@ -30,7 +33,7 @@ class TripsTableViewCell: UITableViewCell {
             
         print(self.car?.Image_Link)
         self.nameLbl.text = self.car?.Name ?? ""
-        self.avgLbl.text = String(describing:  self.car?.Mileage )
+        self.avgLbl.text = String(describing:  self.car?.Mileage ?? "0.0" )
         self.carImgView.getImageFromUrl(imageURL: self.car?.Image_Link ?? "", placeHolder: UIImage())
             
         }
@@ -44,13 +47,26 @@ class TripsTableViewCell: UITableViewCell {
             self.alpha_destinationLbl.text = self.model?.trip_endpoint
             self.destinationLbl.text = self.model?.trip_startpoint
             let dis = self.model?.trip_totaldistance?.floatValue
-            self.distanceView.value = CGFloat(dis!)
             
-            let time = self.model?.trip_totlatime?.floatValue
-            self.timeView.value = CGFloat(time!)
+            if let distance = dis{
+                print("The real distance value",distance)
+               // self.distanceView.style = .bordered(width: 2, color: UIColor.blue)
+                 self.distanceLabel.text = String(describing: distance)
+                  self.distanceView.value = CGFloat(distance)
+            }
+          
+            
+            if  let time = self.model?.trip_totlatime?.floatValue{
+                 print("The real time value",time)
+                 self.timeLabel.text = String(describing: time)
+                 self.timeView.value = CGFloat(time)
+            }
+           
             
             if let fuel = self.model?.trip_totalfuel?.floatValue{
-                self.distanceView.value = CGFloat(fuel)
+                 print("The real fuel value",fuel)
+                self.fuelLabel.text = String(describing: fuel)
+                self.fuelView.value = CGFloat(fuel)
             }
             
             
@@ -100,12 +116,13 @@ struct CoordinatesValue{
     
     let lineString : String?
     let title : String?
+    let startPoint : String?
     let lat : Double?
     let long : Double?
     var isSelect : Bool?
     var isCompleted : Bool?
     var distance : Double?
-    var timeAndDate : String?
+    var timeAndDate : Double?
     
 }
 
@@ -152,7 +169,25 @@ func getDateFromUNIX(myDate : Date) -> String{
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "EE, d MMM yyyy HH:mm:ss Z"
+    dateFormatter.timeZone = .current
     let availabletoDateTime = dateFormatter.string(from: myDate)
+    
     return availabletoDateTime
     
+}
+
+
+extension Double {
+    func getDateStringFromUTC() -> String {
+        let date = Date(timeIntervalSince1970: self)
+        
+        //  dateFormatter.locale = .current//Locale(identifier: "en_US")
+        let dateFormatter = DateFormatter()
+       // dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+       // dateFormatter.timeZone = TimeZone.current.secondsFromGMT()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "EE, d MMM yyyy HH:mm:ss Z"
+        
+        return dateFormatter.string(from: date)
+    }
 }

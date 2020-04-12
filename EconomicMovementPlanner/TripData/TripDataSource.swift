@@ -65,6 +65,7 @@ class TripDataSource:  NSObject, UITableViewDataSource, UITableViewDelegate {
                                         let model = try FirebaseDecoder().decode(TripData.self, from: data.value)
                                         
                                         print(model.trip_date)
+                                        print("The new data",model.trip_endpoint,model.trip_startpoint)
                                         self.listData.append(model)
                                         
                                     } catch let error {
@@ -212,17 +213,17 @@ class TripData : Codable {
     
     
     
-    required init(from decoder: Decoder) throws {
-        
-        let container  =  try? decoder.container(keyedBy: CodingKeys.self)
-        trip_date = try? container?.decode(String.self, forKey: .trip_date) ?? "NO Value"
-        trip_endpoint = try? container?.decode(String.self, forKey: .trip_endpoint) ?? "NO Value"
-        trip_startpoint = try? container?.decode(String.self, forKey: .trip_startpoint) ?? "NO Value"
-        trip_totaldistance = try? container?.decode(String.self, forKey: .trip_totaldistance) ?? "NO Value"
-        trip_totalfuel = try? container?.decode(String.self, forKey: .trip_totalfuel) ?? "NO Value"
-        trip_totlatime = try? container?.decode(String.self, forKey: .trip_totlatime) ?? "NO Value"
-        list = try! container?.decodeIfPresent([tripList].self, forKey: .list) ?? []
-    }
+//    required init(from decoder: Decoder) throws {
+//        
+//        let container  =  try? decoder.container(keyedBy: CodingKeys.self)
+//        trip_date = try? container?.decode(String.self, forKey: .trip_date) ?? "NO Value"
+//        trip_endpoint = try? container?.decode(String.self, forKey: .trip_endpoint) ?? "NO Value"
+//        trip_startpoint = try? container?.decode(String.self, forKey: .trip_startpoint) ?? "NO Value"
+//        trip_totaldistance = try? container?.decode(String.self, forKey: .trip_totaldistance) ?? "NO Value"
+//        trip_totalfuel = try? container?.decode(String.self, forKey: .trip_totalfuel) ?? "NO Value"
+//        trip_totlatime = try? container?.decode(String.self, forKey: .trip_totlatime) ?? "NO Value"
+//        list = try! container?.decodeIfPresent([tripList].self, forKey: .list) ?? []
+//    }
 }
 
 

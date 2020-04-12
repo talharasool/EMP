@@ -52,6 +52,15 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fullCircle" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingSpacing">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance (KM)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0q-AA-yj8">
@@ -95,6 +104,18 @@
                                                     <constraint firstItem="YFr-jN-TRE" firstAttribute="centerY" secondItem="4eX-ej-Ol5" secondAttribute="centerY" id="Qz5-PN-SYX"/>
                                                     <constraint firstItem="YFr-jN-TRE" firstAttribute="centerX" secondItem="4eX-ej-Ol5" secondAttribute="centerX" id="Xfc-Jy-3ku"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullCircle" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time (m)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4O-Yp-WnW">
                                                 <rect key="frame" x="0.0" y="70" width="130" height="23"/>
@@ -137,6 +158,18 @@
                                                     <constraint firstAttribute="height" constant="50" id="qzg-q3-4rf"/>
                                                     <constraint firstItem="ycq-7y-9K7" firstAttribute="centerX" secondItem="mWC-vy-LBl" secondAttribute="centerX" id="rPE-Lc-jZF"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullCircle" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fuel (L)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oA-6W-aSx">
                                                 <rect key="frame" x="0.0" y="70" width="130" height="23"/>
@@ -279,7 +312,7 @@
                 <outlet property="alpha_destinationLbl" destination="HfQ-Ey-L0d" id="2vB-WA-pZt"/>
                 <outlet property="destinationLbl" destination="Isx-ta-OdT" id="7BL-Pv-EJ0"/>
                 <outlet property="distanceLbl" destination="xYF-M4-SYd" id="YyU-dh-mCZ"/>
-                <outlet property="distanceView" destination="t2a-Te-i6G" id="BUO-q7-HMX"/>
+                <outlet property="distanceView" destination="t2a-Te-i6G" id="PHB-2c-xbE"/>
                 <outlet property="fuelLbl" destination="ycq-7y-9K7" id="Nf8-u5-GUZ"/>
                 <outlet property="fuelView" destination="mWC-vy-LBl" id="cfS-A4-w4G"/>
                 <outlet property="timeLbl" destination="YFr-jN-TRE" id="Vdc-Cl-P4T"/>

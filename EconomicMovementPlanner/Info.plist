@@ -50,6 +50,26 @@
 				<string>com.googleusercontent.apps.959222362346-at144ki3rvehtac6s9bs5r6locjmit1o</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Bundle ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.EconomicMovementPlanner.EconomicMovementPlanner</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.EconomicMovementPlanner.EconomicMovementPlanner</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>comgooglemaps://</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>

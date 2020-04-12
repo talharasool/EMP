@@ -43,6 +43,7 @@ class TripsTableViewCell: UITableViewCell {
         
         didSet{
             
+            print("The model",self.model?.trip_endpoint,self.model?.trip_startpoint)
             self.dateLbl.text = self.model?.trip_date
             self.alpha_destinationLbl.text = self.model?.trip_endpoint
             self.destinationLbl.text = self.model?.trip_startpoint

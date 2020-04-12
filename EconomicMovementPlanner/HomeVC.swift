@@ -16,6 +16,12 @@ import Firebase
 import GoogleMobileAds
 
 
+
+struct TaylorFan {
+    fileprivate var name: String
+}
+
+
 class HomeVC: UIViewController {
     
     @IBOutlet weak var dataMainLabel: UILabel!
@@ -63,7 +69,22 @@ class HomeVC: UIViewController {
         self.setActionOnCancelTripButton()
         self.setGoogleRouteAction()
         self.setCompletionOfDistanceReaching()
+        print("The car id",AuthServices.shared.carId)
         
+        if let id = AuthServices.shared.carId{
+            
+            if id.isEmpty{
+               // self.showTemporaryAlert("Oops", "There id ni car for the trip please add the car")
+              Alert.showLoginAlert(Message:  "There id no car for the trip please add the car", title: "Oops", window: self)
+            }
+        }else{
+               Alert.showLoginAlert(Message:  "There id no car for the trip please add the car", title: "Oops", window: self)
+            // self.showTemporaryAlert("Oops", "There id ni car for the trip please add the car")
+        }
+        
+        var fan = TaylorFan(name: "Kailee")
+        fan.name = "Simon"
+        print(fan.name)
         self.showDistance()
         
         self.mapVC.resetOutletCompletion = {[unowned self] (isSingle) in
@@ -337,8 +358,10 @@ extension HomeVC {
             self.rideSelectOutlet.isHidden = true
             self.cancelBtnOutlet.isHidden = true
             self.googleMapOutlet.isHidden = true
+            self.cancelTripBtnOutlet.isHidden = true
             self.mapVC.getUserCurrentPlaceName()
             self.mapVC.actionOnCancelButtonPress()
+            self.mapVC.polyline.map = nil
             self.cancelBtnOutlet.backgroundColor = UIColor.gray
             
         }else{
@@ -347,7 +370,10 @@ extension HomeVC {
             self.okBtnOutlet.isHidden = true
             self.dropPointOutlet.isHidden = false
             self.mapVC.isPinDropEnable = false
-            
+            self.mapVC.getUserCurrentPlaceName()
+            if self.mapVC.getCountOfLocArray() == 0{}
+            self.mapVC.googleMapView.clear()
+            self.mapVC.actionOnCancelButtonPress()
             
             
         }
@@ -362,17 +388,25 @@ extension HomeVC {
         self.okBtnOutlet.isHidden = true
         self.mapVC.isPinDropEnable = false
         
-       self.mapVC.placeTempMarkerAtCoordinate(geoCoordinates: self.mapVC.draggingCoordinate)
-       self.mapVC.resetPointers()
-        
-        if self.mapVC.isDraggigMarkerOnMap == true{
-             
-        }else{
+        if self.mapVC.draggingCoordinate !=  nil{
+            self.mapVC.placeTempMarkerAtCoordinate(geoCoordinates: self.mapVC.draggingCoordinate)
             
-            
-            print("Dragging is not enable yet")
+        }else{print("Dragging coordinates are nil here")
+
         }
-      
+        
+        if self.mapVC.searchCoordinate != nil{
+            self.mapVC.placeTempMarkerAtCoordinate(geoCoordinates: self.mapVC.searchCoordinate)
+        }
+        
+        if (self.mapVC.draggingCoordinate == nil && self.mapVC.searchCoordinate ==  nil && self.mapVC.getCountOfLocArray() == 0){
+            self.rideSelectOutlet.isHidden = true
+            self.mapVC.googleMapView.clear()
+        }else  if (self.mapVC.draggingCoordinate == nil && self.mapVC.searchCoordinate ==  nil && (self.mapVC.getCountOfLocArray()! > 0)){
+            self.mapVC.dragMarker.map = nil
+        }
+        
+        self.mapVC.resetPointers()
         
         
     }
@@ -394,6 +428,8 @@ extension HomeVC : GMSAutocompleteViewControllerDelegate{
             let address  = place.addressComponents?.first?.name ?? ""
             print("\n Ye to kisi place pe nhi likha",place.name,place.coordinate,address)
             self.mapVC.placeName = place.name ?? ""
+            self.mapVC.searchCoordinate = place.coordinate
+            
             self.mapVC.setMarkerFromSearchLocation(locCoordinate: place.coordinate)
             
         })

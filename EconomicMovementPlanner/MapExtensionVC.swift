@@ -19,12 +19,16 @@ class MapExtensionVC: UIViewController {
     @IBOutlet weak var googleMapView: GMSMapView!
     
     var placeMarker  = GMSMarker()
+    var dragMarker  = GMSMarker()
+    var searchMarker  = GMSMarker()
     let geoCoder = GMSGeocoder()
     var locationManager : LocManager!
     
-
     var placesClient: GMSPlacesClient!
+    
     var draggingCoordinate : CLLocationCoordinate2D!
+    var searchCoordinate : CLLocationCoordinate2D!
+    
     var currentCoordinates = (lat : 0.0, lang : 0.0)
     var locationCoordinates = (lat : 0.0, lang : 0.0)
     var userLocationArray : [CoordinatesValue?] = []
@@ -40,10 +44,11 @@ class MapExtensionVC: UIViewController {
     var distanceRemainCompletion  : (()->())?
     var resetOutletCompletion  : ((Bool)->())?
     var dummyCompletion  : ((String)->())?
+    var ismine : Bool = false
     
     var polyline = GMSPolyline()
     
-    var timer : Timer!
+    var timer : Timer?
     var curretDiatance : Double? = 0.0
     var coveredDiatance : Double? = 0.0
     var currentTime : Double? = nil
@@ -83,9 +88,9 @@ class MapExtensionVC: UIViewController {
 
 extension MapExtensionVC{
     
-
-    func getCurrentPositionName(coordinates : CLLocation,comp : ((String?, String?)->())?){
     
+    func getCurrentPositionName(coordinates : CLLocation,comp : ((String?, String?)->())?){
+        
         var coreLocGeoCoder = CLGeocoder()
         
         coreLocGeoCoder.reverseGeocodeLocation(coordinates) { (places, err) in
@@ -107,7 +112,7 @@ extension MapExtensionVC{
     func getUnixDate()->Double{
         let date = NSDate() // current date
         let unixtime = date.timeIntervalSince1970
-     //   self.curretDiatance = unixtime
+        //   self.curretDiatance = unixtime
         print("\n\n The current unix time",unixtime)
         let timeStamp = Date.init(timeIntervalSinceNow: unixtime)
         print("\n\n The New Time Stamp here",timeStamp)
@@ -123,7 +128,7 @@ extension MapExtensionVC {
     
     
     func getLocationNameFromGeoCode(_ coordinate : CLLocationCoordinate2D, completion  :@escaping ((CoordinatesValue?)->())){
-    
+        
         geoCoder.reverseGeocodeCoordinate(coordinate) { (placeValue, err) in
             
             if err != nil {completion(nil);return}
@@ -138,9 +143,9 @@ extension MapExtensionVC {
                 if placeTitle.isEmpty{
                     placeTitle = singleAddress.locality ?? ""
                 }
-               
+                
                 let tempAddress = CoordinatesValue(lineString: placeAddress, title: placeTitle, startPoint: "", lat: coordinate.latitude, long: coordinate.longitude,isSelect: false, isCompleted: false, timeAndDate: self.getUnixDate())
-       
+                
                 
                 self.placeName = ""
                 completion(tempAddress)
@@ -190,7 +195,7 @@ extension MapExtensionVC{
             marker.icon = nil
             marker.map = self.googleMapView
             self.userLocationArray.append(resp)
-            self.placeMarker.icon = UIImage()
+            //self.placeMarker.icon = UIImage()
             print("\n\nThe count of the located array is here", self.getCountOfLocArray() ?? 0)
         }
     }
@@ -201,13 +206,50 @@ extension MapExtensionVC{
         let camera = GMSCameraPosition.camera(withLatitude: locCoordinate.latitude, longitude: locCoordinate.longitude, zoom: 16)
         self.googleMapView.animate(to: camera)
         // self.callGoogleMap(lat: locCoordinate.latitude, long: locCoordinate.longitude)
-        self.draggingCoordinate = locCoordinate
+        //   self.draggingCoordinate = locCoordinate
         let image = UIImage(named: "pins")
-        self.placeMarker = GMSMarker(position: locCoordinate)
-        self.placeMarker.isDraggable = true
-        self.placeMarker.icon = image
-        self.placeMarker.map = self.googleMapView
+        //        self.placeMarker = GMSMarker(position: locCoordinate)
+        //        self.placeMarker.isDraggable = true
+        //        self.placeMarker.icon = image
+        //        self.placeMarker.map = self.googleMapView
+        
+//        let marker = GMSMarker(position: locCoordinate)
+//        marker.icon = nil
+//        marker.icon = image
+//        marker.isDraggable = true
+//        marker.userData = "Search"
+//        marker.title = "Search"
+//        marker.tracksViewChanges = true
+//        marker.map = self.googleMapView
+        
+        self.searchMarker = GMSMarker(position: locCoordinate)
+       // self.searchMarker.icon = nil
+        self.searchMarker.icon = image
+        self.searchMarker.isDraggable = true
+        self.searchMarker.userData = "Search"
+        self.searchMarker.title = "Search"
+      //  self.searchMarker.tracksViewChanges = true
+        self.searchMarker.map = self.googleMapView
+        
+        
+    }
     
+    
+    
+    func setMarkerFromLocation(locCoordinate : CLLocationCoordinate2D){
+        
+        print("The location coordinate for placement", locCoordinate.latitude,locCoordinate.longitude)
+        let camera = GMSCameraPosition.camera(withLatitude: locCoordinate.latitude, longitude: locCoordinate.longitude, zoom: 16)
+        self.googleMapView.animate(to: camera)
+        // self.callGoogleMap(lat: locCoordinate.latitude, long: locCoordinate.longitude)
+        //   self.draggingCoordinate = locCoordinate
+        let image = UIImage(named: "pins")
+        self.dragMarker = GMSMarker(position: locCoordinate)
+        self.dragMarker.isDraggable = true
+        self.dragMarker.icon = image
+        self.dragMarker.title = "Drag"
+        self.dragMarker.map = self.googleMapView
+        
     }
     
     func addPlaceValueOnOkButton(){}
@@ -225,7 +267,7 @@ extension MapExtensionVC{
             DispatchQueue.main.async {
                 self.currentCoordinates = (lat: lat!, lang : lang!)
                 let cuurentPosition  = CLLocationCoordinate2D(latitude: lat!, longitude: lang!)
-                self.setMarkerFromSearchLocation(locCoordinate: cuurentPosition )
+                self.setMarkerFromLocation(locCoordinate: cuurentPosition )
             }
             
         }
@@ -263,11 +305,18 @@ extension MapExtensionVC : GMSMapViewDelegate{
         print("\nYeh to drag ho ga")
         print(mapView.myLocation?.coordinate)
         self.isDraggigMarkerOnMap = true
+        //  print("The name of the coordinate is here",mapView.selectedMarker?.userData,mapView.selectedMarker?.title)
     }
     
     func resetPointers(){
+        
         self.isDraggigMarkerOnMap = false
         self.draggingCoordinate = nil
+        self.searchCoordinate = nil
+        self.searchMarker.map = nil
+        self.placeMarker.isDraggable = false
+        self.dragMarker.map = nil
+        
     }
     
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
@@ -280,12 +329,29 @@ extension MapExtensionVC : GMSMapViewDelegate{
         //              print("Dragging is not working")
         //          }
         //
+        print("The name of the coordinate is here",marker.title,marker.userData)
         
-        if  let coordinate = mapView.myLocation?.coordinate{
-            print(coordinate)
-            self.draggingCoordinate = marker.position
-            
+        if let title  = marker.title{
+        
+            if title ==  "Drag"{
+                if  let coordinate = mapView.myLocation?.coordinate{
+                    print(coordinate)
+                    self.draggingCoordinate = marker.position
+                }
+            }else{
+               // self.searchCoordinate = nil
+                if  let coordinate = mapView.myLocation?.coordinate{
+                    print(coordinate)
+                    self.searchCoordinate = marker.position
+                    
+                }
+            }
         }
+//        if  let coordinate = mapView.myLocation?.coordinate{
+//            print(coordinate)
+//            self.draggingCoordinate = marker.position
+//
+//        }
         
         //
         // self.placeMarkerOnMapOnButtonTap(coordinate: marker.position)
@@ -294,7 +360,7 @@ extension MapExtensionVC : GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
         print("\n Ye to ho ga",mapView.myLocation?.description)
-        self.draggingCoordinate = marker.position
+      //  self.draggingCoordinate = marker.position
     }
     
     @objc func placeTempMarkerAtCoordinate(geoCoordinates : CLLocationCoordinate2D){
@@ -303,6 +369,7 @@ extension MapExtensionVC : GMSMapViewDelegate{
             guard let resp = response else{print("\n\n :: Unable to get location name");return}
             _ = #imageLiteral(resourceName: "pins")
             let marker = GMSMarker(position: geoCoordinates)
+            
             marker.icon = nil
             marker.map = self.googleMapView
             self.placeMarker.icon = UIImage()
@@ -450,7 +517,7 @@ extension MapExtensionVC {
             }
             DispatchQueue.main.async {
                 self.callGoogleMap(lat: lat!, long: lang!)
-               
+                
             }
         }
     }
@@ -460,8 +527,14 @@ extension MapExtensionVC {
     
     
     func pauseTimer(){
+        
         self.locationManager.stopUpdateLocation()
-        timer.invalidate()
+        guard let time = timer?.invalidate() else {
+            print("Timer is not nil")
+            return}
+        
+        print("Calling timer")
+        time
     }
     
     
@@ -487,13 +560,14 @@ extension MapExtensionVC {
                 
                 self.currentCoordinates = (lat: lat!, lang : lang!)
                 let currCor = CLLocationCoordinate2D(latitude: lat!, longitude: lang!)
-              //  self.callGoogleMap(lat: lat!, long: lat!)
+                //  self.callGoogleMap(lat: lat!, long: lat!)
                 
                 print("\n\nThe current Lat and Lang",lat,lang)
                 guard let destValue = self.userLocationArray.first else{return}
                 let dest = CLLocationCoordinate2D(latitude: destValue?.lat ?? 0.0, longitude: destValue?.long ?? 0.0)
                 
                 DispatchQueue.main.async {
+                    self.ismine = true
                     self.drawPolygonForLocation(src: currCor, dst: dest, completion: nil, err: nil)
                     print("\n\n the temp coordinates",tempCoordinate,currCor)
                     print("\n\n The value after updation of distance",self.calculateDistance(tempCoordinate, currCor))
@@ -588,9 +662,17 @@ extension MapExtensionVC{
                                 self.googleMapView.clear()
                                 //self.setupNavigationBtn(alpha: 1)
                                 let path = GMSPath(fromEncodedPath: polyString)
+                                self.polyline.map = nil
                                 self.polyline = GMSPolyline(path: path)
                                 self.polyline.strokeWidth = 8.0
-                                self.polyline.strokeColor = UIColor.init(netHex: 0x1565C0)
+                                if self.ismine == true{
+                                      self.polyline.strokeColor = UIColor.red
+                                }else{
+                                     self.ismine = false
+                                    
+                                }
+                                  self.polyline.strokeColor = UIColor.init(netHex: 0x1565C0)
+                              
                                 self.polyline.map = self.googleMapView
                                 let placeMarker = GMSMarker(position: dst)
                                 placeMarker.icon = nil
@@ -622,8 +704,8 @@ extension MapExtensionVC {
     
     func actionOnReachingToOneEndPoint(){
         self.pauseTimer()
-       // self.coveredDiatance = 0.0
-      //  self.curretDiatance = 0.0
+        // self.coveredDiatance = 0.0
+        //  self.curretDiatance = 0.0
         
     }
     
@@ -654,7 +736,7 @@ extension MapExtensionVC {
             }
             
         }else{
-            print("Error in finfinf data")
+            print("Error in finishing data")
             Alert.showLoginAlert(Message: "Sorry for inconvienece", title: "Something went wrong while adding data", window: self)
         }
         
@@ -674,6 +756,7 @@ extension MapExtensionVC {
             }else{
                 newDB = newDB.child(self.currentDBKey)
             }
+            
             let newID = DBRef.child("Routes").child(userID).child(carID).childByAutoId()
             print("The New Id Is here :: \(newID)")
             let milage = Int(CarManger.shared.singleCarData.Mileage ?? "0")
@@ -684,29 +767,27 @@ extension MapExtensionVC {
             let totalTime = self.startTime! + eTime
             print("\n\n:->)The end time is here",totalTime)
             
-            
-         
-//
+            //
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.minute]
             formatter.unitsStyle = .abbreviated
             var formatted = formatter.string(from: eTime) ?? ""
             print(formatted)
-                //
+            //
             
             
             let listObject = tripServerData(date_record: self.startTime!.getDateStringFromUTC(), distance: String(describing: self.coveredDiatance ?? 0.0), endpoint: addedObject.lineString!, fuel: String(describing: fuel ?? 0.0), startpoint: self.userPinLocation, time: formatted.replacingOccurrences(of: "m", with: ""))
-                     
+            
             
             formatted = formatted.replacingOccurrences(of: "m", with: "")
-    
+            
             self.serverObj.append(listObject)
             let values  = ["trip_date:" : self.startTime!.getDateStringFromUTC(),
                            "trip_endpoint:":addedObject.lineString!,
                            "trip_startpoint:":self.userPinLocation,
                            "trip_totaldistance":String(describing : self.coveredDiatance!),
                            "trip_totalfuel" :String(describing: fuel),
-                           "trip_totlatime":formatted] as [String : Any]
+                           "trip_totlatime":String(describing: formatted)] as [String : Any]
             
             
             print("\n\nParameter before saving is here")
@@ -726,21 +807,21 @@ extension MapExtensionVC {
                 
                 let listKey = newDB.child("list")
                 self.currentDBKey = newDB.key ?? ""
-
-                 listKey.setValue(tempArray)
+                
+                listKey.setValue(tempArray)
                 
                 
                 print("The values in the server object")
                 self.getDataTripDataFromFirebase(dbID: self.currentDBKey) { (isShown,  message) in
                     if isShown{
-                          completion(true, message)
+                        completion(true, message)
                     }else{
                         completion(false,message)
                     }
                     
                 }
                 
-   
+                
             }
             
         }else{
@@ -755,16 +836,16 @@ extension MapExtensionVC {
 
 
 //                for (index , val) in self.serverObj.enumerated(){
-   //
-   //                    self.tempArray.append(val.valDict())
-   //                }
-   //
-   //                print(self.tempArray)
-   //                let arryVal = newDB.child("list")
-   //                // let arrayDict : [[:]] = []
-   //
-   //
-   //                let mapVal = self.serverObj.map({_ in NSArray(array: self.serverObj)})
-   //                print(mapVal)
-   //                arryVal.setValue(self.tempArray)
-   //                completion(true)
+//
+//                    self.tempArray.append(val.valDict())
+//                }
+//
+//                print(self.tempArray)
+//                let arryVal = newDB.child("list")
+//                // let arrayDict : [[:]] = []
+//
+//
+//                let mapVal = self.serverObj.map({_ in NSArray(array: self.serverObj)})
+//                print(mapVal)
+//                arryVal.setValue(self.tempArray)
+//                completion(true)

@@ -10,6 +10,11 @@ import UIKit
 
 class RoutesViewController: UIViewController {
     
+    @IBOutlet weak var fuelLbl: UILabel!
+    @IBOutlet weak var timeinminlbl: UILabel!
+    @IBOutlet weak var distanceLbl: UILabel!
+    @IBOutlet weak var routeDetails: UILabel!
+    @IBOutlet weak var backOutlet: UIButton!
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -27,7 +32,7 @@ class RoutesViewController: UIViewController {
     //OUTLETS
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var disLbl: UILabel!
-    @IBOutlet weak var fuelLbl: UILabel!
+    @IBOutlet weak var fulLbl: UILabel!
     @IBOutlet weak var carNameLbl: UILabel!
     @IBOutlet weak var avgLbl: UILabel!
     
@@ -60,6 +65,12 @@ class RoutesViewController: UIViewController {
         self.setDataOnLabels()
         print(listData.count)
         
+        self.routeDetails.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.routeDetail.rawValue, comment: "")
+        self.backOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.back.rawValue, comment: ""), for: .normal)
+        
+        fulLbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.fuel.rawValue, comment: "")
+        timeinminlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
+        disLbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
         
         print("The list of new data is here\n\n",self.listData.count)
        

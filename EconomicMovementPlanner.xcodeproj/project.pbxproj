@@ -18,6 +18,8 @@
 		BC18D5202335EF3B003B243A /* RoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */; };
 		BC18D5212335EF3B003B243A /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */; };
 		BC18D5232335F5EC003B243A /* viewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC18D5222335F5EC003B243A /* viewExt.swift */; };
+		BC20E0C52485EDE500BD9DD1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC20E0C72485EDE500BD9DD1 /* Localizable.strings */; };
+		BC20E0CA2485EE1D00BD9DD1 /* LocalizationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC20E0C92485EE1D00BD9DD1 /* LocalizationSystem.swift */; };
 		BC36963523376F4A0021C8C2 /* HomeVCExtold.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36963423376F4A0021C8C2 /* HomeVCExtold.swift */; };
 		BC41D5C32291507C008564BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5C22291507C008564BF /* AppDelegate.swift */; };
 		BC41D5C52291507C008564BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5C42291507C008564BF /* ViewController.swift */; };
@@ -97,6 +99,11 @@
 		BC18D51E2335EF3B003B243A /* RoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewCell.swift; sourceTree = "<group>"; };
 		BC18D51F2335EF3B003B243A /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
 		BC18D5222335F5EC003B243A /* viewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewExt.swift; sourceTree = "<group>"; };
+		BC20E0C12485ED3600BD9DD1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		BC20E0C22485ED3800BD9DD1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC20E0C62485EDE500BD9DD1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC20E0C82485EDE900BD9DD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC20E0C92485EE1D00BD9DD1 /* LocalizationSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationSystem.swift; sourceTree = "<group>"; };
 		BC36963423376F4A0021C8C2 /* HomeVCExtold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCExtold.swift; sourceTree = "<group>"; };
 		BC41D5BF2291507C008564BF /* EconomicMovementPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EconomicMovementPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC41D5C22291507C008564BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -217,8 +224,10 @@
 				BC9124E8232CFBB9006DB4BD /* EconomicMovementPlanner.entitlements */,
 				BC41D5C22291507C008564BF /* AppDelegate.swift */,
 				BC02945222F6F6830039A4FD /* Models.swift */,
+				BC20E0C72485EDE500BD9DD1 /* Localizable.strings */,
 				BC02945422F70DBE0039A4FD /* ImageExt.swift */,
 				BC41D5C42291507C008564BF /* ViewController.swift */,
+				BC20E0C92485EE1D00BD9DD1 /* LocalizationSystem.swift */,
 				BC02945622F73B5E0039A4FD /* DatabaseService.swift */,
 				BCB9F016229E8CF70027269A /* RegisterVC.swift */,
 				BCF09A8D22B4CAA60058378D /* SocialViewController.swift */,
@@ -422,6 +431,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = BC41D5B62291507C008564BF;
 			productRefGroup = BC41D5C02291507C008564BF /* Products */;
@@ -441,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC41D5D02291507F008564BF /* LaunchScreen.storyboard in Resources */,
+				BC20E0C52485EDE500BD9DD1 /* Localizable.strings in Resources */,
 				BC41D5CD2291507F008564BF /* Assets.xcassets in Resources */,
 				BC86998F2371526E00626A2E /* ForgotVC.xib in Resources */,
 				BC9C28AA230E6BFF009177AC /* PacesTableXIB.xib in Resources */,
@@ -605,6 +616,7 @@
 				BC66595A229EB9AC007EFD40 /* DrawerVC.swift in Sources */,
 				BC66596722A1A715007EFD40 /* CarsTVCell.swift in Sources */,
 				BCF09A8E22B4CAA60058378D /* SocialViewController.swift in Sources */,
+				BC20E0CA2485EE1D00BD9DD1 /* LocalizationSystem.swift in Sources */,
 				BCF8532E232E0E9600FC3135 /* TripsTableViewCell.swift in Sources */,
 				BCEDCAAD22955F520011380D /* MenuVC.swift in Sources */,
 				BC18D5232335F5EC003B243A /* viewExt.swift in Sources */,
@@ -651,10 +663,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BC20E0C72485EDE500BD9DD1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC20E0C62485EDE500BD9DD1 /* ar */,
+				BC20E0C82485EDE900BD9DD1 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BC41D5C62291507C008564BF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BC41D5C72291507C008564BF /* Base */,
+				BC20E0C12485ED3600BD9DD1 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -663,6 +685,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BC41D5CF2291507F008564BF /* Base */,
+				BC20E0C22485ED3800BD9DD1 /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -674,6 +697,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -735,6 +759,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -801,7 +826,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 9.3.1;
+				MARKETING_VERSION = 9.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EconomicMovementPlanner.EconomicMovementPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -824,7 +849,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 9.3.1;
+				MARKETING_VERSION = 9.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EconomicMovementPlanner.EconomicMovementPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

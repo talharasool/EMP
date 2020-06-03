@@ -59,8 +59,8 @@ class DrawerVC: UIViewController {
         
     }
     
-    var menuItems = [DrawerItems(name: "Home", image: #imageLiteral(resourceName: "home")),DrawerItems(name: "My Cars", image: #imageLiteral(resourceName: "basecar")),DrawerItems(name: "My Trips", image: #imageLiteral(resourceName: "trip")),DrawerItems(name: "Add Cars", image: #imageLiteral(resourceName: "ic_add")),DrawerItems(name: "Setting", image: #imageLiteral(resourceName: "settings-cog")),
-                     DrawerItems(name: "Logout", image: #imageLiteral(resourceName: "logout"))]
+    var menuItems = [DrawerItems(name: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Home.rawValue, comment: ""), image: #imageLiteral(resourceName: "home")),DrawerItems(name: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.mycars.rawValue, comment: ""), image: #imageLiteral(resourceName: "basecar")),DrawerItems(name: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.mytrips.rawValue, comment: ""), image: #imageLiteral(resourceName: "trip")),DrawerItems(name: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.AddCar.rawValue, comment: ""), image: #imageLiteral(resourceName: "ic_add")),DrawerItems(name: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.settings.rawValue, comment: ""), image: #imageLiteral(resourceName: "settings-cog")),
+                     DrawerItems(name: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.settings.rawValue, comment: ""), image: #imageLiteral(resourceName: "logout"))]
     
     
     override func viewDidLoad() {

@@ -52,9 +52,15 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Home"
+        
+   self.okBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.OK.rawValue, comment: ""), for: .normal)
+        self.cancelBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Cancel.rawValue, comment: ""), for: .normal)
+        self.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Home.rawValue, comment: "")
+        self.endRouteBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.EndRoute.rawValue, comment: ""), for: .normal)
         self.navigationController?.setUpBarColor()
         self.navigationController?.setUpTitleColor()
+        
+        self.cancelTripBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.CANCELTRIP.rawValue, comment: ""), for: .normal)
         
         self.setRoundness()
         self.setUpAddBanner()
@@ -125,6 +131,12 @@ class HomeVC: UIViewController {
     
     @IBAction func menuButtonAction(_ sender: Any) {
         let drawer : KYDrawerController  = self.navigationController?.parent as! KYDrawerController
+        
+        if LocalizationSystem.sharedInstance.getLanguage() == "en"{
+            drawer.drawerDirection = .left
+        }else{
+            drawer.drawerDirection = .right
+        }
         drawer.setDrawerState(KYDrawerController.DrawerState.opened, animated: true)
     }
     
@@ -206,14 +218,18 @@ extension HomeVC {
 
 extension HomeVC : GADBannerViewDelegate{
     
-    func setUpAddBanner(){ DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { self.addBanner() }}
+    func setUpAddBanner(){
+        self.addBanner()
+    }
     
     func addBanner(){
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width - 20, height: 30))
-        googleAdBanner.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+       googleAdBanner.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+       // googleAdBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         googleAdBanner.rootViewController = self
         googleAdBanner.delegate = self
-        googleAdBanner.load(GADRequest())
+        let rq = GADRequest()
+        googleAdBanner.load(rq)
     }
 }
 

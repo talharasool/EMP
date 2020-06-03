@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -454,16 +454,23 @@
             <connections>
                 <outlet property="alpha_destinationLbl" destination="SR0-Nt-kZK" id="jWD-Q5-Rah"/>
                 <outlet property="avgLbl" destination="ZXf-iL-dEd" id="JCc-c6-R9C"/>
+                <outlet property="avrglbl" destination="8st-Fc-eeh" id="V4h-0x-gCQ"/>
                 <outlet property="carImgView" destination="w1x-U9-Jup" id="6k6-Wu-GDz"/>
+                <outlet property="carlbl" destination="lmm-J7-tXN" id="jH4-uf-LSB"/>
                 <outlet property="dateLbl" destination="lEI-41-PD2" id="qyu-Mu-FiL"/>
                 <outlet property="destinationLbl" destination="iSD-b6-rx9" id="ZYS-a2-AtB"/>
                 <outlet property="distanceLabel" destination="5TX-Ii-H9I" id="scj-Zx-pDR"/>
                 <outlet property="distanceView" destination="gHD-Lt-h1C" id="Hon-Qc-eLf"/>
+                <outlet property="dlbl" destination="Hve-r1-Dzv" id="4IE-C4-lKF"/>
+                <outlet property="flbl" destination="3s0-gF-wLS" id="TXu-m5-KOQ"/>
                 <outlet property="fuelLabel" destination="a8m-TX-C5h" id="Xzp-Yd-BdK"/>
                 <outlet property="fuelView" destination="Crx-8k-hP6" id="Dfu-Su-X8i"/>
                 <outlet property="nameLbl" destination="8iy-06-PVX" id="js5-rE-0qj"/>
+                <outlet property="nlbl" destination="fGx-6D-IMj" id="cm5-4b-4a9"/>
+                <outlet property="routelbl" destination="80E-TR-0Ll" id="Tzh-rA-UBN"/>
                 <outlet property="timeLabel" destination="TnX-1H-Vfj" id="glP-ng-vel"/>
                 <outlet property="timeView" destination="vW2-aZ-udD" id="OYe-pP-IeE"/>
+                <outlet property="tlbl" destination="PQV-r3-qmF" id="kPA-8Q-dcP"/>
             </connections>
             <point key="canvasLocation" x="205.79710144927537" y="94.419642857142847"/>
         </tableViewCell>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,16 +11,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RoutesViewController" customModule="EconomicMovementPlanner" customModuleProvider="target">
             <connections>
                 <outlet property="avgLbl" destination="2Yr-VT-M2V" id="Gi8-rS-tSU"/>
+                <outlet property="backOutlet" destination="RWe-7h-JzJ" id="R2d-tc-iga"/>
                 <outlet property="carImgView" destination="8bX-ij-RuV" id="pFy-Xv-RIV"/>
                 <outlet property="carNameLbl" destination="u9t-eP-UKB" id="hyH-Yv-h6O"/>
                 <outlet property="detailTV" destination="dSL-yv-dq2" id="vEW-VD-9eU"/>
                 <outlet property="disLbl" destination="zFj-TW-t6a" id="6eh-K6-Yfm"/>
+                <outlet property="distanceLbl" destination="2QV-in-XLm" id="NX0-UG-4dK"/>
                 <outlet property="distanceView" destination="1bo-QO-f9e" id="47L-Yn-1l8"/>
-                <outlet property="fuelLbl" destination="001-hC-dS0" id="KDg-W5-3P1"/>
                 <outlet property="fuelView" destination="Qlg-4z-oDp" id="Des-mO-gBM"/>
+                <outlet property="routeDetails" destination="dir-Bc-7Tn" id="D3c-Ol-Y2q"/>
                 <outlet property="selectedImgView" destination="BzI-t0-v7C" id="hHo-9n-Mi9"/>
                 <outlet property="timeLbl" destination="UhG-7Q-h1O" id="MVr-yj-Y6W"/>
                 <outlet property="timeView" destination="GpT-mH-NEE" id="5xF-Am-qqi"/>
+                <outlet property="timeinminlbl" destination="waF-Qa-ffn" id="N0Z-Ff-b1t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

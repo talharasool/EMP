@@ -13,6 +13,9 @@ import SDWebImage
 class RoutesTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var flbl: UILabel!
+    @IBOutlet weak var tlbl: UILabel!
+    @IBOutlet weak var dlbl: UILabel!
     static let reuseIdentifier = "RoutesTableViewCell"
     
     @IBOutlet weak var distanceLbl: UILabel!
@@ -98,6 +101,12 @@ class RoutesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.tlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
+        
+        self.dlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
+        
+        self.fuelLbl.text  = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.fuel.rawValue, comment: "")
         
         
     }

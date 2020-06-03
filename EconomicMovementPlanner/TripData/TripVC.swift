@@ -67,6 +67,7 @@ extension TripVC : GADBannerViewDelegate{
         //addBannerViewToView(bannerView)
         
         gadView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+       //   gadView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         gadView.rootViewController = self
         gadView.delegate = self
     

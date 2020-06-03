@@ -15,6 +15,8 @@ class ChangePasswordVC: UIViewController {
         didSet{self.passTextField.delegate = self}
     }
     
+    @IBOutlet weak var changePasswordLabel: UILabel!
+    @IBOutlet weak var headLabel: UILabel!
     @IBOutlet weak var resetPassword: UIButton!
     
     var currentUser : User?
@@ -22,6 +24,16 @@ class ChangePasswordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        changePasswordLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.change_password.rawValue, comment: "")
+        
+        headLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.enter_a_secure_password_txt.rawValue, comment: "")
+    
+        resetPassword.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.reset_password.rawValue, comment: ""), for: .normal)
+        
+        passTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Password.rawValue, comment: "")
+
 
         if let user = self.currentUser{
             print(user.name,user.phone,user.id,user.auth_id)

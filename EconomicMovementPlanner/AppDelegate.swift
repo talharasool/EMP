@@ -43,7 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         IQKeyboardManager.shared.enable =  true
         FirebaseApp.configure()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().start { (val) in
+            print(val.accessibilityActivate())
+            print(val.adapterStatusesByClassName)
+        }
+    //    GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["34e46b3f7ae40955a29f3fe146dd71f9"]
         FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = GSignID
         GIDSignIn.sharedInstance().delegate = self

@@ -16,7 +16,7 @@ class CarMenuVC: UIViewController {
     @IBOutlet weak var userPssword: UITextField!
     @IBOutlet weak var userPhoneNumber: UITextField!
     
-     let activity = UIActivityIndicatorView()
+    let activity = UIActivityIndicatorView()
     
     var selectedImage : UIImage! = nil
     
@@ -26,15 +26,17 @@ class CarMenuVC: UIViewController {
     var passwordtext : String = ""
     var phonetext : String = ""
     
+    @IBOutlet weak var addcarOutlet: UILabel!
     var imagePickerController : ImagePickerUtils!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
         imagePickerController = ImagePickerUtils(delegate: self, pickerViewController: self)
         updateProfileAction.addTarget(self, action: #selector(updateUserprofile(sender:)), for: .touchUpInside)
         
-        self.title = "Add Car"
+        self.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.AddCar.rawValue, comment: "")
         self.addBanner()
         
         self.navigationController?.setUpBarColor()
@@ -43,6 +45,16 @@ class CarMenuVC: UIViewController {
         self.view.setBackground(imageName: "background")
         setUpImageViewTap()
         setUpMenuButton()
+        
+        self.updateProfileAction.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.AddCar.rawValue, comment: ""), for: .normal)
+        
+        self.username.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Make.rawValue, comment: "")
+        self.userPssword.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Mileage.rawValue, comment: "")
+        self.userPhoneNumber.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Model.rawValue, comment: "")
+        
+        self.addcarOutlet.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.AddCar.rawValue, comment: "")
+        
+        self.uploadImageBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.UploadImage.rawValue, comment: ""), for: .normal)
         
     }
     
@@ -96,7 +108,7 @@ extension CarMenuVC : StoryboardInitializable, ImagePickerUtilsDelegate{
 extension CarMenuVC {
     
     @objc func updateUserprofile(sender : UIButton){
-   
+        
         usernametext = username.text!; passwordtext = userPssword.text!;phonetext = userPhoneNumber.text!
         
         if (usernametext.isEmpty || passwordtext.isEmpty || phonetext.isEmpty){
@@ -106,7 +118,7 @@ extension CarMenuVC {
                 Alert.showLoginAlert(Message: "", title: "Please upload the image", window: self)
                 
             }else {
-                     self.startAnimating()
+                self.startAnimating()
                 let storageRef = Storage.storage().reference().child("myImage").child(AuthServices.shared.userValue!).child("image.jpg")
                 
                 if  let imageData  = selectedImage.jpegData(compressionQuality: 0.5){
@@ -114,13 +126,13 @@ extension CarMenuVC {
                     storageRef.putData(imageData, metadata: nil) { (metaData, err) in
                         if err != nil{
                             self.stopAnimating()
-                             Alert.showLoginAlert(Message: "", title: err as! String, window: self)
+                            Alert.showLoginAlert(Message: "", title: err as! String, window: self)
                             print("error is here")
                             return
                         }
-                      
                         
-                       print(metaData)
+                        
+                        print(metaData)
                         
                         
                         guard let newImage = metaData else {return}
@@ -169,10 +181,10 @@ extension CarMenuVC {
                     print("Storage")
                 }
                 
-             
                 
                 
-               // Alert.showLoginAlert(Message: "", title: "Car added successfully", window: self)
+                
+                // Alert.showLoginAlert(Message: "", title: "Car added successfully", window: self)
                 
             }
             
@@ -261,7 +273,7 @@ extension CarMenuVC : GADBannerViewDelegate{
     
     func addBanner(){
         let adSize = GADAdSizeFromCGSize(CGSize(width: self.view.frame.width - 20, height: 50))
-
+        
         var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
         addBannerViewToView(bannerView)
         
@@ -269,31 +281,31 @@ extension CarMenuVC : GADBannerViewDelegate{
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
-
-          
+        
+        
     }
-
+    
     func addBannerViewToView(_ bannerView: GADBannerView) {
-      bannerView.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview(bannerView)
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
         view.bringSubviewToFront(bannerView)
-      view.addConstraints(
-        [NSLayoutConstraint(item: bannerView,
-                            attribute: .bottom,
-                            relatedBy: .equal,
-                            toItem: bottomLayoutGuide,
-                            attribute: .top,
-                            multiplier: 1,
-                            constant: 0),
-         NSLayoutConstraint(item: bannerView,
-                            attribute: .centerX,
-                            relatedBy: .equal,
-                            toItem: view,
-                            attribute: .centerX,
-                            multiplier: 1,
-                            constant: 0)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
         ])
-     }
+    }
     
 }
 
@@ -303,35 +315,35 @@ extension CarMenuVC{
     
     /// Tells the delegate an ad request loaded an ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-      print("adViewDidReceiveAd")
+        print("adViewDidReceiveAd")
     }
-
+    
     /// Tells the delegate an ad request failed.
     func adView(_ bannerView: GADBannerView,
-        didFailToReceiveAdWithError error: GADRequestError) {
-      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
-
+    
     /// Tells the delegate that a full-screen view will be presented in response
     /// to the user clicking on an ad.
     func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-      print("adViewWillPresentScreen")
+        print("adViewWillPresentScreen")
     }
-
+    
     /// Tells the delegate that the full-screen view will be dismissed.
     func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-      print("adViewWillDismissScreen")
+        print("adViewWillDismissScreen")
     }
-
+    
     /// Tells the delegate that the full-screen view has been dismissed.
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-      print("adViewDidDismissScreen")
+        print("adViewDidDismissScreen")
     }
-
+    
     /// Tells the delegate that a user click will open another app (such as
     /// the App Store), backgrounding the current app.
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-      print("adViewWillLeaveApplication")
+        print("adViewWillLeaveApplication")
     }
     
 }

@@ -19,12 +19,16 @@ class ForgotViewController: UIViewController {
     @IBOutlet weak var countryCodeField: UITextField!
     
     
+    @IBOutlet weak var headLabel: UILabel!
+    @IBOutlet weak var forgotlabel: UILabel!
     let activity = UIActivityIndicatorView()
     var usersArray : [User] = []
     var selectedUser : User?
     
     //  let refDb = Database.database().reference()
     
+
+    @IBOutlet weak var resetAction: UIButton!
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var signUpAction: UIButton!
     
@@ -33,6 +37,17 @@ class ForgotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        resetAction.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.reset_password.rawValue, comment: ""), for: .normal)
+
+        phoneTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.PhoneNumber.rawValue, comment: "")
+               
+       // passTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Password.rawValue, comment: "")
+        
+        headLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.password_reset_text.rawValue, comment: "")
+        
+        forgotlabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.ForgetPassword.rawValue, comment: "")
         self.addBanner()
         parentView.setBackground(imageName: "background")
   //      signUpAction.addTarget(self, action: #selector(openRegister), for: .touchUpInside)

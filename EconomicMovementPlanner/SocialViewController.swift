@@ -33,16 +33,21 @@ class SocialViewController: UIViewController {
         super.viewDidLoad()
         
         self.signInbtnOutlet.addTarget(self, action: #selector(signInSocial(sender:)), for: .touchUpInside)
-        socialTitleLabel.text = self.myTitle
-      
+        socialTitleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: (LocalStrings.SIGNIN.rawValue) , comment: "")
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        
+        
+        signInbtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.SIGNIN.rawValue, comment: ""), for: .normal)
+        passwordField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Password.rawValue, comment: "")
+        usernameField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Username.rawValue, comment: "")
+        //socialTitleLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.sos, comment: "")
         
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.signInbtnOutlet.layer.cornerRadius = self.signInbtnOutlet.frame.height/2
     }

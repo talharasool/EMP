@@ -249,6 +249,7 @@ extension CarListVC : GADBannerViewDelegate{
         addBannerViewToView(bannerView)
         
         bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+         // bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())

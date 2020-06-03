@@ -168,3 +168,63 @@ extension UIViewController {
         viewController.removeFromParent()
     }
 }
+
+
+enum LocalStrings : String{
+    
+    case Home
+    case Username
+    case Password
+    case Login
+    case Make
+    case Mileage
+    case Model
+    case UploadImage
+    case AddCar
+    case Facebook
+    case Gmail
+    case PhoneNumber
+    case ForgetPassword
+    case SIGNIN
+    case OrUseNumber
+    case Doyouhaveaccount
+    case SignUp
+    case Go
+    case Cancel
+    case MobileVerification
+    case VerificationCode
+    case Entercodereceived
+    case CANCELTRIP
+    case CANCELRide
+    case OK
+    case EndRoute
+    case Hint
+    case Information
+    case UpdateProfile
+    case ProfileDetails
+    case FirstName
+    case CreateProfile
+    case Mobile
+    case Name
+    case password_reset_text
+    case reset_password
+    case back
+    case varify_code
+    case change_password
+    case enter_new_password
+    case update_password
+    case enter_a_secure_password_txt
+    case mycars
+    case mytrips
+    case settings
+    case logout
+    case routeDetail
+    case fuel
+    case tmn
+    case dkm
+    case dlr
+    case car
+    case route
+    case average
+
+}

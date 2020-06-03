@@ -53,17 +53,31 @@ class ProfileVC: UIViewController {
         
         
         if vcIdentifier.isEmpty{
-              self.title = "Profile Setting"
+            
+                       self.updateProfileAction.setTitle(  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.UpdateProfile.rawValue, comment: ""), for: .normal)
+            
+            self.uploadImageBtnOutlet.setTitle(  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.UploadImage.rawValue, comment: ""), for: .normal)
+             self.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.ProfileDetails.rawValue, comment: "")
             self.addBanner()
               updateProfileAction.addTarget(self, action: #selector(updateUserprofile(sender:)), for: .touchUpInside)
+            
+            self.username.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Username.rawValue, comment: "")
+                       self.userPssword.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Password.rawValue, comment: "")
+                       self.userPhoneNumber.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.PhoneNumber.rawValue, comment: "")
         }else {
             
-            
-              self.title = "Create Account"
+                      self.updateProfileAction.setTitle(  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.CreateProfile.rawValue, comment: ""), for: .normal)
+                    self.uploadImageBtnOutlet.setTitle(  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.UploadImage.rawValue, comment: ""), for: .normal)
+              self.title = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.CreateProfile.rawValue, comment: "")
             print(self.socialEmail)
          
               updateProfileAction.setTitle("Create Account", for: .normal)
               updateProfileAction.addTarget(self, action: #selector(actionOnRegister(sender:)), for: .touchUpInside)
+            
+            self.username.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Username.rawValue, comment: "")
+            self.userPssword.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Password.rawValue, comment: "")
+            self.userPhoneNumber.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.PhoneNumber.rawValue, comment: "")
+            
             if !(self.socialImage.isEmpty){
              
                 if let imageURL = URL(string: self.socialImage){
@@ -710,6 +724,7 @@ extension ProfileVC : GADBannerViewDelegate{
         addBannerViewToView(bannerView)
         
         bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+      //    bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())

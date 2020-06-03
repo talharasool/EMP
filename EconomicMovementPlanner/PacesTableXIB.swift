@@ -10,6 +10,7 @@ import UIKit
 
 class PacesTableXIB: UIViewController {
     
+    @IBOutlet weak var cancelBtnOutlet: UIButton!
     @IBOutlet weak var goOutletAction: UIButton!
     
     @IBOutlet weak var listTV : UITableView!{
@@ -25,6 +26,7 @@ class PacesTableXIB: UIViewController {
     var array : [CoordinatesValue] = []
     var filterArray : [CoordinatesValue] = []
     
+    @IBOutlet weak var routeTitle: UILabel!
     //Completions here
     var compLocArray : (([CoordinatesValue])->())?
     var cancelAction : (()->())?
@@ -34,10 +36,19 @@ class PacesTableXIB: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.goOutletAction.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Go.rawValue, comment: ""), for: .normal)
+        
+        self.routeTitle.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.routeDetail.rawValue, comment: "")
+        
+        self.cancelBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Cancel.rawValue, comment: ""), for: .normal)
+        
+        
         self.listTV.tableFooterView = UIView(frame: .zero)
         self.goOutletAction.addTarget(self, action: #selector(goAction(sender:)), for: .touchUpInside)
         let nib = UINib(nibName: "NewListTVCell", bundle: nil)
         self.listTV.register(nib, forCellReuseIdentifier: id)
+        
+        
         
     }
     
@@ -57,10 +68,10 @@ class PacesTableXIB: UIViewController {
 extension PacesTableXIB{
     
     func confirmDelete(index : Int) {
-        let alert = UIAlertController(title: "Delete Route", message: "Are you sure you want to  delete route?", preferredStyle: .alert)
+        let alert = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dlr.rawValue, comment: "") , message: "", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Cancel.rawValue, comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.OK.rawValue, comment: ""), style: .default, handler: { (action) in
             
             self.array.remove(at: index)
             self.listTV.reloadData()

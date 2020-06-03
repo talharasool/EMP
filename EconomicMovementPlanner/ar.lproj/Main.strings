@@ -1,0 +1,174 @@
+
+/* Class = "UIButton"; normalTitle = "Sign up with Google"; ObjectID = "2ef-u8-c52"; */
+"2ef-u8-c52.normalTitle" = "Sign up with Google";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "2wX-kb-yxo"; */
+"2wX-kb-yxo.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "ADD CAR"; ObjectID = "66M-xP-0gC"; */
+"66M-xP-0gC.normalTitle" = "ADD CAR";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7SY-jl-gwX"; */
+"7SY-jl-gwX.text" = "Label";
+
+/* Class = "UILabel"; text = "Mobile Verification"; ObjectID = "7Zb-x1-3wq"; */
+"7Zb-x1-3wq.text" = "Mobile Verification";
+
+/* Class = "UIButton"; normalTitle = "CHANGE PASSWORD"; ObjectID = "9jq-cM-ZC2"; */
+"9jq-cM-ZC2.normalTitle" = "CHANGE PASSWORD";
+
+/* Class = "UILabel"; text = "We just need your registered Phone Number to Reset Password"; ObjectID = "9vV-RQ-neI"; */
+"9vV-RQ-neI.text" = "We just need your registered Phone Number to Reset Password";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "BaZ-ma-Uys"; */
+"BaZ-ma-Uys.normalTitle" = "OK";
+
+/* Class = "UITextField"; placeholder = "Enter Code Received"; ObjectID = "CB3-MV-fqw"; */
+"CB3-MV-fqw.placeholder" = "Enter Code Received";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "DxX-xe-I5k"; */
+"DxX-xe-I5k.normalTitle" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "FX9-d4-euV"; */
+"FX9-d4-euV.normalTitle" = "SIGN IN";
+
+/* Class = "UIButton"; normalTitle = "End Route"; ObjectID = "FxE-nT-vZP"; */
+"FxE-nT-vZP.normalTitle" = "End Route";
+
+/* Class = "UITextField"; placeholder = "MIleage (km/L)"; ObjectID = "Gdd-Fn-yWr"; */
+"Gdd-Fn-yWr.placeholder" = "MIleage (km/L)";
+
+/* Class = "UIButton"; normalTitle = "UPDATE PROFILE"; ObjectID = "GvW-hG-HQg"; */
+"GvW-hG-HQg.normalTitle" = "UPDATE PROFILE";
+
+/* Class = "UITextField"; placeholder = "Model"; ObjectID = "I1c-mX-vir"; */
+"I1c-mX-vir.placeholder" = "Model";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "ILt-KS-mKQ"; */
+"ILt-KS-mKQ.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "JFT-Gq-u2s"; */
+"JFT-Gq-u2s.placeholder" = "Name";
+
+/* Class = "UILabel"; text = "Home"; ObjectID = "JbN-TN-Lw8"; */
+"JbN-TN-Lw8.text" = "Home";
+
+/* Class = "UIButton"; normalTitle = "Sign up with Mobile Number"; ObjectID = "KjY-R6-A4f"; */
+"KjY-R6-A4f.normalTitle" = "Sign up with Mobile Number";
+
+/* Class = "UIButton"; normalTitle = "Upload Image"; ObjectID = "Mxm-wI-pSL"; */
+"Mxm-wI-pSL.normalTitle" = "Upload Image";
+
+/* Class = "UITextField"; placeholder = "Model"; ObjectID = "Ofu-j2-xGZ"; */
+"Ofu-j2-xGZ.placeholder" = "Model";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "P7M-VT-FXc"; */
+"P7M-VT-FXc.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "Quu-Dz-JEf"; */
+"Quu-Dz-JEf.placeholder" = "Phone Number";
+
+/* Class = "UIButton"; normalTitle = "My Trips"; ObjectID = "SHE-Od-xCU"; */
+"SHE-Od-xCU.normalTitle" = "My Trips";
+
+/* Class = "UILabel"; text = "Forgot Password?"; ObjectID = "SQZ-kI-iIe"; */
+"SQZ-kI-iIe.text" = "Forgot Password?";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "TAt-fA-ULy"; */
+"TAt-fA-ULy.placeholder" = "Phone Number";
+
+/* Class = "UIButton"; normalTitle = "RESET PASSWORD"; ObjectID = "WI2-V8-3MY"; */
+"WI2-V8-3MY.normalTitle" = "RESET PASSWORD";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "Wa8-J5-Vwl"; */
+"Wa8-J5-Vwl.placeholder" = "Phone Number";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "XKU-Le-FWM"; */
+"XKU-Le-FWM.placeholder" = "Phone Number";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "XQd-zO-cWd"; */
+"XQd-zO-cWd.placeholder" = "Phone Number";
+
+/* Class = "UILabel"; text = "Zaman Sandhu"; ObjectID = "Y0n-Yr-Cie"; */
+"Y0n-Yr-Cie.text" = "Zaman Sandhu";
+
+/* Class = "UIButton"; normalTitle = "Cancel Current Trip"; ObjectID = "ZkJ-OL-E9A"; */
+"ZkJ-OL-E9A.normalTitle" = "Cancel Current Trip";
+
+/* Class = "UILabel"; text = "Add Car"; ObjectID = "a11-ok-l3e"; */
+"a11-ok-l3e.text" = "Add Car";
+
+/* Class = "UITextField"; placeholder = "Make"; ObjectID = "f3b-Ss-p53"; */
+"f3b-Ss-p53.placeholder" = "Make";
+
+/* Class = "UILabel"; text = "Information"; ObjectID = "f6a-yF-QiM"; */
+"f6a-yF-QiM.text" = "Information";
+
+/* Class = "UILabel"; text = "Add Car"; ObjectID = "g3c-qW-Zts"; */
+"g3c-qW-Zts.text" = "Add Car";
+
+/* Class = "UILabel"; text = "Change Password"; ObjectID = "gsa-lz-yON"; */
+"gsa-lz-yON.text" = "Change Password";
+
+/* Class = "UITextField"; placeholder = "Make"; ObjectID = "ixA-XS-Ov3"; */
+"ixA-XS-Ov3.placeholder" = "Make";
+
+/* Class = "UILabel"; text = "Car Name"; ObjectID = "mxc-rv-ewu"; */
+"mxc-rv-ewu.text" = "Car Name";
+
+/* Class = "UIButton"; normalTitle = "End Routes"; ObjectID = "mze-Ez-eTD"; */
+"mze-Ez-eTD.normalTitle" = "End Routes";
+
+/* Class = "UIButton"; normalTitle = "ADD CAR"; ObjectID = "n0U-Hm-xft"; */
+"n0U-Hm-xft.normalTitle" = "ADD CAR";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "n8J-LU-Sl0"; */
+"n8J-LU-Sl0.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Sign up with facebook"; ObjectID = "nAD-fH-4vd"; */
+"nAD-fH-4vd.normalTitle" = "Sign up with facebook";
+
+/* Class = "UIButton"; normalTitle = "Do you have account? Sign Up"; ObjectID = "nAb-Pg-Jpk"; */
+"nAb-Pg-Jpk.normalTitle" = "Do you have account? Sign Up";
+
+/* Class = "UITextField"; placeholder = "Enter Password"; ObjectID = "nCk-jJ-uIy"; */
+"nCk-jJ-uIy.placeholder" = "Enter Password";
+
+/* Class = "UIButton"; normalTitle = "Upload Image"; ObjectID = "nLa-z5-VMI"; */
+"nLa-z5-VMI.normalTitle" = "Upload Image";
+
+/* Class = "UIButton"; normalTitle = "Upload Image"; ObjectID = "q7U-Rw-joE"; */
+"q7U-Rw-joE.normalTitle" = "Upload Image";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "qnq-pc-MZM"; */
+"qnq-pc-MZM.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Verification Code"; ObjectID = "rDu-Ec-rgz"; */
+"rDu-Ec-rgz.normalTitle" = "Verification Code";
+
+/* Class = "UIButton"; normalTitle = "My Trips"; ObjectID = "rTA-HL-Nwm"; */
+"rTA-HL-Nwm.normalTitle" = "My Trips";
+
+/* Class = "UILabel"; text = "Mobile Verification"; ObjectID = "s6C-LB-HrC"; */
+"s6C-LB-HrC.text" = "Mobile Verification";
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "sVs-ri-WA5"; */
+"sVs-ri-WA5.normalTitle" = "SIGN IN";
+
+/* Class = "UITextField"; placeholder = "MIleage (km/L)"; ObjectID = "smr-mU-q6f"; */
+"smr-mU-q6f.placeholder" = "MIleage (km/L)";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password"; ObjectID = "sxd-45-YGN"; */
+"sxd-45-YGN.normalTitle" = "Forgot Password";
+
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "tEB-MH-RP7"; */
+"tEB-MH-RP7.normalTitle" = "Ok";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "vz2-nz-Ngt"; */
+"vz2-nz-Ngt.placeholder" = "Username";
+
+/* Class = "UILabel"; text = "Enter a Secure Password tat willbe use for Login"; ObjectID = "wzy-Dv-KhM"; */
+"wzy-Dv-KhM.text" = "Enter a Secure Password tat willbe use for Login";
+
+/* Class = "UIButton"; normalTitle = "Cancel Current trip"; ObjectID = "yB0-zv-F6W"; */
+"yB0-zv-F6W.normalTitle" = "Cancel Current trip";

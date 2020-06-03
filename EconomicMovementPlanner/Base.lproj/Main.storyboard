@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="chH-uj-aHT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="chH-uj-aHT">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -124,12 +124,16 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OC1-iw-jgS">
-                                        <rect key="frame" x="115" y="466" width="90" height="54"/>
+                                        <rect key="frame" x="85" y="466" width="150" height="54"/>
+                                        <color key="backgroundColor" red="1" green="0.84467804430000004" blue="0.23667460679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="JKY-SJ-Bdk"/>
-                                            <constraint firstAttribute="width" constant="90" id="Mxv-4d-ali"/>
+                                            <constraint firstAttribute="width" constant="150" id="Mxv-4d-ali"/>
                                         </constraints>
-                                        <state key="normal" image="btnImage"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="SIGN IN">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="signInAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DfG-Gn-3aP"/>
                                         </connections>
@@ -188,6 +192,8 @@
                     <connections>
                         <outlet property="appleSignInView" destination="vlJ-yV-PYd" id="iA4-Sj-HLQ"/>
                         <outlet property="countryCodeField" destination="SlM-Ok-zRe" id="44I-ID-Y0q"/>
+                        <outlet property="forgotOutlet" destination="sxd-45-YGN" id="xkE-sk-YfL"/>
+                        <outlet property="loginOutlet" destination="OC1-iw-jgS" id="rN9-P4-YqT"/>
                         <outlet property="parentView" destination="gbq-Bw-SKI" id="PRX-K7-hYp"/>
                         <outlet property="passTextField" destination="ILt-KS-mKQ" id="WkL-Zu-Q0r"/>
                         <outlet property="phoneField" destination="SlM-Ok-zRe" id="cpD-nW-GmI"/>
@@ -219,7 +225,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCF-PF-65y">
                                         <rect key="frame" x="75" y="0.0" width="150" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Verification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zb-x1-3wq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Verification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zb-x1-3wq">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1200,7 +1206,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n16-YA-KWM">
                                         <rect key="frame" x="75" y="0.0" width="150" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Verification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6C-LB-HrC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Verification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6C-LB-HrC">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1339,6 +1345,7 @@
                     </view>
                     <connections>
                         <outlet property="countryCodeField" destination="XQd-zO-cWd" id="pMg-AK-KtG"/>
+                        <outlet property="mobileVerificationLabel" destination="s6C-LB-HrC" id="fGa-4U-Fc7"/>
                         <outlet property="phoneField" destination="Wa8-J5-Vwl" id="h9L-WY-h6A"/>
                         <outlet property="signInBtnOutlet" destination="sVs-ri-WA5" id="DsN-7S-Tny"/>
                         <outlet property="varificationBtnOutlet" destination="rDu-Ec-rgz" id="8sW-an-E0X"/>
@@ -1530,6 +1537,7 @@
                         <viewLayoutGuide key="safeArea" id="yEo-wN-Oyf"/>
                     </view>
                     <connections>
+                        <outlet property="addcarOutlet" destination="a11-ok-l3e" id="Q9Z-To-b88"/>
                         <outlet property="updateProfileAction" destination="n0U-Hm-xft" id="FsU-OJ-KFB"/>
                         <outlet property="uploadImageBtnOutlet" destination="q7U-Rw-joE" id="oFp-32-0l8"/>
                         <outlet property="userImageView" destination="rIG-R8-XFZ" id="gxn-fA-M2V"/>
@@ -1707,9 +1715,12 @@
                     <navigationItem key="navigationItem" id="qLq-yB-xyM"/>
                     <connections>
                         <outlet property="countryCodeField" destination="KOh-7C-xp2" id="Yyf-D6-QME"/>
+                        <outlet property="forgotlabel" destination="SQZ-kI-iIe" id="5AY-XN-XeX"/>
+                        <outlet property="headLabel" destination="9vV-RQ-neI" id="gpF-8n-bOS"/>
                         <outlet property="parentView" destination="HZN-Ml-sc2" id="nx9-HF-DxQ"/>
                         <outlet property="phoneField" destination="KOh-7C-xp2" id="2zc-vV-zua"/>
                         <outlet property="phoneTextField" destination="TAt-fA-ULy" id="U9C-v3-iu2"/>
+                        <outlet property="resetAction" destination="WI2-V8-3MY" id="fra-GM-kKR"/>
                         <segue destination="UdW-Jl-EqV" kind="show" id="nAf-L7-bNl"/>
                     </connections>
                 </viewController>
@@ -1825,6 +1836,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="D4h-yd-Qjo"/>
                     <connections>
+                        <outlet property="changePasswordLabel" destination="gsa-lz-yON" id="Gut-so-XMn"/>
+                        <outlet property="headLabel" destination="wzy-Dv-KhM" id="zaQ-8a-DBl"/>
                         <outlet property="passTextField" destination="nCk-jJ-uIy" id="ZGU-e7-DMF"/>
                         <outlet property="resetPassword" destination="9jq-cM-ZC2" id="n9e-iT-a53"/>
                     </connections>
@@ -2028,6 +2041,7 @@
                         <viewLayoutGuide key="safeArea" id="vhc-jC-Hy6"/>
                     </view>
                     <connections>
+                        <outlet property="addcaroutlet" destination="g3c-qW-Zts" id="tky-8n-VsA"/>
                         <outlet property="updateProfileAction" destination="66M-xP-0gC" id="XNS-zd-Z2n"/>
                         <outlet property="uploadImageBtnOutlet" destination="nLa-z5-VMI" id="O4Z-Pb-q9g"/>
                         <outlet property="userImageView" destination="ZWi-vC-mgn" id="IQa-a0-jo0"/>
@@ -2099,15 +2113,16 @@
                                 </constraints>
                                 <state key="normal" image="baseline_my_location_white_18dp"/>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0X9-is-MOn" customClass="GADBannerView">
-                                <rect key="frame" x="20" y="484" width="280" height="40"/>
+                            <view contentMode="scaleToFill" restorationIdentifier="GADBannerView" translatesAutoresizingMaskIntoConstraints="NO" id="0X9-is-MOn" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="474" width="320" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="UAb-ZD-sNU"/>
+                                    <constraint firstAttribute="width" constant="320" id="S6B-ff-miQ"/>
+                                    <constraint firstAttribute="height" constant="50" id="UAb-ZD-sNU"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7M-VT-FXc">
-                                <rect key="frame" x="8" y="436" width="100" height="40"/>
+                                <rect key="frame" x="8" y="426" width="100" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="TiT-V4-kSp"/>
@@ -2119,7 +2134,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEB-MH-RP7">
-                                <rect key="frame" x="252" y="436" width="60" height="40"/>
+                                <rect key="frame" x="252" y="426" width="60" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Pvw-sV-7Ll"/>
@@ -2131,7 +2146,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxE-nT-vZP">
-                                <rect key="frame" x="120" y="423" width="80" height="53"/>
+                                <rect key="frame" x="120" y="413" width="80" height="53"/>
                                 <color key="backgroundColor" red="1" green="0.064263535019999998" blue="0.0080582268330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="oaI-p1-rCq"/>
@@ -2143,7 +2158,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkJ-OL-E9A">
-                                <rect key="frame" x="8" y="388" width="100" height="40"/>
+                                <rect key="frame" x="8" y="378" width="100" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.064263535019999998" blue="0.0080582268330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XXl-WC-o4P"/>
@@ -2168,7 +2183,6 @@
                         <constraints>
                             <constraint firstItem="P7M-VT-FXc" firstAttribute="top" secondItem="ZkJ-OL-E9A" secondAttribute="bottom" constant="8" id="1mf-pj-azF"/>
                             <constraint firstItem="dEe-oE-9H2" firstAttribute="leading" secondItem="7SY-jl-gwX" secondAttribute="trailing" constant="10" id="2qJ-Oq-80u"/>
-                            <constraint firstItem="0X9-is-MOn" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="20" id="3oo-rv-8HD"/>
                             <constraint firstItem="tda-Ow-Xf1" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="8" id="6Ae-Zm-zdX"/>
                             <constraint firstItem="0X9-is-MOn" firstAttribute="top" secondItem="tEB-MH-RP7" secondAttribute="bottom" constant="8" id="7Nc-F9-m18"/>
                             <constraint firstItem="7SY-jl-gwX" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="10" id="7fy-xB-goj"/>
@@ -2186,8 +2200,8 @@
                             <constraint firstItem="W4W-f8-bII" firstAttribute="top" secondItem="b7R-Oa-C5N" secondAttribute="top" constant="228" id="VNr-NA-dZM"/>
                             <constraint firstItem="ZkJ-OL-E9A" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="8" id="Wa7-eD-PNN"/>
                             <constraint firstItem="RfN-o4-BAx" firstAttribute="top" secondItem="dEe-oE-9H2" secondAttribute="bottom" constant="120" id="YNU-oz-Uj4"/>
-                            <constraint firstItem="b7R-Oa-C5N" firstAttribute="trailing" secondItem="0X9-is-MOn" secondAttribute="trailing" constant="20" id="cdh-oe-QSt"/>
                             <constraint firstItem="P7M-VT-FXc" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="8" id="g2V-ii-Pf9"/>
+                            <constraint firstItem="0X9-is-MOn" firstAttribute="centerX" secondItem="0bA-DM-7Vl" secondAttribute="centerX" id="maA-wk-Bvu"/>
                             <constraint firstItem="b7R-Oa-C5N" firstAttribute="trailing" secondItem="tEB-MH-RP7" secondAttribute="trailing" constant="8" id="ojv-6a-PeS"/>
                             <constraint firstItem="NOF-pe-wWL" firstAttribute="leading" secondItem="b7R-Oa-C5N" secondAttribute="leading" constant="0.10000000000000001" id="rUD-BW-6SW"/>
                             <constraint firstItem="b7R-Oa-C5N" firstAttribute="trailing" secondItem="eJF-9g-ZNP" secondAttribute="trailing" constant="8" id="s5l-No-wSq"/>
@@ -2213,7 +2227,7 @@
                         <outlet property="dropPointOutlet" destination="W4W-f8-bII" id="gL9-az-dGV"/>
                         <outlet property="endRouteBtnOutlet" destination="FxE-nT-vZP" id="40j-TB-XQc"/>
                         <outlet property="gMapView" destination="NOF-pe-wWL" id="yAY-tr-ub4"/>
-                        <outlet property="googleAdBanner" destination="0X9-is-MOn" id="i9g-f2-cvY"/>
+                        <outlet property="googleAdBanner" destination="0X9-is-MOn" id="Coc-FY-71r"/>
                         <outlet property="googleMapOutlet" destination="dEe-oE-9H2" id="znA-Df-AlT"/>
                         <outlet property="okBtnOutlet" destination="tEB-MH-RP7" id="Uye-x3-Wbf"/>
                         <outlet property="rideSelectOutlet" destination="tda-Ow-Xf1" id="Wfv-xd-nIK"/>
@@ -2255,6 +2269,7 @@
             <point key="canvasLocation" x="3968" y="-644"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Facebook" width="318" height="74"/>
         <image name="ME.png" width="40" height="30"/>
@@ -2262,7 +2277,6 @@
         <image name="background" width="604" height="1095"/>
         <image name="baseline_add_white_18dp" width="18" height="18"/>
         <image name="baseline_my_location_white_18dp" width="18" height="18"/>
-        <image name="btnImage" width="141" height="85"/>
         <image name="cars" width="5472" height="3648"/>
         <image name="distance" width="32" height="32"/>
         <image name="drop-down-arrow (1)" width="24" height="24"/>
@@ -2277,5 +2291,4 @@
         <image name="useNumberImage" width="448" height="15"/>
         <image name="user" width="512" height="512"/>
     </resources>
-    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         print("\n\n--> The Login Deinit <--\n\n")
     }
     
+    @IBOutlet weak var loginOutlet: UIButton!
+    
+    @IBOutlet weak var forgotOutlet: UIButton!
+
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
@@ -40,7 +44,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        forgotOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.ForgetPassword.rawValue, comment: ""), for: .normal)
+        
+        loginOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.SIGNIN.rawValue, comment: ""), for: .normal)
+        
+        let mySelectedAttributedTitle = NSMutableAttributedString(string: LocalizationSystem.sharedInstance.localizedStringForKey(key: (LocalStrings.Doyouhaveaccount.rawValue), comment: ""),
+                                                           attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+        let myString = NSAttributedString(string: LocalizationSystem.sharedInstance.localizedStringForKey(key: (LocalStrings.SignUp.rawValue), comment: ""),
+        attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+        
+        mySelectedAttributedTitle.append(myString)
+        
+        signUpAction.setAttributedTitle(mySelectedAttributedTitle, for: .normal)
+        
+        loginOutlet.getRoundedcorner(cornerRadius: self.loginOutlet.roundHeight())
+        
         parentView.setBackground(imageName: "background")
+     //   signUpAction.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "\(LocalStrings.Doyouhaveaccount.rawValue)", comment: ""), for: .normal)
+        
         signUpAction.addTarget(self, action: #selector(openRegister), for: .touchUpInside)
         
         
@@ -48,7 +70,13 @@ class ViewController: UIViewController {
         //            print(snapshot)
         //        }
         
+        phoneTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.PhoneNumber.rawValue, comment: "")
         
+        passTextField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Password.rawValue, comment: "")
+        
+        
+        
+    
         navigationController?.removeNavigationBarColor()
         
         countryCodeField.inputView = countriesPikerView
@@ -82,7 +110,7 @@ class ViewController: UIViewController {
             if (phone.isEmpty || password.isEmpty){
                 
                 let alert = UIAlertController(title: "Please fill all the fields", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.OK.rawValue, comment: ""), style: .default, handler: nil))
                 self.present(alert,animated: true)
                 
             }else {

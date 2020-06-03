@@ -28,9 +28,7 @@ class RegisterMenuVC: UIViewController {
     
     let activity = UIActivityIndicatorView()
     
-    
     var usersArray : [User] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +40,14 @@ class RegisterMenuVC: UIViewController {
         googleBtnOutlet.setShadowOnView(cornerRadius: self.mobileBtnOutlet.frame.height/2)
         mobileBtnOutlet.addTarget(self, action: #selector(openSignInController), for: .touchUpInside)
         
+      //  facebookBtnOutlet.setTitle(" facebook", comment: ""), for: .normal)
+        
+        facebookBtnOutlet.setTitle("\(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.SignUp.rawValue, comment: "")) facebook", for: .normal)
+        
+          googleBtnOutlet.setTitle("\(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.SignUp.rawValue, comment: "")) Google", for: .normal)
+        
+          mobileBtnOutlet.setTitle("\(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.SignUp.rawValue, comment: "")) Mobile Number", for: .normal)
+        
         // fbLogin.delegate = self
         //  self.facebookBtnOutlet.delegate = self
         if #available(iOS 13.0, *) {
@@ -50,8 +56,6 @@ class RegisterMenuVC: UIViewController {
             
             // Fallback on earlier versions
         }
-        
-        
         
     }
     

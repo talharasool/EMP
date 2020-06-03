@@ -32,8 +32,8 @@
             timestampString = "590227688.022846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "signInAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -49,8 +49,8 @@
             timestampString = "590227688.022913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "signInAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -66,8 +66,8 @@
             timestampString = "590227688.022964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "signInAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -117,8 +117,8 @@
             timestampString = "589812383.8173651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "updateUserprofile(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,8 +134,8 @@
             timestampString = "589812383.817485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "updateUserprofile(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,8 +151,8 @@
             timestampString = "589812383.8175941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "updateUserprofile(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,8 +168,8 @@
             timestampString = "589812383.817675"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "updateUserprofile(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -185,8 +185,8 @@
             timestampString = "589812383.8177789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "updateUserprofile(sender:)"
             landmarkType = "7">
             <Locations>
@@ -236,8 +236,8 @@
             timestampString = "589812383.817875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "updateUserprofile(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             timestampString = "590227688.0236551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -287,8 +287,8 @@
             timestampString = "590698580.29682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "tapOnSwitch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -304,8 +304,8 @@
             timestampString = "590698580.296872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "tapOnSwitch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -321,8 +321,8 @@
             timestampString = "590698580.297659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "application(_:didRegister:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -440,8 +440,8 @@
             timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "detailTV"
             landmarkType = "24">
          </BreakpointContent>
@@ -585,8 +585,8 @@
             filePath = "EconomicMovementPlanner/ChangePasswordVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "updatePassword(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -681,8 +681,8 @@
             filePath = "EconomicMovementPlanner/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "502"
-            endingLineNumber = "502"
+            startingLineNumber = "516"
+            endingLineNumber = "516"
             landmarkName = "addUserprofile()"
             landmarkType = "7">
          </BreakpointContent>
@@ -697,8 +697,8 @@
             filePath = "EconomicMovementPlanner/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "AppDelegate"
             landmarkType = "21">
          </BreakpointContent>
@@ -713,8 +713,8 @@
             filePath = "EconomicMovementPlanner/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -729,8 +729,8 @@
             filePath = "EconomicMovementPlanner/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -745,8 +745,8 @@
             filePath = "EconomicMovementPlanner/RegisterMenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "fbAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -761,8 +761,8 @@
             filePath = "EconomicMovementPlanner/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -875,22 +875,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "757"
             endingLineNumber = "757"
-            landmarkName = "addDataToServer(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "408096C2-0824-465E-BE5E-D1365BA88DE0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EconomicMovementPlanner/MapExtensionVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "787"
-            endingLineNumber = "787"
             landmarkName = "addDataToServer(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>

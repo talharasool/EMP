@@ -16,11 +16,12 @@ import AuthenticationServices
 class RegisterVC: UIViewController {
 
     let btn  = GIDSignInButton()
-    @IBOutlet weak var signInBtnOutlet: GIDSignInButton!
+    @IBOutlet weak var signInBtnOutlet: UIButton!
     @IBOutlet weak var varificationBtnOutlet: UIButton!
     
     let activity = UIActivityIndicatorView()
   
+    @IBOutlet weak var mobileVerificationLabel: UILabel!
     let countriesPikerView = MRCountryPicker()
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCodeField: UITextField!
@@ -33,6 +34,7 @@ class RegisterVC: UIViewController {
         
         // mobileBtnOutlet.layer.cornerRadius = self.mobileBtnOutlet.frame.height/2
         
+        mobileVerificationLabel.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.MobileVerification.rawValue, comment: "")
         
         self.navigationController?.isNavigationBarHidden = false
         self.signInBtnOutlet.addTarget(self, action: #selector(numberVerifyAction(_:)), for: .touchUpInside)
@@ -40,6 +42,16 @@ class RegisterVC: UIViewController {
         
         countryCodeField.inputView = countriesPikerView
         setCountryPickerDelegate()
+        
+        varificationBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.MobileVerification.rawValue, comment: ""), for: .normal)
+        phoneField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.PhoneNumber.rawValue, comment: "")
+        
+        verificationCodeField.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Entercodereceived.rawValue, comment: "")
+        
+        signInBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.SIGNIN.rawValue, comment: ""), for: .normal)
+        
+        
+        
 
         
     }

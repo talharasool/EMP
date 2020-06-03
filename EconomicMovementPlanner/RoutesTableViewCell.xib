@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -199,7 +199,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQb-US-rw3">
                                         <rect key="frame" x="0.0" y="7" width="132.5" height="66"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-ta-OdT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-ta-OdT">
                                                 <rect key="frame" x="0.0" y="0.0" width="132.5" height="66"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -257,7 +257,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mF-la-VXh">
                                         <rect key="frame" x="285.5" y="7" width="132.5" height="66"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfQ-Ey-L0d">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfQ-Ey-L0d">
                                                 <rect key="frame" x="0.0" y="0.0" width="132.5" height="66"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -313,10 +313,13 @@
                 <outlet property="destinationLbl" destination="Isx-ta-OdT" id="7BL-Pv-EJ0"/>
                 <outlet property="distanceLbl" destination="xYF-M4-SYd" id="YyU-dh-mCZ"/>
                 <outlet property="distanceView" destination="t2a-Te-i6G" id="PHB-2c-xbE"/>
+                <outlet property="dlbl" destination="F0q-AA-yj8" id="ebq-uu-jQB"/>
+                <outlet property="flbl" destination="1oA-6W-aSx" id="OAE-eM-or8"/>
                 <outlet property="fuelLbl" destination="ycq-7y-9K7" id="Nf8-u5-GUZ"/>
                 <outlet property="fuelView" destination="mWC-vy-LBl" id="cfS-A4-w4G"/>
                 <outlet property="timeLbl" destination="YFr-jN-TRE" id="Vdc-Cl-P4T"/>
                 <outlet property="timeView" destination="4eX-ej-Ol5" id="5y6-bb-Jo1"/>
+                <outlet property="tlbl" destination="I4O-Yp-WnW" id="gwk-va-2RL"/>
             </connections>
             <point key="canvasLocation" x="205.79710144927537" y="46.875"/>
         </tableViewCell>

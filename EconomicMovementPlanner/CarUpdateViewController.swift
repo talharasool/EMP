@@ -24,7 +24,8 @@ class CarUpdateViewController: UIViewController {
     @IBOutlet weak var userPssword: UITextField!
     @IBOutlet weak var userPhoneNumber: UITextField!
     
-     let activity = UIActivityIndicatorView()
+    @IBOutlet weak var addcaroutlet: UILabel!
+    let activity = UIActivityIndicatorView()
     
     var selectedImage : UIImage! = nil
     
@@ -67,6 +68,16 @@ class CarUpdateViewController: UIViewController {
                 print("\n\n\n Image url is nil \n\n")
             }
         }
+        
+        self.updateProfileAction.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.AddCar.rawValue, comment: ""), for: .normal)
+             
+             self.username.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Make.rawValue, comment: "")
+             self.userPssword.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Mileage.rawValue, comment: "")
+             self.userPhoneNumber.placeholder = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Model.rawValue, comment: "")
+             
+             self.addcaroutlet.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.AddCar.rawValue, comment: "")
+             
+             self.uploadImageBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.UploadImage.rawValue, comment: ""), for: .normal)
         
     }
     
@@ -303,7 +314,8 @@ extension CarUpdateViewController : GADBannerViewDelegate{
         var bannerView: GADBannerView! = GADBannerView(adSize: adSize)
         addBannerViewToView(bannerView)
         
-        bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+        //bannerView.adUnitID = "ca-app-pub-5725707446720007/1443645625"
+         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())

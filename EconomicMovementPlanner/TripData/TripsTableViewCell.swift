@@ -14,6 +14,14 @@ class TripsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var fuelLabel: UILabel!
     
+    @IBOutlet weak var routelbl: UILabel!
+    @IBOutlet weak var carlbl: UILabel!
+    @IBOutlet weak var avrglbl: UILabel!
+    @IBOutlet weak var nlbl: UILabel!
+    @IBOutlet weak var flbl: UILabel!
+    @IBOutlet weak var tlbl: UILabel!
+    @IBOutlet weak var dlbl: UILabel!
+    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     static let reuseIdentifier = "TripsTableViewCell"
@@ -83,9 +91,25 @@ class TripsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var carImgView: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.tlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
+        
+        self.dlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
+        
+        self.flbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.fuel.rawValue, comment: "")
+        
+        self.carlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.car.rawValue, comment: "")
+        
+        self.routelbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.route.rawValue, comment: "")
+        
+        self.nameLbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Name.rawValue, comment: "")
+        
+         self.avrglbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.average.rawValue, comment: "")
         
    
     }

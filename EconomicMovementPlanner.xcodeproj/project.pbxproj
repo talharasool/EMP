@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F80BF77F989BE4A450F4ADD /* Pods_EconomicMovementPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D08290117A663B52D161D2A /* Pods_EconomicMovementPlannerTests.framework */; };
-		64732F11C6337D927DBEC602 /* Pods_EconomicMovementPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B919C831A2FE693313705A5B /* Pods_EconomicMovementPlannerUITests.framework */; };
+		941D25264694B7A758F53AC3 /* Pods_EconomicMovementPlanner_EconomicMovementPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC620F110CD1509F480972B /* Pods_EconomicMovementPlanner_EconomicMovementPlannerUITests.framework */; };
 		A17CDB7D349549C0A05AC877 /* Pods_EconomicMovementPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B2B3981945C79A53CC1036 /* Pods_EconomicMovementPlanner.framework */; };
 		BC02945322F6F6830039A4FD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC02945222F6F6830039A4FD /* Models.swift */; };
 		BC02945522F70DBE0039A4FD /* ImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC02945422F70DBE0039A4FD /* ImageExt.swift */; };
@@ -30,6 +30,7 @@
 		BC41D5DB2291507F008564BF /* EconomicMovementPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5DA2291507F008564BF /* EconomicMovementPlannerTests.swift */; };
 		BC41D5E62291507F008564BF /* EconomicMovementPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5E52291507F008564BF /* EconomicMovementPlannerUITests.swift */; };
 		BC41D5F422915AA5008564BF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D5F322915AA5008564BF /* Helper.swift */; };
+		BC59BA9224A59D2400DB059A /* localizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC59BA9124A59D2400DB059A /* localizeHelper.swift */; };
 		BC5A5CD82423A80800461197 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A5CD72423A80800461197 /* HomeVC.swift */; };
 		BC5A5CDA2423ADB000461197 /* MapExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A5CD92423ADB000461197 /* MapExtensionVC.swift */; };
 		BC5A5CDC2423B2DC00461197 /* LocationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A5CDB2423B2DB00461197 /* LocationManagement.swift */; };
@@ -86,11 +87,12 @@
 		1D08290117A663B52D161D2A /* Pods_EconomicMovementPlannerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EconomicMovementPlannerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA464D9EA8595926DAB38A4 /* Pods-EconomicMovementPlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlannerUITests.release.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlannerUITests/Pods-EconomicMovementPlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		564CF8042509E3EAB2E3D05E /* Pods-EconomicMovementPlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlannerUITests/Pods-EconomicMovementPlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EC620F110CD1509F480972B /* Pods_EconomicMovementPlanner_EconomicMovementPlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EconomicMovementPlanner_EconomicMovementPlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84820E2EE97DD6B0F5F3E827 /* Pods-EconomicMovementPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlanner.debug.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlanner/Pods-EconomicMovementPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		915F65D59245F43D0086FA3D /* Pods-EconomicMovementPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlannerTests.debug.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlannerTests/Pods-EconomicMovementPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5FD8BFD2EEB46A6A2FB756F /* Pods-EconomicMovementPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlannerTests.release.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlannerTests/Pods-EconomicMovementPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		B2B2B3981945C79A53CC1036 /* Pods_EconomicMovementPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EconomicMovementPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B919C831A2FE693313705A5B /* Pods_EconomicMovementPlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EconomicMovementPlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5872769AEB135A1CA4724EF /* Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC02945222F6F6830039A4FD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		BC02945422F70DBE0039A4FD /* ImageExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExt.swift; sourceTree = "<group>"; };
 		BC02945622F73B5E0039A4FD /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
@@ -120,10 +122,32 @@
 		BC41D5E52291507F008564BF /* EconomicMovementPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicMovementPlannerUITests.swift; sourceTree = "<group>"; };
 		BC41D5E72291507F008564BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC41D5F322915AA5008564BF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		BC59BA9124A59D2400DB059A /* localizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localizeHelper.swift; sourceTree = "<group>"; };
 		BC5A5CD72423A80800461197 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		BC5A5CD92423ADB000461197 /* MapExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensionVC.swift; sourceTree = "<group>"; };
 		BC5A5CDB2423B2DB00461197 /* LocationManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagement.swift; sourceTree = "<group>"; };
 		BC5B3ACF237579B8006FBFB7 /* CarUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarUpdateViewController.swift; sourceTree = "<group>"; };
+		BC6047F3249342FE0092F7A7 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Main.strings; sourceTree = "<group>"; };
+		BC6047F4249342FF0092F7A7 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC6047F5249343010092F7A7 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC6047F6249347880092F7A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		BC6047F72493478C0092F7A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BC6047F82493478D0092F7A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BC6047F9249348E70092F7A7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		BC6047FA249348E90092F7A7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC6047FB249348EA0092F7A7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC6047FC249349750092F7A7 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/Main.strings"; sourceTree = "<group>"; };
+		BC6047FD249349750092F7A7 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BC6047FE249349760092F7A7 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BC6047FF249349E70092F7A7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		BC604800249349E80092F7A7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC604801249349E80092F7A7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC60480224934A780092F7A7 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
+		BC60480324934A790092F7A7 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC60480424934A7A0092F7A7 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC60480524934AC50092F7A7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		BC60480624934AC60092F7A7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BC60480724934AC60092F7A7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BC665959229EB9AC007EFD40 /* DrawerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerVC.swift; sourceTree = "<group>"; };
 		BC66595F229EBB23007EFD40 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		BC66596122A13E1D007EFD40 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -155,6 +179,7 @@
 		BCF85330232E148600FC3135 /* TripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripVC.swift; sourceTree = "<group>"; };
 		BCF85332232E1A3300FC3135 /* TripDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDataSource.swift; sourceTree = "<group>"; };
 		C3399ADAE4E47AD1267457AA /* Pods-EconomicMovementPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlanner.release.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlanner/Pods-EconomicMovementPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		F7881B6854F55B0DCACC44DF /* Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.release.xcconfig"; path = "Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64732F11C6337D927DBEC602 /* Pods_EconomicMovementPlannerUITests.framework in Frameworks */,
+				941D25264694B7A758F53AC3 /* Pods_EconomicMovementPlanner_EconomicMovementPlannerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +249,7 @@
 				BC9124E8232CFBB9006DB4BD /* EconomicMovementPlanner.entitlements */,
 				BC41D5C22291507C008564BF /* AppDelegate.swift */,
 				BC02945222F6F6830039A4FD /* Models.swift */,
+				BC59BA9124A59D2400DB059A /* localizeHelper.swift */,
 				BC20E0C72485EDE500BD9DD1 /* Localizable.strings */,
 				BC02945422F70DBE0039A4FD /* ImageExt.swift */,
 				BC41D5C42291507C008564BF /* ViewController.swift */,
@@ -318,6 +344,8 @@
 				A5FD8BFD2EEB46A6A2FB756F /* Pods-EconomicMovementPlannerTests.release.xcconfig */,
 				564CF8042509E3EAB2E3D05E /* Pods-EconomicMovementPlannerUITests.debug.xcconfig */,
 				4DA464D9EA8595926DAB38A4 /* Pods-EconomicMovementPlannerUITests.release.xcconfig */,
+				B5872769AEB135A1CA4724EF /* Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.debug.xcconfig */,
+				F7881B6854F55B0DCACC44DF /* Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -327,7 +355,7 @@
 			children = (
 				B2B2B3981945C79A53CC1036 /* Pods_EconomicMovementPlanner.framework */,
 				1D08290117A663B52D161D2A /* Pods_EconomicMovementPlannerTests.framework */,
-				B919C831A2FE693313705A5B /* Pods_EconomicMovementPlannerUITests.framework */,
+				5EC620F110CD1509F480972B /* Pods_EconomicMovementPlanner_EconomicMovementPlannerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -382,6 +410,8 @@
 				BC41D5DD2291507F008564BF /* Sources */,
 				BC41D5DE2291507F008564BF /* Frameworks */,
 				BC41D5DF2291507F008564BF /* Resources */,
+				E05A98C59711CA2ECD5BE75A /* [CP] Embed Pods Frameworks */,
+				B94AC44E3B07A7E97E822B5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -432,6 +462,13 @@
 				en,
 				Base,
 				ar,
+				hi,
+				"zh-Hans",
+				es,
+				"ru-RU",
+				fr,
+				tr,
+				de,
 			);
 			mainGroup = BC41D5B62291507C008564BF;
 			productRefGroup = BC41D5C02291507C008564BF /* Products */;
@@ -519,7 +556,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EconomicMovementPlannerUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -582,6 +619,40 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner/Pods-EconomicMovementPlanner-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B94AC44E3B07A7E97E822B5E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E05A98C59711CA2ECD5BE75A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests/Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -591,6 +662,7 @@
 			files = (
 				BC02945522F70DBE0039A4FD /* ImageExt.swift in Sources */,
 				BC36963523376F4A0021C8C2 /* HomeVCExtold.swift in Sources */,
+				BC59BA9224A59D2400DB059A /* localizeHelper.swift in Sources */,
 				BC41D5CB2291507C008564BF /* EconomicMovementPlanner.xcdatamodeld in Sources */,
 				BCF85333232E1A3300FC3135 /* TripDataSource.swift in Sources */,
 				BCEDCAB32297F8610011380D /* HomeVCold.swift in Sources */,
@@ -668,6 +740,13 @@
 			children = (
 				BC20E0C62485EDE500BD9DD1 /* ar */,
 				BC20E0C82485EDE900BD9DD1 /* en */,
+				BC6047F5249343010092F7A7 /* hi */,
+				BC6047F82493478D0092F7A7 /* zh-Hans */,
+				BC6047FB249348EA0092F7A7 /* es */,
+				BC6047FE249349760092F7A7 /* ru-RU */,
+				BC604801249349E80092F7A7 /* fr */,
+				BC60480424934A7A0092F7A7 /* tr */,
+				BC60480724934AC60092F7A7 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -677,6 +756,13 @@
 			children = (
 				BC41D5C72291507C008564BF /* Base */,
 				BC20E0C12485ED3600BD9DD1 /* ar */,
+				BC6047F3249342FE0092F7A7 /* hi */,
+				BC6047F6249347880092F7A7 /* zh-Hans */,
+				BC6047F9249348E70092F7A7 /* es */,
+				BC6047FC249349750092F7A7 /* ru-RU */,
+				BC6047FF249349E70092F7A7 /* fr */,
+				BC60480224934A780092F7A7 /* tr */,
+				BC60480524934AC50092F7A7 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -686,6 +772,13 @@
 			children = (
 				BC41D5CF2291507F008564BF /* Base */,
 				BC20E0C22485ED3800BD9DD1 /* ar */,
+				BC6047F4249342FF0092F7A7 /* hi */,
+				BC6047F72493478C0092F7A7 /* zh-Hans */,
+				BC6047FA249348E90092F7A7 /* es */,
+				BC6047FD249349750092F7A7 /* ru-RU */,
+				BC604800249349E80092F7A7 /* fr */,
+				BC60480324934A790092F7A7 /* tr */,
+				BC60480624934AC60092F7A7 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -818,7 +911,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EconomicMovementPlanner/EconomicMovementPlanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 8P4N6UJTLQ;
 				INFOPLIST_FILE = EconomicMovementPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -841,7 +934,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EconomicMovementPlanner/EconomicMovementPlanner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 8P4N6UJTLQ;
 				INFOPLIST_FILE = EconomicMovementPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -903,7 +996,7 @@
 		};
 		BC41D5F12291507F008564BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 564CF8042509E3EAB2E3D05E /* Pods-EconomicMovementPlannerUITests.debug.xcconfig */;
+			baseConfigurationReference = B5872769AEB135A1CA4724EF /* Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -924,7 +1017,7 @@
 		};
 		BC41D5F22291507F008564BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DA464D9EA8595926DAB38A4 /* Pods-EconomicMovementPlannerUITests.release.xcconfig */;
+			baseConfigurationReference = F7881B6854F55B0DCACC44DF /* Pods-EconomicMovementPlanner-EconomicMovementPlannerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -132,10 +132,11 @@ class HomeVC: UIViewController {
     @IBAction func menuButtonAction(_ sender: Any) {
         let drawer : KYDrawerController  = self.navigationController?.parent as! KYDrawerController
         
-        if LocalizationSystem.sharedInstance.getLanguage() == "en"{
-            drawer.drawerDirection = .left
-        }else{
+        if LocalizationSystem.sharedInstance.getLanguage() == "ar"  {
             drawer.drawerDirection = .right
+        }else{
+            
+            drawer.drawerDirection = .left
         }
         drawer.setDrawerState(KYDrawerController.DrawerState.opened, animated: true)
     }

@@ -97,19 +97,19 @@ class TripsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.tlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
+     //   self.tlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
         
-        self.dlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
+       // self.dlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
         
-        self.flbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.fuel.rawValue, comment: "")
+      //  self.flbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings..rawValue, comment: "")
         
-        self.carlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.car.rawValue, comment: "")
+        self.carlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Car.rawValue, comment: "")
         
-        self.routelbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.route.rawValue, comment: "")
+        self.routelbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Route.rawValue, comment: "")
         
         self.nameLbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Name.rawValue, comment: "")
         
-         self.avrglbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.average.rawValue, comment: "")
+         self.avrglbl.text =  LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Average.rawValue, comment: "")
         
    
     }

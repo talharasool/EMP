@@ -65,13 +65,13 @@ class RoutesViewController: UIViewController {
         self.setDataOnLabels()
         print(listData.count)
         
-        self.routeDetails.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.routeDetail.rawValue, comment: "")
+        self.routeDetails.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Route.rawValue, comment: "")
         self.backOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.back.rawValue, comment: ""), for: .normal)
         
-        fulLbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.fuel.rawValue, comment: "")
-        timeinminlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
-        disLbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
-        
+//        fulLbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.fuel.rawValue, comment: "")
+//        timeinminlbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.tmn.rawValue, comment: "")
+//        disLbl.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dkm.rawValue, comment: "")
+//        
         print("The list of new data is here\n\n",self.listData.count)
        
         self.detailTV.tableFooterView = UIView(frame: .zero)

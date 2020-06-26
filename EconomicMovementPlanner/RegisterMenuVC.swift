@@ -18,6 +18,7 @@ import FirebaseAuth
 import AuthenticationServices
 
 
+
 class RegisterMenuVC: UIViewController {
     
     @IBOutlet weak var appleSignInView: UIView!

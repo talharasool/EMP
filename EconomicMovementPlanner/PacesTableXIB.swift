@@ -38,7 +38,7 @@ class PacesTableXIB: UIViewController {
 
         self.goOutletAction.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Go.rawValue, comment: ""), for: .normal)
         
-        self.routeTitle.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.routeDetail.rawValue, comment: "")
+        self.routeTitle.text = LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Route.rawValue, comment: "")
         
         self.cancelBtnOutlet.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Cancel.rawValue, comment: ""), for: .normal)
         
@@ -68,7 +68,9 @@ class PacesTableXIB: UIViewController {
 extension PacesTableXIB{
     
     func confirmDelete(index : Int) {
-        let alert = UIAlertController(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dlr.rawValue, comment: "") , message: "", preferredStyle: .alert)
+        
+        //LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.dlr.rawValue ?? "", comment: "")
+        let alert = UIAlertController(title: "Message" , message: "", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.Cancel.rawValue, comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: LocalizationSystem.sharedInstance.localizedStringForKey(key: LocalStrings.OK.rawValue, comment: ""), style: .default, handler: { (action) in
